@@ -1,0 +1,24 @@
+.App-container{
+width: 100%;
+
+display: flex;
+flex-direction: column;
+}
+.main-container{
+    display: flex;
+    width: 100%;
+}
+.display-header-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.display-section{
+    background: linear-gradient(var(--navy-blue), var(--deep-blue) 30%);
+    height: 100vh;
+    overflow-y:scroll;
+    padding: 1.875rem;
+    width: 100%;
+    
+}

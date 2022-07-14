@@ -1,0 +1,34 @@
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.56rem;
+    background-color: var(--navy-blue);
+    
+}
+
+.login{
+ border: 1px solid var(--white) ;
+ padding: 0.5rem 1rem;
+ font-size: 1.125rem;
+ color:var(--white);
+ border-radius: 20px;
+}
+
+.navBtns{
+    color:var(--white);
+    width:2.5rem;
+    height: 2.5rem;
+    border-radius: 100%;
+    font-size: 2rem;
+    padding: 0.31rem;
+    background-color: var(--very-dark-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.back-forward{
+    display: flex;
+    gap:1.25rem;
+}

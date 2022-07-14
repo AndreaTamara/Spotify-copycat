@@ -1,0 +1,31 @@
+.side-bar{
+    background-color: var(--very-dark-blue);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1.56rem;
+    gap:2rem;
+}
+.logo{
+    width:12.5rem;
+}
+.nav-bar{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+   align-items: flex-start;
+    gap:1.25rem;
+}
+.nav-bar-item{
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    font-size: 1.125rem;
+    color:var(--white)
+}
+
+.nav-bar-item >span{
+    font-size: 2rem;
+}
