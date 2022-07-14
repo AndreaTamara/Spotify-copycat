@@ -3,5 +3,9 @@
     height: 6.25rem;
     background-color: var(--dark-blue);
     color:var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 0.5px solid rgba(225,225,225,0.1);
     
 }

@@ -3,6 +3,7 @@
   --mid-deep-blue: hsl(221, 21%, 15%);/*card*/
   --light-green: hsl(143, 100%, 66%);
   --navy-blue: hsl(218, 42%, 23%);/*grid gradient*/
+  --navy-blue-2: hsl(241, 51%, 25%);/*grid gradient*/
   --dark-blue: hsl(225, 25%, 9%);/*player*/
   --very-dark-blue: hsl(216, 16%, 6%); /*sidebar*/
   --white: hsl(0,0%,100%);
@@ -16,13 +17,16 @@
   list-style: none;
   font-family: 'Public Sans', sans-serif;
   font-size: 100%;
+  /* border:1px solid white; */
  
 }
 button{
   border:none;
   background: none;
   outline:none;
- 
+}
+button:hover{
+  cursor: pointer;
 }
 body {
   width: 100vw;
@@ -33,6 +37,7 @@ body {
 }
 #root{
   width: 100%;
+  height: 100%;
  
 }
 

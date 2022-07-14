@@ -6,7 +6,10 @@ import './SideBar.css'
 export const SideBar = () => {
     return (
         <aside className='side-bar'>
-            <img className='logo' src={logo} alt='spotify logo' />
+            <div className='logo'>
+            <img  src={logo} alt='spotify logo' />
+            </div>
+            
         
                 <nav className='nav-bar'>
                     <NavLink to='/' className='nav-bar-item'>

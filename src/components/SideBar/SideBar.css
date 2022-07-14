@@ -7,10 +7,19 @@
     align-items: center;
     padding: 1.56rem;
     gap:2rem;
+    height: calc(100vh - 100px);
+    width: 20%;
+    
 }
 .logo{
-    width:12.5rem;
+    width:100%;
 }
+    
+.logo > img{
+    width:100%;
+    object-fit: contain;
+}
+
 .nav-bar{
     width: 100%;
     display: flex;
