@@ -13,7 +13,7 @@ root.render(
     <Routes>
       <Route path='/' element={<Layout/>}>
         <Route index element ={<Home/>}/>
-        <Route path='search' element ={<div>search</div>}/>
+        <Route path='search' element ={<div style={{height:'2000px'}}>search</div>}/>
         <Route path='*' element ={<div>not found</div>}/>
       </Route>    
     </Routes>

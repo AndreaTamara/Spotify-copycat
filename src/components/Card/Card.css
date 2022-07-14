@@ -9,12 +9,18 @@
     justify-content: flex-start;
     align-items: center;
     gap:1rem;
+   
+}
+.card:hover{
+    background-color: var(--mid-deep-blue-active);
+    cursor: pointer;
 }
 .card-img{
     width:11rem;
     height:11rem;
-    background-color: red;
+    background-color: gray;
     border-radius: 5px;
+    opacity: 1;
 }
 
 .card-info{

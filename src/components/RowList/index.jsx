@@ -23,13 +23,13 @@ export const RowList = ({ children, title, id }) => {
                 <h2>{title}</h2>
                 <nav className='back-forward'>
                 <button
-                    className="navBtns"
+                    className="row-list-scroll-btn"
                     onClick={scrollContainer(id, { isNegative: true })}
                 >
                     <MdOutlineArrowBackIosNew />
                 </button>
                 <button
-                    className="navBtns"
+                    className="row-list-scroll-btn"
                     onClick={scrollContainer(id)}
                 >
                     <MdOutlineArrowForwardIos />

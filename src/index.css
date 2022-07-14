@@ -1,8 +1,9 @@
 :root {
   --deep-blue: hsl(222, 22%, 9%);/*grid*/
-  --mid-deep-blue: hsl(221, 21%, 15%);/*card*/
+  --mid-deep-blue-active: hsl(224, 21%, 18%);/*card active*/
+  --mid-deep-blue: hsl(222, 21%, 12%);/*card*/
   --light-green: hsl(143, 100%, 66%);
-  --navy-blue: hsl(218, 42%, 23%);/*grid gradient*/
+  --navy-blue: hsl(241, 52%, 19%);/*grid gradient*/
   --navy-blue-2: hsl(241, 51%, 25%);/*grid gradient*/
   --dark-blue: hsl(225, 25%, 9%);/*player*/
   --very-dark-blue: hsl(216, 16%, 6%); /*sidebar*/
@@ -34,10 +35,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  /* overflow-y: scroll; */
 }
 #root{
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
  
 }
 

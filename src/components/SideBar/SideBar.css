@@ -7,8 +7,12 @@
     align-items: center;
     padding: 1.56rem;
     gap:2rem;
-    height: calc(100vh - 100px);
+    height: 100vh;
     width: 20%;
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index:200;
     
 }
 .logo{

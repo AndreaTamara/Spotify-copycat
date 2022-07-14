@@ -1,21 +1,26 @@
 .row-list{
     display: flex;
     flex-direction: column;
-    gap:1.25rem;
+    gap:1rem;
     width: 100%;
 }
 .row-list-title{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     color:var(--white);
 }
 .row-list-title > h2{
-    font-size: 2.25rem;
+    font-size: 2.125rem;
 }
 .row-list-title > h6{
     font-size: 1rem;
     text-transform: uppercase;
+}
+.row-list-scroll-btn{
+    color:var(--white);
+    font-size: 1.25rem;
+
 }
 
 .row-list-items{
@@ -24,6 +29,7 @@
     justify-content: flex-start;
     overflow-x:scroll;
     scroll-behavior: smooth;
+    padding-bottom: 1.5625rem;
 }
 .row-list-items::-webkit-scrollbar{
     /* height: 10px; */
