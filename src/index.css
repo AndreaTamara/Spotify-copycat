@@ -1,12 +1,13 @@
 :root {
-  --deep-blue: hsl(222, 22%, 9%);/*grid*/
+   --deep-blue: hsl(222, 22%, 9%);/*grid */
   --mid-deep-blue-active: hsl(224, 21%, 18%);/*card active*/
   --mid-deep-blue: hsl(222, 21%, 12%);/*card*/
   --light-green: hsl(143, 100%, 66%);
   --navy-blue: hsl(241, 52%, 19%);/*grid gradient*/
   --navy-blue-2: hsl(241, 51%, 25%);/*grid gradient*/
   --dark-blue: hsl(225, 25%, 9%);/*player*/
-  --very-dark-blue: hsl(216, 16%, 6%); /*sidebar*/
+  /* --very-dark-blue: hsl(216, 16%, 6%); sidebar */
+  --very-dark-blue: hsl(210, 22%, 7%); /*sidebar*/
   --white: hsl(0,0%,100%);
   --light-grey: hsl(226, 16%, 69%);
 }
