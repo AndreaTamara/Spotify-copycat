@@ -6,17 +6,12 @@ export const RowList = ({ children, title, id }) => {
     function scrollContainer(id, { isNegative } = {}) {
         return () => {
           const scrollableContainer = document.getElementById(id);
-          console.log(scrollableContainer)
           const amount = isNegative ? -scrollableContainer.offsetWidth : scrollableContainer.offsetWidth;
       
           scrollableContainer.scrollLeft = scrollableContainer.scrollLeft + amount;
         };
       }
-
-    // const onHorizontalScroll= ()=>{
-    //     console.log('pdte')
-    // }
-
+      
     return (
         <section className='row-list'>
             <span className='row-list-title'>

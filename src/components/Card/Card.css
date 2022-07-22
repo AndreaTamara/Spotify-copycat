@@ -5,6 +5,7 @@
     border-radius: 5px;
     background-color: var(--mid-deep-blue);
     display: flex;
+    flex-grow: 0;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -20,7 +21,14 @@
     height:11rem;
     background-color: gray;
     border-radius: 5px;
-    opacity: 1;
+    
+}
+
+.card-img > img{
+    width:11rem;
+    object-fit: contain;
+    border-radius: 5px;
+    
 }
 
 .card-info{
@@ -29,5 +37,15 @@
     flex-direction: column;
     align-items: flex-start;
     gap:0.8rem;
+}
+    
+
+.card-info-title{
     color:var(--white);
+    font-size: 0.875rem;
+}
+
+.card-info-description{
+    color:var( --light-grey);
+    font-size: 0.75rem;
 }
