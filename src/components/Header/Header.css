@@ -1,5 +1,6 @@
 .header{
-    width: 80%;
+    min-width: 85%;
+    width:calc(100vw - 258px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,4 +36,22 @@
 .back-forward{
     display: flex;
     gap:1.25rem;
+}
+
+@media (max-width:900px){
+    .navBtns{
+    width:1.875rem;
+    height: 1.875rem;
+    font-size: 1.5rem;
+    }
+
+    .back-forward{
+        gap:1.125rem;
+    }
+
+    .header{
+        padding: 1rem 1.25rem;
+        width: calc(100vw - 65px);
+        min-width:auto;
+    }
 }

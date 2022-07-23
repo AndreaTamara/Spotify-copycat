@@ -11,7 +11,7 @@
     color:var(--white);
 }
 .row-list-title > h2{
-    font-size: 2.125rem;
+    font-size: 1.875rem;
 }
 .row-list-title > h6{
     font-size: 1rem;
@@ -40,3 +40,12 @@
     background-color: rgba(225,225,225,0.05);
     border-radius: 10px;
 } */
+
+@media (max-width:900px){
+    .row-list-title > h2{
+        font-size: 1.25rem;
+    }
+    .row-list-items{
+        gap:1rem;
+    }
+}

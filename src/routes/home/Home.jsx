@@ -8,6 +8,7 @@ export const Home = () => {
 
   const [newRealeases, setNewReleases] = useState([]);
   const [featuredPlaylists, setFeaturedPlayLists] = useState([]);
+  const [browse, setBrowse] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -43,6 +44,19 @@ export const Home = () => {
       .then(console.log(featuredPlaylists))
   }, [])
 
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    fetch('https://api.spotify.com/v1/browse/categories',
+      {
+        headers: {
+          'Authorization': 'Bearer ' + token,
+        }
+      })
+      .then(res => res.json())
+      .then(res => setBrowse(res.categories.items))
+      .then(console.log(browse))
+  }, [])
+
 
 
   return (
@@ -66,23 +80,22 @@ export const Home = () => {
             <Card
               key={playlist.id}
               name={playlist.name}
-              author={playlist.description.length>48?`${playlist.description.substring(0, 48)}...`:playlist.description}
+              author={playlist.description.length > 48 ? `${playlist.description.substring(0, 40)}...` : playlist.description}
               imgUrl={playlist.images[0].url}
             />
           )
         })}
       </RowList>
-      <RowList title='Genders' id='genders'>
-        <Card name='titulo 9' />
-        <Card name='titulo 9' />
-        <Card name='titulo 9' />
-        <Card name='titulo 9' />
-      </RowList>
-      <RowList title='other' id='other'>
-        <Card name='titulo 9' />
-        <Card name='titulo 9' />
-        <Card name='titulo 9' />
-        <Card name='titulo 9' />
+      <RowList title='Browse' id='browse'>
+        {browse?.map(category => {
+          return (
+            <Card
+              key={category.id}
+              name={category.name}
+              imgUrl={category.icons[0].url}
+            />
+          )
+        })}
       </RowList>
     </section>
   )

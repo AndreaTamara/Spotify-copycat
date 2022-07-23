@@ -7,9 +7,12 @@ gap:2.5rem;
 height: 100vh;
 padding: 20px 0;
 
-/* overflow-y:scroll; */
 }
-/* .home-container::-webkit-scrollbar {
-    display: none;
-  }
-   */
+
+@media (max-width:900px){
+  .home-container{
+       gap:1.25rem;
+    }
+    
+   
+}

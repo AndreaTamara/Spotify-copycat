@@ -8,7 +8,8 @@
     padding: 1.56rem;
     gap:2rem;
     height: 100vh;
-    width: 20%;
+    width: 15%;
+    max-width: 258px;
     position: absolute;
     top:0;
     left: 0;
@@ -48,4 +49,35 @@
 
 .nav-bar-item >span{
     font-size: 1.5rem;
+}
+
+.nav-bar-item:hover{
+    opacity: 0.8;
+}
+
+.logo-mobile{
+    display: none;
+}
+
+@media (max-width:900px){
+    .side-bar{
+        padding: 1.25rem 0;
+        align-items:center;
+        width: 65px;
+    }
+    .nav-bar-item >p{
+        display: none;
+    }
+    .logo-desktop{
+        display: none;
+    }
+    .logo-mobile{
+        display: flex;
+        width:100%;
+        object-fit: cover;
+    }
+    .nav-bar{
+        align-items:center;
+    }
+
 }
