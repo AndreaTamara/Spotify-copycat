@@ -8,15 +8,11 @@ import { Outlet } from 'react-router-dom';
 function Layout() {
   return (
     <div className='App-container'>
-      
-        <SideBar />
-        
-          <Header />
-          <section className='display-section'>
-            <Outlet />
-          </section>
-        
-      
+      <SideBar />
+      <Header />
+      <section className='display-section'>
+        <Outlet />
+      </section>
       <PlayBar />
     </div>
   );

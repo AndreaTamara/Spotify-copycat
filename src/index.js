@@ -6,9 +6,9 @@ import { RoutesSpotify } from './routes';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
-  <React.StrictMode>
+  // <React.StrictMode>
     <RoutesSpotify />
-  </React.StrictMode>
+  // </React.StrictMode>
 
 );
 
