@@ -1,82 +1,39 @@
-import { useState, useEffect} from "react"
-import { getToken } from "../../assets/fetchFuntions"
+import { getToken } from "../../assets/helpers"
 import { Card } from "../../components/Card"
 import { RowList } from "../../components/RowList"
 import './Home.css'
 import { useGetData } from "../../assets/useGetData"
+import { useLayoutEffect } from "react"
 
-const  newRealeasesUrl = '/browse/new-releases';
+const newRealeasesUrl = '/browse/new-releases';
 const featuredPlaylistsUrl = '/browse/featured-playlists';
 const browseUrl = '/browse/categories'
 
 export const Home = () => {
-  const [token,setToken] = useState(localStorage.getItem('token')) 
-  console.log('inicio componente')
-  // const [newRealeases, setNewReleases] = useState([]);
-  // const [featuredPlaylists, setFeaturedPlayLists] = useState([]);
-  // const [browse, setBrowse] = useState([]);
-  const {data:newRealeases,loading:newRealeasesLoading, error:newRealeasesError} = useGetData(newRealeasesUrl,token)
-  const {data:featuredPlaylists,loading:featuredPlaylistsLoading, error:featuredPlaylistsError} = useGetData(featuredPlaylistsUrl,token)
-  const {data:browse,loading:browseLoading, error:browseError} = useGetData(browseUrl,token)
-  useEffect(() => {
-    // const token = localStorage.getItem('token')
+
+
+  useLayoutEffect(() => {
+
+    const token = localStorage.getItem('token')
+
     if (!token) {
-      getToken().then(res => localStorage.setItem('token', res)).then(res=>setToken(res))
+      getToken()
+        .then(res => localStorage.setItem('token', res))
     }
-  }, [token])
 
+  }, [])
 
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token')
-  //   fetch(baseUrl+newRealeasesUrl,
-  //     {
-  //       headers: {
-  //         'Authorization': 'Bearer ' + token,
-  //       }
-  //     })
-  //     .then(res => res.json())
-  //     .then(res => setNewReleases(res.albums.items))
-  //     .then(console.log(newRealeases))
-
-  // }, [])
-
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token')
-  //   fetch('https://api.spotify.com/v1/browse/featured-playlists',
-  //     {
-  //       headers: {
-  //         'Authorization': 'Bearer ' + token,
-  //       }
-  //     })
-  //     .then(res => res.json())
-  //     .then(res => setFeaturedPlayLists(res.playlists.items))
-  //     .then(console.log(featuredPlaylists))
-  // }, [])
-
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token')
-  //   fetch('https://api.spotify.com/v1/browse/categories',
-  //     {
-  //       headers: {
-  //         'Authorization': 'Bearer ' + token,
-  //       }
-  //     })
-  //     .then(res => res.json())
-  //     .then(res => setBrowse(res.categories.items))
-  //     .then(console.log(browse))
-  // }, [])
-
+  const { data: newRealeases, loading: newRealeasesLoading, error: newRealeasesError } = useGetData(newRealeasesUrl)
+  const { data: featuredPlaylists, loading: featuredPlaylistsLoading, error: featuredPlaylistsError } = useGetData(featuredPlaylistsUrl)
+  const { data: browse, loading: browseLoading, error: browseError } = useGetData(browseUrl)
 
 
   return (
     <section className="home-container">
 
       <RowList title='Released this week' id='released'>
-        {newRealeasesLoading&&<p>loading...</p>}
-        {newRealeasesError&&<p>ocurrió un error: {newRealeasesError.error.message}</p>}
+        {newRealeasesLoading && <p>loading...</p>}
+        {newRealeasesError && <p>ocurrió un error: {newRealeasesError.error.message}</p>}
         {newRealeases?.albums.items.map(album => {
           return (
             <Card
@@ -89,8 +46,8 @@ export const Home = () => {
         })}
       </RowList>
       <RowList title='Featured Playlist' id='playlist'>
-      {featuredPlaylistsLoading&&<p>loading...</p>}
-      {featuredPlaylistsError&&<p>ocurrió un error: {featuredPlaylistsError.error.message}</p>}
+        {featuredPlaylistsLoading && <p>loading...</p>}
+        {featuredPlaylistsError && <p>ocurrió un error: {featuredPlaylistsError.error.message}</p>}
         {featuredPlaylists?.playlists.items.map(playlist => {
           return (
             <Card
@@ -103,8 +60,8 @@ export const Home = () => {
         })}
       </RowList>
       <RowList title='Browse' id='browse'>
-      {browseLoading&&<p>loading...</p>}
-      {browseError&&<p>ocurrió un error: {browseError.error.message}</p>}
+        {browseLoading && <p>loading...</p>}
+        {browseError && <p>ocurrió un error: {browseError.error.message}</p>}
         {browse?.categories.items.map(category => {
           return (
             <Card
