@@ -1,4 +1,3 @@
-import { getToken } from "../../assets/helpers"
 import { Card } from "../../components/Card"
 import { RowList } from "../../components/RowList"
 import './Home.css'
@@ -12,16 +11,16 @@ const browseUrl = '/browse/categories'
 export const Home = () => {
 
 
-  useLayoutEffect(() => {
+  // useLayoutEffect(() => {
 
-    const token = localStorage.getItem('token')
+  //   const token = localStorage.getItem('token')
 
-    if (!token) {
-      getToken()
-        .then(res => localStorage.setItem('token', res))
-    }
+  //   if (!token) {
+  //     getToken()
+  //       .then(res => localStorage.setItem('token', res))
+  //   }
 
-  }, [])
+  // }, [])
 
   const { data: newRealeases, loading: newRealeasesLoading, error: newRealeasesError } = useGetData(newRealeasesUrl)
   const { data: featuredPlaylists, loading: featuredPlaylistsLoading, error: featuredPlaylistsError } = useGetData(featuredPlaylistsUrl)
@@ -38,7 +37,7 @@ export const Home = () => {
           return (
             <Card
               key={album.id}
-              name={album.name}
+              name={album.name.length>30?`${album.name.substring(0, 30)}...` : album.name }
               author={album.artists.map(artist => artist.name).join(', ')}
               imgUrl={album.images[1].url}
             />

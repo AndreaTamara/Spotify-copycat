@@ -31,6 +31,10 @@
     
 }
 
+.card:hover .card-img > img{
+    box-shadow: 0 0 15px  var(--deep-blue); 
+}
+
 .card-info{
     width: 100%;
     display: flex;

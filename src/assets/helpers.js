@@ -17,6 +17,6 @@ import axios from "axios";
                 },
                 data: 'grant_type=client_credentials'
             });
-            console.log(result.data.access_token)
+            //console.log(result.data.access_token)
         return result.data.access_token;
     }
