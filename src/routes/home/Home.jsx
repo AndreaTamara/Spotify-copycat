@@ -32,7 +32,7 @@ export const Home = () => {
 
       <RowList title='Released this week' id='released'>
         {newRealeasesLoading && <p>loading...</p>}
-        {newRealeasesError && <p>ocurrió un error: {newRealeasesError.error.message}</p>}
+        {newRealeasesError && <p>ocurrió un error: {newRealeasesError.error?.message}</p>}
         {newRealeases?.albums.items.map(album => {
           return (
             <Card
@@ -46,7 +46,7 @@ export const Home = () => {
       </RowList>
       <RowList title='Featured Playlist' id='playlist'>
         {featuredPlaylistsLoading && <p>loading...</p>}
-        {featuredPlaylistsError && <p>ocurrió un error: {featuredPlaylistsError.error.message}</p>}
+        {featuredPlaylistsError && <p>ocurrió un error: {featuredPlaylistsError.error?.message}</p>}
         {featuredPlaylists?.playlists.items.map(playlist => {
           return (
             <Card
@@ -60,7 +60,7 @@ export const Home = () => {
       </RowList>
       <RowList title='Browse' id='browse'>
         {browseLoading && <p>loading...</p>}
-        {browseError && <p>ocurrió un error: {browseError.error.message}</p>}
+        {browseError && <p>ocurrió un error: {browseError.error?.message}</p>}
         {browse?.categories.items.map(category => {
           return (
             <Card
