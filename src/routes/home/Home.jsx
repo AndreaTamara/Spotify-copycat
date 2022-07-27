@@ -1,26 +1,14 @@
 import { Card } from "../../components/Card"
 import { RowList } from "../../components/RowList"
 import './Home.css'
-import { useGetData } from "../../assets/useGetData"
-import { useLayoutEffect } from "react"
+import { useGetData } from "../../hooks/useGetData"
+
 
 const newRealeasesUrl = '/browse/new-releases';
 const featuredPlaylistsUrl = '/browse/featured-playlists';
 const browseUrl = '/browse/categories'
 
 export const Home = () => {
-
-
-  // useLayoutEffect(() => {
-
-  //   const token = localStorage.getItem('token')
-
-  //   if (!token) {
-  //     getToken()
-  //       .then(res => localStorage.setItem('token', res))
-  //   }
-
-  // }, [])
 
   const { data: newRealeases, loading: newRealeasesLoading, error: newRealeasesError } = useGetData(newRealeasesUrl)
   const { data: featuredPlaylists, loading: featuredPlaylistsLoading, error: featuredPlaylistsError } = useGetData(featuredPlaylistsUrl)

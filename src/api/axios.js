@@ -1,3 +1,5 @@
+//primer ensayo, se se está usando en la app
+
 import axios from 'axios';
 
 const instance = axios.create()
