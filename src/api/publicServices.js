@@ -4,7 +4,7 @@ import axios from 'axios';
 const instance = axios.create({ baseURL: 'https://api.spotify.com/v1' })
 
 
-export const getToken = async () => {
+export const getPublicToken = async () => {
 
     const clientId = '3f182385c47b4459b03bba8df1a09d47';
     const clientSecret = '89b84d2544ac44938950c2fdcca11cd0';
@@ -43,7 +43,7 @@ instance.interceptors.request.use((config) => {
 instance.interceptors.response.use((response) => response,
     (error) => {
         if (error.response.status === 401 || error.response.status === 400) {
-            getToken()
+            getPublicToken()
             .then(res => localStorage.setItem('token', res))
             .catch(() => localStorage.clear())
             .finally(() => window.location.reload())
@@ -53,14 +53,12 @@ instance.interceptors.response.use((response) => response,
     })
 
 // hacer peticiones get, a traves de la instancia creada
-export function getData(endpoint,n) {
-
+export function getPublicData(endpoint, n) {
     return instance.get(endpoint, {
         params: { limit: n }
     })
-    .then(res => {  //**TODO- mirar si puedo quitar este then y en useGetData setear response.data
-        // console.log(res)
-        return res.data
-    })
-
+        .then(res => {  //**TODO- mirar si puedo quitar este then y en useGetData setear response.data
+            // console.log(res)
+            return res.data
+        })
 }

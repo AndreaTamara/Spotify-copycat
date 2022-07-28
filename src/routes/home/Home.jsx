@@ -14,6 +14,7 @@ export const Home = () => {
   const { data: featuredPlaylists, loading: featuredPlaylistsLoading, error: featuredPlaylistsError } = useGetData(featuredPlaylistsUrl)
   const { data: browse, loading: browseLoading, error: browseError } = useGetData(browseUrl)
 
+  
 
   return (
     <section className="home-container">

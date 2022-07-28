@@ -21,6 +21,13 @@
  border-radius: 20px;
 }
 
+.login-active{
+    display: flex;
+    gap:1rem;
+    align-items: center;
+}
+
+
 .navBtns{
     color:var(--white);
     width:2.5rem;
@@ -53,5 +60,13 @@
         padding: 1rem 1.25rem;
         width: calc(100vw - 65px);
         min-width:auto;
+    }
+
+    .login{
+        font-size: 1rem;
+        padding: 0.3755rem 1rem;
+    }
+    .login-active > p{
+        font-size: 0.875rem ;
     }
 }

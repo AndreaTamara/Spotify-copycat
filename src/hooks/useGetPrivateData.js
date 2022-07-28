@@ -1,8 +1,7 @@
-import { useEffect, useState} from "react";
-import { getPublicData } from "../api/publicServices";
+import { useEffect, useState } from "react";
 
 
-export const useGetData = (endpoint) => {
+export const useGetPrivateData = (endpoint) => {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -11,7 +10,7 @@ export const useGetData = (endpoint) => {
     const getInfo = async () => {
 
         try {
-            const response = await getPublicData(endpoint,20)
+            const response = await getPrivateData(endpoint,20)
             // console.log(response)
             setData(response)
             setLoading(false)
