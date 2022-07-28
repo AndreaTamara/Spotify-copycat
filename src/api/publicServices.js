@@ -59,7 +59,7 @@ export function getData(endpoint,n) {
         params: { limit: n }
     })
     .then(res => {  //**TODO- mirar si puedo quitar este then y en useGetData setear response.data
-        console.log(res)
+        // console.log(res)
         return res.data
     })
 
