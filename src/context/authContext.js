@@ -14,14 +14,14 @@ export const AuthProvider = ({ children }) => {
     // console.log(code)
 
     useEffect(() => {
-        const privateToken = localStorage.getItem('privateToken');
-        if (privateToken) {
+        const refreshToken = localStorage.getItem('refreshToken');
+        if (refreshToken) {
             setLoggedIn(true)
         }
         else if (code){
             getPrivateToken(code)
                 .then(res => {
-                    localStorage.setItem('privateToken', res.access_token);
+                    // localStorage.setItem('privateToken', res.access_token);
                     localStorage.setItem('token', res.access_token);
                     localStorage.setItem('refreshToken', res.refresh_token);
                     setLoggedIn(true)
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
 
     const handleLogOut = ()=>{
         setLoggedIn(false);
-        localStorage.setItem('privateToken', '');
+        localStorage.setItem('token', '');
         localStorage.setItem('refreshToken', '');
     }
 

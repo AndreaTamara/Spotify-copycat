@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
-import { getPrivateData } from "../api/privateServices";
+import { useEffect, useState} from "react";
+import { getPublicData } from "../api/publicServices";
 
 
-export const useGetPrivateData = (endpoint,loggedIn) => {
-
-    
+export const useGetData = (endpoint) => {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -13,8 +11,8 @@ export const useGetPrivateData = (endpoint,loggedIn) => {
     const getInfo = async () => {
 
         try {
-            const response = await getPrivateData(endpoint,20)
-            console.log(response)
+            const response = await getPublicData(endpoint,20)
+            // console.log(response)
             setData(response)
             setLoading(false)
             setError(null)
@@ -25,9 +23,9 @@ export const useGetPrivateData = (endpoint,loggedIn) => {
         }
     }
 
-    useEffect(() => {  
-        if(loggedIn){getInfo()}   
-    }, [loggedIn])
+    useEffect(() => {     
+            getInfo();
+    }, [])
 
 
     return { data, loading, error }

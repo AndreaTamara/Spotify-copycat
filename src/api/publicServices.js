@@ -48,7 +48,7 @@ instance.interceptors.response.use((response) => response,
             .catch(() => localStorage.clear())
             .finally(() => window.location.reload())
         }
-        console.log(error)
+        // console.log(error)
         return Promise.reject(error)
     })
 

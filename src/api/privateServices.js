@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const instance = axios.create({ baseURL: 'https://api.spotify.com/v1/me' })
+const instance = axios.create({ baseURL: 'https://api.spotify.com/v1' })
 
 //getPrivateToken OK
 export const getPrivateToken = async (code) => {
@@ -22,7 +22,7 @@ export const getPrivateToken = async (code) => {
 
 
         });
-    console.log(result.data)
+    // console.log(result.data)
     return result.data;
 }
 
@@ -45,14 +45,14 @@ export const getRefreshedToken = async () => {
             },
             data: `grant_type=refresh_token&refresh_token=${refreshToken}`
         });
-    console.log(result.data)
+    // console.log(result.data)
     return result.data;
 }
 
 
 instance.interceptors.request.use((config) => {
     const newConfig = { ...config }
-    const token = localStorage.getItem('privateToken')
+    const token = localStorage.getItem('token')
     newConfig.headers.Authorization = `Bearer ${token}`
     return newConfig
 })
@@ -62,11 +62,11 @@ instance.interceptors.response.use((response) => response,
     
         if (error.response.status === 401) {
             getRefreshedToken()
-                .then(res => localStorage.setItem('privateToken', res.access_token))
+                .then(res => localStorage.setItem('token', res.access_token))
                 .catch(() => localStorage.clear())
                 .finally(() => window.location.reload())
         }
-        console.log(error)
+        // console.log(error)
         return Promise.reject(error)
     })
 
@@ -78,20 +78,20 @@ instance.interceptors.response.use((response) => response,
 
 //obtener info de usuario actual-OK
 export function getUserData() {
-    return instance.get()
+    return instance.get('/me')
         .then(res => {
             // console.log(res)
             return res.data
         })
 }
 
-//getPrivateData
+//getPrivateData-OK
 export function getPrivateData(endpoint, n) {
     return instance.get(endpoint, {
         params: { limit: n }
     })
         .then(res => {  
-            console.log(res)
+            // console.log(res)
             return res.data
         })
 
