@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const instance = axios.create({ baseURL: 'https://api.spotify.com/v1' })
 
-//getPrivateToken OK
 export const getPrivateToken = async (code) => {
 
     const clientId = '3f182385c47b4459b03bba8df1a09d47';
@@ -26,7 +25,7 @@ export const getPrivateToken = async (code) => {
     return result.data;
 }
 
-//getRefreshedToken
+
 export const getRefreshedToken = async () => {
 
     const refreshToken = localStorage.getItem('refreshToken')
@@ -71,12 +70,8 @@ instance.interceptors.response.use((response) => response,
     })
 
 
-
-//obtener code OK- authContext
-
 //comparar state TO-DO
 
-//obtener info de usuario actual-OK
 export function getUserData() {
     return instance.get('/me')
         .then(res => {
@@ -85,7 +80,6 @@ export function getUserData() {
         })
 }
 
-//getPrivateData-OK
 export function getPrivateData(endpoint, n) {
     return instance.get(endpoint, {
         params: { limit: n }

@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
             getUserData()
             .then(res=>{
                 // console.log(res);
-                setUser({...user, name:res.display_name, id:res.id})
+                setUser({name:res.display_name, id:res.id})
             })
         }
     }, [loggedIn])

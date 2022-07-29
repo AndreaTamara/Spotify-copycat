@@ -11,7 +11,7 @@ export const useGetData = (endpoint,loggedIn,userInfo) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const getInfo = async () => {
+    const getData = async () => {
         const request = loggedIn?getPrivateData(endpoint,20):getPublicData(endpoint,20)
         try {
             const response = await request
@@ -28,7 +28,7 @@ export const useGetData = (endpoint,loggedIn,userInfo) => {
 
     useEffect(() => {  
         if(userInfo&&!loggedIn) return
-        getInfo()
+        getData()
     }, [loggedIn, userInfo])
 
 

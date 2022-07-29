@@ -1,5 +1,6 @@
 .card{
     width:auto;
+    max-width: 13rem;
     height: 100%;
     padding: 1rem;
     border-radius: 5px;
@@ -19,16 +20,20 @@
 .card-img{
     width:11rem;
     height:11rem;
-    background-color: gray;
-    border-radius: 5px;
-    
+    background-color: transparent;
+    border-radius: 5px; 
 }
 
 .card-img > img{
     width:11rem;
-    object-fit: contain;
+    height:11rem;
+    object-fit: cover;
     border-radius: 5px;
     
+}
+
+.card-img.artist >img{
+    border-radius: 50%;
 }
 
 .card:hover .card-img > img{
@@ -58,6 +63,7 @@
     .card{
         padding: 0.5rem;
         gap:0.5rem;
+        max-width: 8.6875rem;
     }
     .card-img{
         width:7.6875rem;
@@ -65,7 +71,8 @@
     }
     
     .card-img > img{
-        width:7.6875rem;       
+        width:7.6875rem; 
+        height:7.6875rem;       
     }
     .card-info-title{
         font-size: 0.75rem;

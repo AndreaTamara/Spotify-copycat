@@ -1,9 +1,9 @@
 import './Card.css'
 
-export const Card = ({name, author, imgUrl}) => {
+export const Card = ({name, author, imgUrl,type}) => {
   return (
     <div className="card">
-        <div className="card-img">
+        <div className={`card-img ${type}`}>
             <img src={imgUrl} alt='cover album'/>
         </div>
         <div className="card-info">
