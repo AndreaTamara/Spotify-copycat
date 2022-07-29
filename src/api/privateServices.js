@@ -29,7 +29,7 @@ export const getPrivateToken = async (code) => {
 //getRefreshedToken
 export const getRefreshedToken = async () => {
 
-    const refreshToken = localStorage.getItem('refreshtoken')
+    const refreshToken = localStorage.getItem('refreshToken')
     const clientId = '3f182385c47b4459b03bba8df1a09d47';
     const clientSecret = '89b84d2544ac44938950c2fdcca11cd0';
     const AutUrl = 'https://accounts.spotify.com/api/token';
@@ -59,13 +59,14 @@ instance.interceptors.request.use((config) => {
 
 instance.interceptors.response.use((response) => response,
     (error) => {
+    
         if (error.response.status === 401) {
             getRefreshedToken()
                 .then(res => localStorage.setItem('privateToken', res.access_token))
                 .catch(() => localStorage.clear())
                 .finally(() => window.location.reload())
         }
-        // console.log(error)
+        console.log(error)
         return Promise.reject(error)
     })
 

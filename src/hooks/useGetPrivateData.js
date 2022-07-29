@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { getPrivateData } from "../api/privateServices";
 
 
-export const useGetPrivateData = (endpoint) => {
+export const useGetPrivateData = (endpoint,loggedIn) => {
+
+    
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -11,7 +14,7 @@ export const useGetPrivateData = (endpoint) => {
 
         try {
             const response = await getPrivateData(endpoint,20)
-            // console.log(response)
+            console.log(response)
             setData(response)
             setLoading(false)
             setError(null)
@@ -22,9 +25,9 @@ export const useGetPrivateData = (endpoint) => {
         }
     }
 
-    useEffect(() => {     
-            getInfo();
-    }, [])
+    useEffect(() => {  
+        if(loggedIn){getInfo()}   
+    }, [loggedIn])
 
 
     return { data, loading, error }

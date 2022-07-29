@@ -18,11 +18,12 @@ export const AuthProvider = ({ children }) => {
         if (privateToken) {
             setLoggedIn(true)
         }
-        else {
+        else if (code){
             getPrivateToken(code)
                 .then(res => {
                     localStorage.setItem('privateToken', res.access_token);
-                    localStorage.setItem('refreshtoken', res.refresh_token);
+                    localStorage.setItem('token', res.access_token);
+                    localStorage.setItem('refreshToken', res.refresh_token);
                     setLoggedIn(true)
                 }
                 )
@@ -44,7 +45,7 @@ export const AuthProvider = ({ children }) => {
     const handleLogOut = ()=>{
         setLoggedIn(false);
         localStorage.setItem('privateToken', '');
-        localStorage.setItem('refreshtoken', '');
+        localStorage.setItem('refreshToken', '');
     }
 
     const data ={loggedIn,user, handleLogOut}
