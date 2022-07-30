@@ -27,6 +27,10 @@
     align-items: center;
 }
 
+.login-active >p >span{
+    text-transform: capitalize;
+}
+
 
 .navBtns{
     color:var(--white);

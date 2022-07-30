@@ -1,0 +1,33 @@
+.playBtn{
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--light-green);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px var(--very-dark-blue);
+}
+
+.playIcon{
+    fill:var(--very-dark-blue);
+    width: 2rem;
+    height: 2rem;
+}
+
+.playBtn:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+@media (max-width:900px){
+    .playBtn{
+        width: 2rem;
+        height: 2rem;
+        right: 0.3125rem;
+        bottom: 0.3125rem;
+    }
+    .playIcon{
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+}

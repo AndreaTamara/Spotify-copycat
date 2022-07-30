@@ -13,15 +13,25 @@
     gap:1rem;
    
 }
+.play-btn-card{
+    display: none;
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.5rem;
+}
 .card:hover{
     background-color: var(--mid-deep-blue-active);
     cursor: pointer;
+}
+.card:hover .play-btn-card{
+    display: flex;
 }
 .card-img{
     width:11rem;
     height:11rem;
     background-color: transparent;
     border-radius: 5px; 
+    position: relative;
 }
 
 .card-img > img{
@@ -80,6 +90,11 @@
     
     .card-info-description{
         font-size: 0.625rem;
+    }
+
+    .play-btn-card{
+        right: 0.3125rem;
+        bottom: 0.3125rem;
     }
     
 }

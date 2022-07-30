@@ -3,6 +3,7 @@ import spotifyIcon from '../../assets/Spotify-Icon.svg';
 import { HiHome ,HiSearch} from 'react-icons/hi'
 import {NavLink} from 'react-router-dom'
 import './SideBar.css'
+import { PlayBtn } from '../PlayBtn';
 
 export const SideBar = () => {
     return (

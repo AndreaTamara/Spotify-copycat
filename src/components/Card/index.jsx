@@ -1,3 +1,4 @@
+import { PlayBtn } from '../PlayBtn'
 import './Card.css'
 
 export const Card = ({name, author, imgUrl,type}) => {
@@ -5,6 +6,9 @@ export const Card = ({name, author, imgUrl,type}) => {
     <div className="card">
         <div className={`card-img ${type}`}>
             <img src={imgUrl} alt='cover album'/>
+            <div className='play-btn-card'>
+              <PlayBtn/>
+            </div>
         </div>
         <div className="card-info">
             <h6 className="card-info-title">{name}</h6>

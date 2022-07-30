@@ -1,0 +1,84 @@
+.track-card{
+    display: flex;
+    width: 100%;
+    padding: 0.625rem 1rem;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    background-color:hsla(0, 0%, 100%,0);
+    gap:0.5rem;
+}
+.track-card-header{
+    border-radius: 0;
+    border-bottom: 1px solid var(--light-grey);
+    margin-bottom: 1.5rem;
+}
+.track-save .save-btn{
+    width: 1.5rem;
+    height: 1.5rem ;
+}
+.track-card:hover{
+    background-color:hsla(0, 0%, 100%,0.1);
+    cursor: pointer;
+}
+.track-number{
+    width: 3rem;
+}
+.track-name{
+    width:50%;
+    display: flex;
+    gap:1rem;
+}
+.track-img{
+    width: 2.625rem;
+    height: 2.625rem;
+    background-color: grey;
+}
+.track-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.track-info-author{
+    color: var(--light-grey);
+    font-size: 0.875rem;
+    text-transform: capitalize;
+}
+.track-info-name{
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.track-album{
+    width:36%;
+    text-transform: capitalize;
+}
+.track-save{
+   opacity: 0;
+    width:7%;
+}
+.track-card:hover .track-save{
+    opacity: 1;
+}
+.track-time{
+    width:7%;
+    text-align: end ;
+}
+@media (max-width:900px){
+    .track-card-header{
+        display: none;
+    }
+    .track-card{
+        padding: 0.625rem 0;
+    }
+    .track-number,
+    .track-album,
+    .track-time{
+        display: none;
+    }
+    .track-save{
+        opacity: 1;
+    }
+    .track-name{
+        width: 80%;
+    }
+}

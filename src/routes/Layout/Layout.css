@@ -17,7 +17,7 @@ flex-direction: column;
     background: linear-gradient(var(--navy-blue-2), var(--deep-blue) 40%);
     height: calc(100vh - 100px);
     overflow-y:scroll;
-    padding: 1.5625rem ;
+    /* padding: 1.5625rem ; */
     scroll-behavior: smooth;
     padding-top: 5rem;
     min-width: 85%;
@@ -26,6 +26,8 @@ flex-direction: column;
     position: absolute;
     right:0;
     top:0;  
+    padding-bottom: 1.5625rem;
+    
 }
 
 .display-section::-webkit-scrollbar{
@@ -42,5 +44,6 @@ flex-direction: column;
         height: calc(100vh - 60px);
         width: calc(100vw - 65px);
         min-width: auto;
+        padding-top: 4.0416875rem;
     }
 }
