@@ -62,12 +62,13 @@ export const Home = () => {
             {userTopTracksError && <p>ocurrió un error: {userTopTracksError.error?.message}</p>}
             {userTopTracks?.items.map(track => {
               return (
+                <Link to={'/album/' + track.album.id} key={track.id}>
                 <Card
-                  key={track.id}
                   name={cutTextString(track.name, 30)}
                   author={cutTextString(track.artists.map(artist => artist.name).join(', '), 30)}
                   imgUrl={track.album.images[0].url}
                 />
+                </Link>
               )
             })}
           </RowList>
@@ -80,7 +81,7 @@ export const Home = () => {
           return (
             <Link to={'/album/' + album.id} key={album.id}>
               <Card
-                name={cutTextString(album.name, 40)}
+                name={cutTextString(album.name, 30)}
                 author={cutTextString(album.artists.map(artist => artist.name).join(', '), 30)}
                 imgUrl={album.images[0].url}
               />

@@ -4,7 +4,7 @@ import { FiHeart, FiClock } from 'react-icons/fi';
 
 export const TrackCard = ({ header, number, url, name, author, album, time,albumView }) => {
     return (
-        <div className={`track-card ${header&&'track-card-header'}`}>
+        <div className={`track-card ${header&&'track-card-header'} ${albumView&&'track-card-album'}`}>
             <div className='track-number'>
                 {header ? '#' : number}
             </div>

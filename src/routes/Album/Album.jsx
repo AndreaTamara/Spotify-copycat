@@ -1,6 +1,6 @@
 import { DetailHeader } from '../../components/DetailHeader'
 import { TrackCard } from '../../components/TrackCard'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { authContext } from '../../context/authContext'
 import { useGetData } from '../../hooks/useGetData'
 import { albumUrl, itemsAlbumUrl } from '../../api/endpoints'
@@ -17,39 +17,39 @@ export const Album = () => {
   const { loggedIn, user } = useContext(authContext)
   const { albumId } = useParams()
   const { data: itemsAlbum, loading: itemsAlbumLoading, error: itemsAlbumError } = useGetData(itemsAlbumUrl(albumId), loggedIn, false)
-  const { data: album, loading: albumLoading, error: albumtError } = useGetData(albumUrl(albumId), loggedIn, false)
+  const { data: album, loading: albumLoading, error: albumError } = useGetData(albumUrl(albumId), loggedIn, false)
   
+
   return (
     <DetailViewContainer>
-      {/* {playlistLoading && <p>loading...</p>}
-      {playlistError && <p>ocurrió un error: {playlistError.error?.message}</p>}
+      {albumLoading && <p>loading...</p>}
+      {albumError && <p>ocurrió un error: {albumError.error?.message}</p>}
 
-      {playlist &&
+      {album &&
         <DetailHeader
-          url={playlist?.images[0].url}
-          type={playlist?.type}
-          name={playlist?.name}
-          description={playlist?.description}
-          tracks={playlist?.tracks.total}
+          url={album?.images[0].url}
+          type={album?.album_type}
+          name={album?.name}
+          description={album?.artists.map(artist=>artist.name).join(',')}
+          tracks={album?.total_tracks}
         />}
       <DetailViewCommandBar />
-      <DetailTrackList>
-        {itemsPlaylistLoading && <p>loading...</p>}
-        {itemsPlaylistError && <p>ocurrió un error: {itemsPlaylistError.error?.message}</p>}
-        {itemsPlaylist?.items.map((item, i) => {
+      <DetailTrackList albumView={true}>
+        {itemsAlbumLoading && <p>loading...</p>}
+        {itemsAlbumError && <p>ocurrió un error: {itemsAlbumError.error?.message}</p>}
+        {itemsAlbum?.items.map((item, i) => {
           return (
             <TrackCard
-              key={item.track.id}
+              albumView = {true}
+              key={item.id}
               number={i + 1}
-              name={cutTextString(item.track.name,25)}
-              author={cutTextString(item.track.artists.map(artist => artist.name).join(', '), 34)}
-              album={cutTextString(item.track.album.name,25)}
-              url={item.track.album.images[0].url}
-              time={convertMstoMin(item.track.duration_ms)}
+              name={cutTextString(item.name,25)}
+              author={cutTextString(item.artists.map(artist => artist.name).join(', '), 34)}
+              time={convertMstoMin(item.duration_ms)}
             />
           )
         })}
-      </DetailTrackList> */}
+      </DetailTrackList>
     </DetailViewContainer>
   )
 }
