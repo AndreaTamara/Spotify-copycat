@@ -1,0 +1,10 @@
+.tracks-list{
+    padding: 1.5625rem;
+    width: 100%;
+  }
+  
+  @media (max-width:900px){
+    .tracks-list{
+      padding: 0.875rem;
+    }
+}

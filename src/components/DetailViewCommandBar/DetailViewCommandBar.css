@@ -1,0 +1,39 @@
+.command-bar {
+    padding: 1.5625rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.save-btn {
+    width: 2rem;
+    height: 2rem;
+}
+
+.save-btn.active {
+    fill: var(--light-green);
+    stroke: var(--light-green);
+}
+
+.save-btn:hover {
+    cursor: pointer;
+}
+
+.save-btn:active {
+    transform: scale(2);
+}
+
+@media (max-width:900px) {
+
+    .save-btn {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .command-bar {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        padding: 0.875rem;
+    }
+}

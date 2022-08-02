@@ -72,7 +72,7 @@
         display: none;
     }
     .track-card{
-        padding: 0.625rem 0;
+        padding: 0.625rem;
     }
     .track-number,
     .track-album,
@@ -81,8 +81,19 @@
     }
     .track-save{
         opacity: 1;
+        text-align: end;
     }
     .track-name{
         width: 80%;
+    }
+    .track-save .save-btn{
+        width: 1rem;
+        height: 1rem ;
+    }
+    .track-info-name{
+        font-size:0.875rem;
+    }
+    .track-info-author{
+        font-size: 0.75rem;
     }
 }

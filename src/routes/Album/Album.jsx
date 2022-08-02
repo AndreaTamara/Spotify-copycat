@@ -3,7 +3,7 @@ import { TrackCard } from '../../components/TrackCard'
 import { useContext } from 'react'
 import { authContext } from '../../context/authContext'
 import { useGetData } from '../../hooks/useGetData'
-import { itemsPlaylistUrl, playlistUrl } from '../../api/endpoints'
+import { albumUrl, itemsAlbumUrl } from '../../api/endpoints'
 import { convertMstoMin } from '../../helpers/convertToMin'
 import { useParams } from 'react-router-dom'
 import { cutTextString } from '../../helpers/cutTextString'
@@ -12,17 +12,16 @@ import { DetailViewCommandBar } from '../../components/DetailViewCommandBar'
 import { DetailTrackList } from '../../components/DetailTracksList'
 
 
-export const Playlist = () => {
+export const Album = () => {
 
   const { loggedIn, user } = useContext(authContext)
-  const { playlistId } = useParams()
-  // console.log(playlistId)
-  const { data: itemsPlaylist, loading: itemsPlaylistLoading, error: itemsPlaylistError } = useGetData(itemsPlaylistUrl(playlistId), loggedIn, false)
-  const { data: playlist, loading: playlistLoading, error: playlistError } = useGetData(playlistUrl(playlistId), loggedIn, false)
-  // const { data: album, loading: albumLoading, error: albumError } = useGetData(itemsAlbumUrl(albumId), loggedIn, false)// console.log(playlist)
+  const { albumId } = useParams()
+  const { data: itemsAlbum, loading: itemsAlbumLoading, error: itemsAlbumError } = useGetData(itemsAlbumUrl(albumId), loggedIn, false)
+  const { data: album, loading: albumLoading, error: albumtError } = useGetData(albumUrl(albumId), loggedIn, false)
+  
   return (
     <DetailViewContainer>
-      {playlistLoading && <p>loading...</p>}
+      {/* {playlistLoading && <p>loading...</p>}
       {playlistError && <p>ocurrió un error: {playlistError.error?.message}</p>}
 
       {playlist &&
@@ -50,7 +49,7 @@ export const Playlist = () => {
             />
           )
         })}
-      </DetailTrackList>
+      </DetailTrackList> */}
     </DetailViewContainer>
   )
 }

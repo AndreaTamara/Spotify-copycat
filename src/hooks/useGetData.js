@@ -27,7 +27,7 @@ export const useGetData = (endpoint,loggedIn,userInfo) => {
     }
 
     useEffect(() => {  
-        if(userInfo&&!loggedIn) return
+        if(userInfo&&!loggedIn) return;
         getData()
     }, [loggedIn, userInfo])
 

@@ -1,12 +1,12 @@
 import { Card } from "../../components/Card"
 import { RowList } from "../../components/RowList"
-import './Home.css'
 import { useContext } from "react";
 import { authContext } from "../../context/authContext";
 import { useGetData } from "../../hooks/useGetData";
 import { newRealeasesUrl, featuredPlaylistsUrl, browseUrl, userPlaylistUrl, userTopArtistsUrl, userTopTracksUrl } from "../../api/endpoints";
 import { Link } from "react-router-dom";
-
+import { cutTextString } from "../../helpers/cutTextString";
+import './Home.css'
 
 
 
@@ -33,11 +33,11 @@ export const Home = () => {
             {userPlaylist?.items.map(playlist => {
               return (
                 <Link to={'/playlist/' + playlist.id} key={playlist.id}>
-                <Card
-                  name={playlist.name.length > 30 ? `${playlist.name.substring(0, 30)}...` : playlist.name}
-                  author={playlist.description.length > 48 ? `${playlist.description.substring(0, 40)}...` : playlist.description}
-                  imgUrl={playlist.images[0].url}
-                />
+                  <Card
+                    name={cutTextString(playlist.name, 30)}
+                    author={cutTextString(playlist.description, 48)}
+                    imgUrl={playlist.images[0].url}
+                  />
                 </Link>
               )
             })}
@@ -50,7 +50,7 @@ export const Home = () => {
                 <Card
                   type='artist'
                   key={artist.id}
-                  name={artist.name.length > 30 ? `${artist.name.substring(0, 30)}...` : artist.name}
+                  name={cutTextString(artist.name, 30)}
                   author={artist.type}
                   imgUrl={artist.images[0].url}
                 />
@@ -64,8 +64,8 @@ export const Home = () => {
               return (
                 <Card
                   key={track.id}
-                  name={track.name.length > 30 ? `${track.name.substring(0, 30)}...` : track.name}
-                  author={track.artists.map(artist => artist.name).join(', ')}
+                  name={cutTextString(track.name, 30)}
+                  author={cutTextString(track.artists.map(artist => artist.name).join(', '), 30)}
                   imgUrl={track.album.images[0].url}
                 />
               )
@@ -73,18 +73,17 @@ export const Home = () => {
           </RowList>
         </>
       }
-
       <RowList title='Released this week' id='released'>
         {newRealeasesLoading && <p>loading...</p>}
         {newRealeasesError && <p>ocurrió un error: {newRealeasesError.error?.message}</p>}
         {newRealeases?.albums.items.map(album => {
           return (
-            <Link to={'/album/' + album.id} key={album.id.id}>
-            <Card
-              name={album.name.length > 30 ? `${album.name.substring(0, 30)}...` : album.name}
-              author={album.artists.map(artist => artist.name).join(', ')}
-              imgUrl={album.images[0].url}
-            />
+            <Link to={'/album/' + album.id} key={album.id}>
+              <Card
+                name={cutTextString(album.name, 40)}
+                author={cutTextString(album.artists.map(artist => artist.name).join(', '), 30)}
+                imgUrl={album.images[0].url}
+              />
             </Link>
           )
         })}
@@ -95,11 +94,11 @@ export const Home = () => {
         {featuredPlaylists?.playlists.items.map(playlist => {
           return (
             <Link to={'/playlist/' + playlist.id} key={playlist.id}>
-            <Card
-              name={playlist?.name}
-              author={playlist?.description.length > 48 ? `${playlist?.description.substring(0, 40)}...` : playlist?.description}
-              imgUrl={playlist?.images[0].url}
-            />
+              <Card
+                name={playlist.name}
+                author={cutTextString(playlist.description, 45)}
+                imgUrl={playlist.images[0].url}
+              />
             </Link>
           )
         })}
