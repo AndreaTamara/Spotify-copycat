@@ -9,7 +9,7 @@ export const TrackCard = ({ header, number, url, name, author, album, time }) =>
                 {header ? '#' : number}
             </div>
             <div className='track-name'>
-                {!header && <div className='track-img' />}
+                {!header && <img className='track-img' src={url} alt='album cover' />}
                 <span className='track-info'>
                      {header ? 'TITLE' : <p className='track-info-name'>{name}</p>}
                     {!header && <p className='track-info-author'>{author}</p>}

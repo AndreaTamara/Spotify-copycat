@@ -79,12 +79,13 @@ export const Home = () => {
         {newRealeasesError && <p>ocurrió un error: {newRealeasesError.error?.message}</p>}
         {newRealeases?.albums.items.map(album => {
           return (
+            <Link to={'/album/' + album.id} key={album.id.id}>
             <Card
-              key={album.id}
               name={album.name.length > 30 ? `${album.name.substring(0, 30)}...` : album.name}
               author={album.artists.map(artist => artist.name).join(', ')}
               imgUrl={album.images[0].url}
             />
+            </Link>
           )
         })}
       </RowList>
@@ -93,12 +94,13 @@ export const Home = () => {
         {featuredPlaylistsError && <p>ocurrió un error: {featuredPlaylistsError.error?.message}</p>}
         {featuredPlaylists?.playlists.items.map(playlist => {
           return (
+            <Link to={'/playlist/' + playlist.id} key={playlist.id}>
             <Card
-              key={playlist?.id}
               name={playlist?.name}
               author={playlist?.description.length > 48 ? `${playlist?.description.substring(0, 40)}...` : playlist?.description}
               imgUrl={playlist?.images[0].url}
             />
+            </Link>
           )
         })}
       </RowList>
