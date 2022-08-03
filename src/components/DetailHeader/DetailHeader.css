@@ -5,6 +5,11 @@
     gap:2rem;
     background-color: var(--navy-blue);
     padding: 1.25rem 1.5625rem;
+    z-index: 300;
+}
+.detail-header.detail-header-artistView{
+    background-color: transparent;
+    min-height: 16.25rem;
 }
 .detail-header-img{
     width: 13.75rem;
@@ -28,10 +33,16 @@
     text-transform: uppercase;
     color: var(--white);
 }
+.detail-header.detail-header-artistView .detail-header-info-type{
+    text-transform: capitalize;
+}
 .detail-header-info-name{
     text-transform: capitalize;
     color: var(--white);
     font-size: 3rem;
+}
+.detail-header.detail-header-artistView .detail-header-info-name{
+    text-shadow: 0 0 1px var(--very-dark-blue);
 }
 .detail-header-info-description{
     text-transform: capitalize;
@@ -56,6 +67,11 @@
         /* flex-direction: column; */
         padding: 1.25rem 0.875rem;
         gap:1rem;
+    }
+    .detail-header.detail-header-artistView{
+        flex-wrap: nowrap;
+        align-items: flex-end;
+        justify-content: flex-start;
     }
     .detail-header-info{
         display: flex;
@@ -87,8 +103,9 @@
 
 @media (max-width:722px){
     .detail-header-info{
-        
         flex-direction: row;
-       
+    }
+    .detail-header.detail-header-artistView .detail-header-info{
+        flex-direction: column;
     }
 }

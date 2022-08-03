@@ -1,0 +1,17 @@
+.hero-artist-img{
+    width: calc(100vw - 258px);
+    min-width: 85%;
+    height: 18.75rem;
+    background-color: var(--navy-blue);
+    object-fit: cover;
+    position: fixed;
+    top: 80px;
+    right: 0;    
+}
+@media (max-width:900px){
+    .hero-artist-img{
+        width: calc(100vw - 65px);
+        min-width: auto;
+        top:4.0416875rem;
+    }
+}

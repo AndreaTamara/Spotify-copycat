@@ -8,7 +8,7 @@ export const authContext = createContext();
 export const AuthProvider = ({ children }) => {
 
     const [loggedIn, setLoggedIn] = useState(false)
-    const [user, setUser] = useState({name:'', id:''})
+    const [user, setUser] = useState({name:'', id:'',country:''})
 
     const code = new URLSearchParams(window.location.search).get("code")
     // console.log(code)
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
             getUserData()
             .then(res=>{
                 // console.log(res);
-                setUser({name:res.display_name, id:res.id})
+                setUser({name:res.display_name, id:res.id, country:res.country})
             })
         }
     }, [loggedIn])

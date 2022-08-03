@@ -4,6 +4,11 @@
     display: flex;
     align-items: center;
     gap: 2.5rem;
+    z-index: 300;
+}
+
+.command-bar.command-bar-artistView{
+    background-color: var(--navy-blue);
 }
 
 .save-btn {

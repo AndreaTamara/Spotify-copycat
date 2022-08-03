@@ -6,4 +6,5 @@ align-items: flex-start;
 /* gap:2.5rem; */
 height: 100vh;
 background: linear-gradient(var(--navy-blue-2), var(--deep-blue) 60%);
+position: relative;
 }

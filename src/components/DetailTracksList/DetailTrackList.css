@@ -1,8 +1,14 @@
 .tracks-list{
     padding: 1.5625rem;
     width: 100%;
+    z-index: 300;
   }
-  
+  .artistView-title{
+    font-size: 1.5rem;
+  }
+  .tracks-list-artistView{
+    background:linear-gradient(var(--navy-blue), var(--deep-blue) 40%) ;
+  }
   @media (max-width:900px){
     .tracks-list{
       padding: 0.875rem;

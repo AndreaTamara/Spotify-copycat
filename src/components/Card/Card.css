@@ -62,11 +62,13 @@
 .card-info-title{
     color:var(--white);
     font-size: 0.875rem;
+    text-transform: capitalize;
 }
 
 .card-info-description{
     color:var( --light-grey);
     font-size: 0.75rem;
+    text-transform: capitalize;
 }
 
 @media (max-width:900px){

@@ -1,7 +1,7 @@
 import './RowList.css';
 import { MdOutlineArrowBackIosNew, MdOutlineArrowForwardIos } from 'react-icons/md'
 
-export const RowList = ({ children, title, id }) => {
+export const RowList = ({ children, title, id, artistView }) => {
 
     function scrollContainer(id, { isNegative } = {}) {
         return () => {
@@ -13,7 +13,7 @@ export const RowList = ({ children, title, id }) => {
       }
       
     return (
-        <section className='row-list'>
+        <section className={`row-list ${artistView&&'row-list-artistView'}`}>
             <span className='row-list-title'>
                 <h2>{title}</h2>
                 <nav className='back-forward'>

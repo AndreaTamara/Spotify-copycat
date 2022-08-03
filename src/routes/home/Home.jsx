@@ -47,13 +47,14 @@ export const Home = () => {
             {userTopArtistsError && <p>ocurrió un error: {userTopArtistsError.error?.message}</p>}
             {userTopArtists?.items.map(artist => {
               return (
+                <Link to={'/artist/' + artist.id} key={artist.id}>
                 <Card
                   type='artist'
-                  key={artist.id}
                   name={cutTextString(artist.name, 30)}
                   author={artist.type}
                   imgUrl={artist.images[0].url}
                 />
+                </Link>
               )
             })}
           </RowList>

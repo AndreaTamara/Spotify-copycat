@@ -3,6 +3,12 @@
     flex-direction: column;
     gap:1rem;
     width: 100%;
+    z-index: 300;
+}
+.row-list.row-list-artistView{
+    background-color: var(--deep-blue);
+    padding-left: 1.5625rem;
+    padding-top: 2rem;
 }
 .row-list-title{
     display: flex;
