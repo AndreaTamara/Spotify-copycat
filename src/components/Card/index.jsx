@@ -3,7 +3,8 @@ import './Card.css'
 
 export const Card = ({name, author, imgUrl,type}) => {
   return (
-    <div className="card">
+    //onClick={()=>myOnClick()}
+    <div className="card" >
         <div className={`card-img ${type}`}>
             <img src={imgUrl} alt='cover album'/>
             <div className='play-btn-card'>

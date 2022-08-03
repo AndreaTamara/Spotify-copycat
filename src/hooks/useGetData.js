@@ -29,7 +29,7 @@ export const useGetData = (endpoint,loggedIn,userInfo) => {
     useEffect(() => {  
         if(userInfo&&!loggedIn) return;
         getData()
-    }, [loggedIn, userInfo])
+    }, [loggedIn, userInfo,endpoint])
 
 
     return { data, loading, error }

@@ -55,7 +55,7 @@ export const Artist = () => {
                 {albumsArtistError && <p>ocurrió un error: {albumsArtistError.error?.message}</p>}
                 {albumsArtist?.items.map(item => {
                     return (
-                        <Link reloadDocument to={'/album/' + item.id} key={item.id}>
+                        <Link  to={'/album/' + item.id} key={item.id}>
                             <Card
                                 name={cutTextString(item.name, 30)}
                                 author={cutTextString(item.album_type, 30)}
@@ -72,6 +72,8 @@ export const Artist = () => {
                     return (
                         <Link to={'/artist/' + artist.id} key={artist.id} >
                             <Card
+                                // myOnClick={()=>navigate('/artist/' + artist.id)}
+                                // key={artist.id}
                                 type='artist'
                                 name={cutTextString(artist.name, 30)}
                                 author={cutTextString(artist.type, 30)}

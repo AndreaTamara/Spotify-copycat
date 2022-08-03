@@ -6,7 +6,7 @@ export const authContext = createContext();
 
 
 export const AuthProvider = ({ children }) => {
-
+    console.log('render context')
     const [loggedIn, setLoggedIn] = useState(false)
     const [user, setUser] = useState({name:'', id:'',country:''})
 
@@ -25,9 +25,11 @@ export const AuthProvider = ({ children }) => {
                     localStorage.setItem('token', res.access_token);
                     localStorage.setItem('refreshToken', res.refresh_token);
                     setLoggedIn(true)
+                    console.log('actualicé token')
+                    
                 }
                 )
-                .catch(() => setLoggedIn(false))
+                .catch(() => setLoggedIn(false))     
         }
         window.history.pushState({}, null, "/")
     }, [])
@@ -38,6 +40,7 @@ export const AuthProvider = ({ children }) => {
             .then(res=>{
                 // console.log(res);
                 setUser({name:res.display_name, id:res.id, country:res.country})
+                console.log('pedi datos de usuario')
             })
         }
     }, [loggedIn])
