@@ -50,6 +50,9 @@
     color: var(--light-grey);
     font-size: 0.875rem;
     text-transform: capitalize;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
 }
 .track-info-name{
     font-weight: 700;
@@ -58,6 +61,10 @@
 .track-album{
     width:36%;
     text-transform: capitalize;
+}
+.track-album:hover,
+.track-info-author > a:hover{
+    text-decoration: underline;
 }
 .track-save{
    opacity: 0;

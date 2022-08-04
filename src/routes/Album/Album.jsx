@@ -18,7 +18,7 @@ export const Album = () => {
   const { albumId } = useParams()
   const { data: itemsAlbum, loading: itemsAlbumLoading, error: itemsAlbumError } = useGetData(itemsAlbumUrl(albumId), loggedIn, false)
   const { data: album, loading: albumLoading, error: albumError } = useGetData(albumUrl(albumId), loggedIn, false)
-  
+
 
   return (
     <DetailViewContainer>
@@ -30,7 +30,7 @@ export const Album = () => {
           url={album?.images[0].url}
           type={album?.album_type}
           name={album?.name}
-          description={album?.artists.map(artist=>artist.name).join(',')}
+          description={album?.artists.map(artist => artist.name).join(',')}
           tracks={album?.total_tracks}
         />}
       <DetailViewCommandBar />
@@ -40,11 +40,13 @@ export const Album = () => {
         {itemsAlbum?.items.map((item, i) => {
           return (
             <TrackCard
-              albumView = {true}
+              albumView={true}
               key={item.id}
               number={i + 1}
-              name={cutTextString(item.name,25)}
-              author={cutTextString(item.artists.map(artist => artist.name).join(', '), 34)}
+              name={cutTextString(item.name, 25)}
+              author={item.artists.map(artist => {
+                return {name:artist.name,id:artist.id}
+              })}
               time={convertMstoMin(item.duration_ms)}
             />
           )

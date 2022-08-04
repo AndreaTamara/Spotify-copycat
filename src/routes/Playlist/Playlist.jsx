@@ -5,7 +5,7 @@ import { authContext } from '../../context/authContext'
 import { useGetData } from '../../hooks/useGetData'
 import { itemsPlaylistUrl, playlistUrl } from '../../api/endpoints'
 import { convertMstoMin } from '../../helpers/convertToMin'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { cutTextString } from '../../helpers/cutTextString'
 import { DetailViewContainer } from '../../components/DetailViewContainer'
 import { DetailViewCommandBar } from '../../components/DetailViewCommandBar'
@@ -43,10 +43,14 @@ export const Playlist = () => {
               key={item.track.id}
               number={i + 1}
               name={cutTextString(item.track.name,25)}
-              author={cutTextString(item.track.artists.map(artist => artist.name).join(', '), 34)}
+              author={item.track.artists.map(artist => {
+                  return {name:artist.name,id:artist.id}
+                  // <Link to={'/artist/'+artist.id} key={artist.id}>{artist.name}</Link>
+                })}
               album={cutTextString(item.track.album.name,25)}
               url={item.track.album.images[0].url}
               time={convertMstoMin(item.track.duration_ms)}
+              albumId={item.track.album.id}
             />
           )
         })}

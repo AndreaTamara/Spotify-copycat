@@ -7,8 +7,7 @@
 }
 .row-list.row-list-artistView{
     background-color: var(--deep-blue);
-    padding-left: 1.5625rem;
-    padding-top: 2rem;
+    padding: 2rem 1.5625rem 0 1.5625rem;
 }
 .row-list-title{
     display: flex;

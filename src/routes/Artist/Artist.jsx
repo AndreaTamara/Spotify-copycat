@@ -18,7 +18,7 @@ export const Artist = () => {
 
     const { loggedIn, user } = useContext(authContext);
     const { artistId } = useParams()
-    const { data: topTracks, loading: topTracksLoading, error: topTracksError } = useGetData(topTracksArtistUrl(artistId, user.country), loggedIn, false)
+    const { data: topTracks, loading: topTracksLoading, error: topTracksError } = useGetData(topTracksArtistUrl(artistId, user.country||'US'), loggedIn, false)
     const { data: artist, loading: artistLoading, error: artistError } = useGetData(artistUrl(artistId), loggedIn, false)
     const { data: albumsArtist, loading: albumsArtistLoading, error: albumsArtistError } = useGetData(albumsArtistUrl(artistId), loggedIn, false)
     const { data: artistsRelated, loading: artistsRelatedLoading, error: artistsRelatedError } = useGetData(artistsRelatedUrl(artistId), loggedIn, false)
@@ -50,7 +50,7 @@ export const Artist = () => {
                     )
                 })}
             </DetailTrackList>
-            <RowList title='Discography' id='artist-discography' artistView={true}>
+            <RowList title='Discography' id={'artist-discography'+artistId} artistView={true}>
                 {artistsRelatedLoading && <p>loading...</p>}
                 {albumsArtistError && <p>ocurrió un error: {albumsArtistError.error?.message}</p>}
                 {albumsArtist?.items.map(item => {
@@ -65,19 +65,17 @@ export const Artist = () => {
                     )
                 })}
             </RowList>
-            <RowList title='Related artist' id='related-artist' artistView={true}>
+            <RowList title='Related artist' id={'related-artist'+artistId} artistView={true}>
                 {albumsArtistLoading && <p>loading...</p>}
                 {artistsRelatedError && <p>ocurrió un error: {artistsRelatedError.error?.message}</p>}
                 {artistsRelated?.artists.map(artist => {
                     return (
                         <Link to={'/artist/' + artist.id} key={artist.id} >
                             <Card
-                                // myOnClick={()=>navigate('/artist/' + artist.id)}
-                                // key={artist.id}
                                 type='artist'
                                 name={cutTextString(artist.name, 30)}
                                 author={cutTextString(artist.type, 30)}
-                                imgUrl={artist.images[0].url}
+                                imgUrl={artist.images[0]?.url}
                             />
                         </Link>
                     )
