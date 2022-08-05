@@ -19,3 +19,5 @@ export const topTracksArtistUrl = (id,market)=> `/artists/${id}/top-tracks?marke
 export const artistUrl = (id)=> `/artists/${id}`;
 export const albumsArtistUrl = (id)=> `/artists/${id}/albums?include_groups=album,single`;
 export const artistsRelatedUrl = (id)=> `/artists/${id}/related-artists`;
+//saved traks
+export const userSavedTracksUrl = '/me/tracks';

@@ -5,6 +5,7 @@
   }
   .artistView-title{
     font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
   .tracks-list-artistView{
     background:linear-gradient(var(--navy-blue), var(--deep-blue) 40%) ;

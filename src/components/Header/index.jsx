@@ -36,7 +36,7 @@ export const Header = () => {
             {loggedIn ?
                 <div className='login-active'>
                     <p>Hi <span>{user.name}</span> !</p>
-                    <button onClick={() => handleLogOut()} className='login'>
+                    <button onClick={() =>{handleLogOut(); navigate('/')} } className='login'>
                         Log out
                     </button>
                 </div>

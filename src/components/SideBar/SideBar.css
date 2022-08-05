@@ -41,8 +41,8 @@
     display: flex;
     flex-shrink: 1;
     align-items: center;
-    gap: 1.125rem;
-    font-size: 1.125rem;
+    gap: 1.0625rem;
+    font-size: 1.0625rem;
    
     color:var(--white)
 }

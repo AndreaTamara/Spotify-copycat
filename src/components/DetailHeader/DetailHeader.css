@@ -20,7 +20,7 @@
     width: 13.75rem;
     height: 13.75rem;
     border-radius: 5px;
-    box-shadow: 0 0 5px var(--very-dark-blue);
+    box-shadow: 0 0 8px var(--very-dark-blue);
     /* background-color: grey; */
 }
 .detail-header-info{
@@ -30,9 +30,19 @@
     
 }
 .detail-header-info-type{
+    display: flex;
+    align-items: center;
+    gap:6px;
     text-transform: uppercase;
     color: var(--white);
 }
+.detail-header-info-type > svg{
+stroke:var(--sky-blue);
+fill:var(--sky-blue);
+width: 1.5em;
+height: 1.5em;
+}
+
 .detail-header.detail-header-artistView .detail-header-info-type{
     text-transform: capitalize;
 }
@@ -41,8 +51,8 @@
     color: var(--white);
     font-size: 3rem;
 }
-.detail-header.detail-header-artistView .detail-header-info-name{
-    text-shadow: 0 0 1px var(--very-dark-blue);
+.detail-header.detail-header-artistView .detail-header-info{
+    text-shadow: 0 0 2px var(--very-dark-blue);
 }
 .detail-header-info-description{
     text-transform: capitalize;
@@ -68,6 +78,7 @@
         padding: 1.25rem 0.875rem;
         gap:1rem;
     }
+    
     .detail-header.detail-header-artistView{
         flex-wrap: nowrap;
         align-items: flex-end;
@@ -98,6 +109,10 @@
     .detail-header-img,.hero-img{
         width: 11rem;
         height: 11rem;
+    }
+    .detail-header.detail-header-artistView .detail-header-info-name{
+        font-size: 2rem;
+        text-align: start;
     }
 }
 

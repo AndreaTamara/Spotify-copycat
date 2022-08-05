@@ -11,6 +11,7 @@ import { TrackCard } from '../../components/TrackCard'
 import { authContext } from '../../context/authContext'
 import { convertMstoMin } from '../../helpers/convertToMin'
 import { cutTextString } from '../../helpers/cutTextString'
+import { formatNum } from '../../helpers/formatNum'
 import { useGetData } from '../../hooks/useGetData'
 import './Artist.css'
 
@@ -32,7 +33,7 @@ export const Artist = () => {
                 type='verified artist'
                 name={artist?.name}
                 artistView={true}
-                tracks={artist?.followers.total}
+                tracks={artist?formatNum(artist.followers.total):''}
             />
             <DetailViewCommandBar artistView={true} />
             <DetailTrackList artistView={true}>
@@ -41,11 +42,11 @@ export const Artist = () => {
                 {topTracks?.tracks.map((track, i) => {
                     return (
                         <TrackCard
-                            albumView={true}
                             key={track.id}
                             number={i + 1}
                             name={cutTextString(track.name, 25)}
                             time={convertMstoMin(track.duration_ms)}
+                            url={track.album.images[0].url}
                         />
                     )
                 })}

@@ -27,6 +27,17 @@
 }
 .track-number{
     width: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.play-icon{
+    display: none;
+    
+}
+.play-icon >svg{
+    width: 1.875rem;
+    height: 1.875rem;
 }
 .track-name{
     width:50%;
@@ -45,6 +56,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+.tracks-list-artistView .track-info{
+    justify-content: center;
 }
 .track-info-author{
     color: var(--light-grey);
@@ -72,6 +86,15 @@
 }
 .track-card:hover .track-save{
     opacity: 1;
+}
+.track-card:hover .play-icon{
+    display: block;
+}
+.track-card:hover .number-of-track{
+    display: none;
+}
+.track-card.track-card-header:hover .number-of-track{
+    display: block;
 }
 .track-time{
     width:7%;
@@ -106,4 +129,8 @@
     .track-info-author{
         font-size: 0.75rem;
     }
+    /* .tracks-list-artistView .track-number{
+        display: block;
+        width: 0.9rem;
+    } */
 }

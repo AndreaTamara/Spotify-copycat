@@ -1,0 +1,30 @@
+.save-icon-container{
+    border-radius: 2px;
+    background: linear-gradient(130deg,var(--purple-blue), var(--very-light-green) );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.save-icon{
+    width: 0.75rem;
+    height: 0.75rem;
+    fill:var(--white);
+}
+.detail-header .save-icon{
+    width: 4rem;
+    height: 4rem;
+}
+.detail-header .save-icon-container{
+    border-radius: 5px;
+    width: 13.75rem;
+    height: 13.75rem;
+    box-shadow: 0 0 8px var(--very-dark-blue);
+}
+@media (max-width:900px){
+    .detail-header .save-icon-container{
+        width: 11rem;
+        height: 11rem; 
+    }
+}

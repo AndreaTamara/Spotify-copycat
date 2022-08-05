@@ -3,9 +3,13 @@ import spotifyIcon from '../../assets/Spotify-Icon.svg';
 import { HiHome ,HiSearch} from 'react-icons/hi'
 import {NavLink} from 'react-router-dom'
 import './SideBar.css'
-import { PlayBtn } from '../PlayBtn';
+import { useContext } from 'react';
+import { authContext } from '../../context/authContext';
+import { SaveIcon } from '../SaveICon';
+
 
 export const SideBar = () => {
+    const { loggedIn} = useContext(authContext);
     return (
         <aside className='side-bar'>
             <div className='logo'>
@@ -21,6 +25,12 @@ export const SideBar = () => {
                         <span><HiSearch /></span>
                         <p>Search</p>
                     </NavLink>
+                    {loggedIn&&
+                    <NavLink to='collection/tracks' className='nav-bar-item'>
+                        <span><SaveIcon width='24px' height='24px'/></span>
+                        <p>Saved tracks</p>
+                    </NavLink>
+                    }
                 </nav>
             
         </aside>

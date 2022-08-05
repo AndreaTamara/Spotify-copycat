@@ -31,7 +31,9 @@ flex-direction: column;
 }
 
 .display-section::-webkit-scrollbar{
-    width: 10px;     
+    width: 10px;  
+    z-index: 500;  
+    display: none;   
 }
 .display-section::-webkit-scrollbar-thumb{
     background-color: rgba(225,225,225,0.07);

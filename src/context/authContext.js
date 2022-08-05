@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
     console.log('render context')
     const [loggedIn, setLoggedIn] = useState(false)
     const [user, setUser] = useState({name:'', id:'',country:''})
+    
 
     const code = new URLSearchParams(window.location.search).get("code")
     // console.log(code)
@@ -49,6 +50,7 @@ export const AuthProvider = ({ children }) => {
         setLoggedIn(false);
         localStorage.setItem('token', '');
         localStorage.setItem('refreshToken', '');
+        
     }
 
     const data ={loggedIn,user, handleLogOut}

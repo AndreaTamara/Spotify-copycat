@@ -1,13 +1,15 @@
 import './TrackCard.css';
 import { FiHeart, FiClock } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import {BsPlayFill} from 'react-icons/bs'
 
 
 export const TrackCard = ({ header, number, url, name, author, album, time,albumView, albumId}) => {
     return (
         <div className={`track-card ${header&&'track-card-header'} ${albumView&&'track-card-album'}`}>
             <div className='track-number'>
-                {header ? '#' : number}
+                <span className='number-of-track'>{header ? '#' : number}</span>
+                {!header&&<span className='play-icon'><BsPlayFill/></span>}
             </div>
             <div className='track-name'>
                 {(!header && !albumView) && <img className='track-img' src={url} alt='album cover' />}
