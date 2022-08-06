@@ -21,3 +21,6 @@ export const albumsArtistUrl = (id)=> `/artists/${id}/albums?include_groups=albu
 export const artistsRelatedUrl = (id)=> `/artists/${id}/related-artists`;
 //saved traks
 export const userSavedTracksUrl = '/me/tracks';
+//search
+export const searchUrl =(query)=> query?`/search?q=${query}&type=track,artist,playlist,album&include_external=audio`:''
+

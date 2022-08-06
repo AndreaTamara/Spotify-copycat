@@ -30,7 +30,7 @@ export const Artist = () => {
         <DetailViewContainer>
             <img className='hero-artist-img' src={artist?.images[0].url} alt='artist' />
             <DetailHeader
-                type='verified artist'
+                type={artist?.popularity>50?'verified artist':''}
                 name={artist?.name}
                 artistView={true}
                 tracks={artist?formatNum(artist.followers.total):''}

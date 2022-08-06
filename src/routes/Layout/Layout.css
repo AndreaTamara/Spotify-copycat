@@ -23,6 +23,7 @@ flex-direction: column;
     min-width: 85%;
     width:calc(100vw - 258px);
     display: flex;
+    flex-direction: column;
     position: absolute;
     right:0;
     top:0;  

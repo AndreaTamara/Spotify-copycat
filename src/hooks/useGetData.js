@@ -28,6 +28,7 @@ export const useGetData = (endpoint,loggedIn,userInfo) => {
 
     useEffect(() => {  
         if(userInfo&&!loggedIn) return;
+        if(!endpoint)return;
         getData()
     }, [loggedIn, userInfo,endpoint])
 

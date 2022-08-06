@@ -11,7 +11,7 @@ export const DetailHeader = ({ url, type, name, description, tracks, urlArtist, 
       </div>}
       <div className='detail-header-info'>
         <h6 className='detail-header-info-type'>
-          {artistView&& <MdVerified/>}
+          {(artistView&&type)&& <MdVerified/>}
           {type}
         </h6>
         <h1 className='detail-header-info-name'>{name}</h1>
