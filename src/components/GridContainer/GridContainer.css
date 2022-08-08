@@ -1,0 +1,20 @@
+.grid-container{
+    width: 100%;
+    display: grid;
+    gap: 2rem;
+    padding: 1.5625rem;
+    grid-template-columns: repeat(auto-fit, minmax(15.625rem,1fr));
+    /* minmax(135px, 269px) */
+    grid-auto-flow: dense;
+    grid-auto-rows: 1fr;
+    align-content: space-evenly;
+    justify-content: space-evenly;
+}
+
+@media (max-width:900px){
+    .grid-container{
+        gap:1rem;
+        padding: 1.5625rem 0.875rem;
+        grid-template-columns: repeat(auto-fit, minmax(8.3125rem, 1fr) );
+    }
+}

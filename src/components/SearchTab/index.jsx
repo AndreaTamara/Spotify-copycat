@@ -1,9 +1,10 @@
 import './SearchTab.css'
 import { useSearchParams } from 'react-router-dom';
-import { HiSearch } from 'react-icons/hi'
+import { HiSearch } from 'react-icons/hi';
+import { RiCloseFill } from 'react-icons/ri'
 
 
-export const SearchTab = ({ onSubmit }) => {
+export const SearchTab = ({ onSubmit, deleteSearch }) => {
 
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -17,6 +18,12 @@ export const SearchTab = ({ onSubmit }) => {
         if (searched) { setSearchParams({ query: searched }) }
         else { setSearchParams({ query: '' }) }
     }
+
+    const handleDelete = () => {
+        setSearchParams({ query: '' })
+        deleteSearch()
+    }
+
     return (
 
         <form className='search-tab-container'
@@ -30,7 +37,12 @@ export const SearchTab = ({ onSubmit }) => {
                     value={searchedQuery}
                     onChange={handleInputChange}
                 />
+                <RiCloseFill
+                    className={`del-search-icon ${searchedQuery ? 'visible' : ''}`}
+                    onClick={handleDelete} />
+
                 <HiSearch className='search-icon' />
+
             </div>
         </form>
     )
