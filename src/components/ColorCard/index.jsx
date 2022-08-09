@@ -2,6 +2,7 @@ import { randomColor } from '../../helpers/randomColor'
 import './ColorCard.css'
 
 export const ColorCard = ({ title, imgUrl }) => {
+   
     return (
         //backgroundImage:`url(${imgUrl})`
         <div className="color-card" style={{backgroundColor:randomColor()}}>
