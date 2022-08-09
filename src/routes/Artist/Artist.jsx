@@ -28,7 +28,7 @@ export const Artist = () => {
     
     return (
         <DetailViewContainer>
-            <img className='hero-artist-img' src={artist?.images[0].url} alt='artist' />
+            <img className='hero-artist-img' src={artist?.images[0]?.url} alt='artist' />
             <DetailHeader
                 type={artist?.popularity>50?'verified artist':''}
                 name={artist?.name}

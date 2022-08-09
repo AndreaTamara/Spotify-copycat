@@ -16,7 +16,6 @@ export const Home = () => {
 
   const { data: newRealeases, loading: newRealeasesLoading, error: newRealeasesError } = useGetData(newRealeasesUrl, loggedIn, false)
   const { data: featuredPlaylists, loading: featuredPlaylistsLoading, error: featuredPlaylistsError } = useGetData(featuredPlaylistsUrl, loggedIn, false)
-  const { data: browse, loading: browseLoading, error: browseError } = useGetData(browseUrl, loggedIn, false)
   const { data: userPlaylist, loading: userPlaylistLoading, error: userPlaylistError } = useGetData(userPlaylistUrl, loggedIn, true)
   const { data: userTopArtists, loading: userTopArtistsLoading, error: userTopArtistsError } = useGetData(userTopArtistsUrl, loggedIn, true)
   const { data: userTopTracks, loading: userTopTracksLoading, error: userTopTracksError } = useGetData(userTopTracksUrl, loggedIn, true)
@@ -102,19 +101,6 @@ export const Home = () => {
                 imgUrl={playlist.images[0].url}
               />
             </Link>
-          )
-        })}
-      </RowList>
-      <RowList title='Browse' id='browse'>
-        {browseLoading && <p>loading...</p>}
-        {browseError && <p>ocurrió un error: {browseError.error?.message}</p>}
-        {browse?.categories.items.map(category => {
-          return (
-            <Card
-              key={category.id}
-              name={category.name}
-              imgUrl={category.icons[0].url}
-            />
           )
         })}
       </RowList>
