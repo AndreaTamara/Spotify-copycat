@@ -61,7 +61,7 @@
     width: calc(100vw - 258px);;
     padding: 1.5625rem;
     position: fixed;
-    top:64.67px;
+    top:80px;
     right: 0;
     background-color: var(--navy-blue);
     z-index: 300;
@@ -73,5 +73,6 @@
         padding: 1.5625rem 0.875rem 1.25rem 0.875rem;
         width: calc(100vw - 65px);
         min-width: auto;
+        top:64.67px;
     }
 }

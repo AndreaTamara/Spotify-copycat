@@ -3,10 +3,10 @@ import { getPrivateData } from "../api/privateServices";
 import { getPublicData } from "../api/publicServices";
 
 
-export const useGetData = (endpoint,loggedIn,userInfo) => {
+export const useGetData = (endpoint,loggedIn,userInfo,clear) => {
 
     
-
+    // console.log('usegetdata:'+endpoint)
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -30,7 +30,15 @@ export const useGetData = (endpoint,loggedIn,userInfo) => {
         if(userInfo&&!loggedIn) return;
         if(!endpoint)return;
         getData()
-    }, [loggedIn, userInfo,endpoint])
+
+        return () => {
+            if(clear){
+                setData(null)
+                setLoading(true)
+                setError(null)
+            } 
+          };
+    }, [loggedIn, userInfo,endpoint,clear])
 
 
     return { data, loading, error }

@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import {BsPlayFill} from 'react-icons/bs'
 
 
-export const TrackCard = ({ header, number, url, name, author, album, time,albumView, albumId}) => {
+export const TrackCard = ({ header, number, url, name, author, album, time,albumView, albumId, hidden}) => {
     return (
-        <div className={`track-card ${header&&'track-card-header'} ${albumView&&'track-card-album'}`}>
+        <div className={`track-card ${header&&'track-card-header'} ${albumView&&'track-card-album'} ${hidden||''}`}>
             <div className='track-number'>
                 <span className='number-of-track'>{header ? '#' : number}</span>
                 {!header&&<span className='play-icon'><BsPlayFill/></span>}

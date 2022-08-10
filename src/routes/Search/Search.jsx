@@ -1,57 +1,72 @@
-import { useContext, useState } from "react";
-import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { searchUrl } from "../../api/endpoints";
 import { BrowserView } from "../../components/BrowserView";
 import { Card } from "../../components/Card";
-import { ColorCard } from "../../components/ColorCard";
 import { DetailTrackList } from "../../components/DetailTracksList";
 import { DetailViewContainer } from "../../components/DetailViewContainer"
-import { GridContainer } from "../../components/GridContainer";
 import { RowList } from "../../components/RowList";
 import { SearchTab } from "../../components/SearchTab"
 import { TrackCard } from "../../components/TrackCard";
+import { ViewMoreBtn } from "../../components/ViewMoreBtn";
 import { authContext } from "../../context/authContext";
 import { convertMstoMin } from "../../helpers/convertToMin";
 import { cutTextString } from "../../helpers/cutTextString";
+import { useDebounce } from "../../hooks/useDebounce";
 import { useGetData } from "../../hooks/useGetData";
+
 
 
 
 export const Search = () => {
   const navigate = useNavigate()
   const { loggedIn, user } = useContext(authContext)
-  // const [searchParams] = useSearchParams(useLocation().query);
-  // const searchedQuery = searchParams.get('query')
-  const [searchedQuery, setSearchedQuery] = useState(null)
+  const searchedQuery = new URLSearchParams(window.location.search).get('query')
+  const { debouncedValue, setDebouncedValue } = useDebounce(searchedQuery, 900);
+  const { data, loading, error } = useGetData(searchUrl(debouncedValue), loggedIn, false, true)
+  const [more, setMore] = useState(false)
 
-  console.log('en search component ' + searchedQuery)
-
-  const { data, loading, error } = useGetData(searchUrl(searchedQuery), loggedIn, false)
-
+  const dataLength =
+    data?.tracks.items.length+
+    data?.artists.items.length+
+    data?.playlists.items.length+
+    data?.albums.items.length
 
   const handleSearch = (e) => {
     e.preventDefault()
     const query = new URLSearchParams(window.location.search).get('query')
-    setSearchedQuery(query)
+    setDebouncedValue(query)
   }
 
   const deleteSearch = () => {
-    setSearchedQuery(null)
+    const query = new URLSearchParams(window.location.search)
+    query.set('query', '')
+    setDebouncedValue(null)
     navigate('/search')
-
+    setMore(false)
   }
+
+  useEffect(() => {
+    setMore(false)
+  }, [debouncedValue])
+
 
   return (
     <>
-      <SearchTab onSubmit={handleSearch} deleteSearch={deleteSearch} />
+      <SearchTab deleteSearch={deleteSearch} onSubmit={handleSearch} />
       <DetailViewContainer>
         <section className="search-scroll-container" style={{ width: '100%', marginTop: '5rem' }}>
-          {searchedQuery && data ?
+          {(debouncedValue && loading) && <p>loading...</p>}
+          {error && <p>ocurrió un error: {error.error?.message}</p>}
+          { dataLength===0&&<p>No results found</p>}
+          {(data&&(dataLength!==0)) &&
             <>
               <DetailTrackList searchView={true}>
+                {(data.tracks.items.length===0)&& <p>No results found</p>}
                 {data.tracks.items?.map((track, i) => {
                   return (
                     <TrackCard
+                      hidden={(i > 4 && !more) ? 'hidden' : ''}
                       key={track.id}
                       number={i + 1}
                       name={cutTextString(track.name, 25)}
@@ -65,8 +80,13 @@ export const Search = () => {
                     />
                   )
                 })}
+                {(data.tracks.items.length>5)&&
+                  <ViewMoreBtn more={more} setMore={setMore}/>
+                }
+                
               </DetailTrackList>
               <RowList title='Artists' id='result-artists' artistView={true}>
+                {(data.artists.items.length===0)&& <p>No results found</p>}
                 {data.artists.items?.map(artist => {
                   return (
                     <Link to={'/artist/' + artist.id} key={artist.id}>
@@ -81,7 +101,7 @@ export const Search = () => {
                 })}
               </RowList>
               <RowList title='Playlist' id='result-playlist' artistView={true}>
-
+              {(data.playlists.items.length===0)&& <p>No results found</p>}
                 {data.playlists.items?.map(playlist => {
                   return (
                     <Link to={'/playlist/' + playlist.id} key={playlist.id}>
@@ -95,6 +115,7 @@ export const Search = () => {
                 })}
               </RowList>
               <RowList title='Albums' id='result-albums' artistView={true}>
+              {(data.albums.items.length===0)&& <p>No results found</p>}
                 {data.albums.items?.map(album => {
                   return (
                     <Link to={'/album/' + album.id} key={album.id}>
@@ -107,10 +128,8 @@ export const Search = () => {
                   )
                 })}
               </RowList>
-            </>
-            :
-            <BrowserView/>
-          }
+            </>}
+          {!searchedQuery && <BrowserView />}
         </section>
       </DetailViewContainer>
     </>
