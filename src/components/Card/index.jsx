@@ -1,14 +1,17 @@
+import { useContext } from 'react'
+import { playContext } from '../../context/playContext'
 import { PlayBtn } from '../PlayBtn'
 import './Card.css'
 
-export const Card = ({name, author, imgUrl,type}) => {
+export const Card = ({name, author, imgUrl,type,uri}) => {
+  const {currentUri}=useContext(playContext)
   return (
     //onClick={()=>myOnClick()}
     <div className="card" >
         <div className={`card-img ${type}`}>
             <img src={imgUrl} alt='cover album'/>
-            <div className='play-btn-card'>
-              <PlayBtn/>
+            <div className={`play-btn-card ${currentUri===uri&&'play-btn-active'}`}>
+              <PlayBtn uri={uri}/>
             </div>
         </div>
         <div className="card-info">

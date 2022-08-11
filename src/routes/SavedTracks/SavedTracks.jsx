@@ -14,12 +14,19 @@ import { DetailTrackList } from '../../components/DetailTracksList'
 export const SavedTracks = () => {
 
   const { loggedIn, user } = useContext(authContext)
-  
+
   const { data: savedTracks, loading: savedTracksLoading, error: savedTracksError } = useGetData(userSavedTracksUrl, loggedIn, true)
-  
+
+  const trackUris = savedTracks?.items.map(item => {
+    return (
+      item.track.uri
+    )
+  })
+
+  console.log(trackUris)
   return (
     <DetailViewContainer>
-      
+
       {savedTracks &&
         <DetailHeader
           savedView={true}
@@ -28,7 +35,7 @@ export const SavedTracks = () => {
           description={user?.name}
           tracks={savedTracks?.total}
         />}
-      <DetailViewCommandBar savedView={true}/>
+      <DetailViewCommandBar savedView={true} uri={trackUris} />
       <DetailTrackList>
         {savedTracksLoading && <p>loading...</p>}
         {savedTracksError && <p>ocurrió un error: {savedTracksError.error?.message}</p>}
@@ -37,11 +44,11 @@ export const SavedTracks = () => {
             <TrackCard
               key={item.track.id}
               number={i + 1}
-              name={cutTextString(item.track.name,25)}
+              name={cutTextString(item.track.name, 25)}
               author={item.track.artists.map(artist => {
-                  return {name:artist.name,id:artist.id}
-                })}
-              album={cutTextString(item.track.album.name,25)}
+                return { name: artist.name, id: artist.id }
+              })}
+              album={cutTextString(item.track.album.name, 25)}
               url={item.track.album.images[0].url}
               time={convertMstoMin(item.track.duration_ms)}
               albumId={item.track.album.id}

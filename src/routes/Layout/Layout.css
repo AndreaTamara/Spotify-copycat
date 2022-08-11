@@ -44,7 +44,7 @@ flex-direction: column;
 
 @media (max-width:900px){
     .display-section{
-        height: calc(100vh - 60px);
+        /* height: calc(100vh - 60px); */
         width: calc(100vw - 65px);
         min-width: auto;
         padding-top: 4.0416875rem;

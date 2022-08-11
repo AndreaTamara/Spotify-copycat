@@ -10,12 +10,38 @@
     position: absolute;
     bottom: 0;
     z-index: 400;
+    overflow: hidden;
         
 }
+/* ._ContentRSWP{
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    padding-left:4px !important;
+}
+._ContentRSWP > *{
+    width: min-content;
+}
+.__192z72t{
+    width: 110px !important;
+}
+._InfoRSWP{
+    padding-top: 6px !important;
+}
+.__1agbcgi{
+    width: 100% !important;
+}
 
-@media (max-width:900px){
+@media (max-width:1023px){
+    ._InfoRSWP{
+        border-bottom: none !important;
+    }
+} */
+/* @media (max-width:900px){
     .play-bar{
          height: 3.75rem;
     }
    
+} */
+.PlayerRSWP{
+    overflow: hidden;
 }

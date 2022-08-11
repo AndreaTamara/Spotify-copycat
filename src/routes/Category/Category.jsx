@@ -24,6 +24,7 @@ export const Category = () => {
                 return(
                 <Link to={'/playlist/' + item.id} key={item.id}>
                   <Card
+                    uri={item.uri}
                     name={cutTextString(item.name, 30)}
                     author={cutTextString(item.description, 48)}
                     imgUrl={item.images[0].url}

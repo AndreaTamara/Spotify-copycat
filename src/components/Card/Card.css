@@ -12,6 +12,7 @@
     align-items: center;
     gap:1rem;
     overflow: hidden;
+    z-index: 200;
    
 }
 .play-btn-card{
@@ -19,6 +20,10 @@
     position: absolute;
     right: 0.5rem;
     bottom: 0.5rem;
+    z-index: 250;
+}
+.play-btn-active{
+    display: flex;
 }
 .card:hover{
     background-color: var(--mid-deep-blue-active);

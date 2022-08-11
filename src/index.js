@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { AuthProvider } from './context/authContext';
+import { PlayProvider } from './context/playContext';
 import './index.css';
 import { RoutesSpotify } from './routes';
 
@@ -9,7 +10,9 @@ root.render(
 
   // <React.StrictMode>
   <AuthProvider>
-    <RoutesSpotify />
+    <PlayProvider>
+      <RoutesSpotify />
+    </PlayProvider>
   </AuthProvider>
     
   // </React.StrictMode>

@@ -35,7 +35,7 @@ export const Artist = () => {
                 artistView={true}
                 tracks={artist?formatNum(artist.followers.total):''}
             />
-            <DetailViewCommandBar artistView={true} />
+            <DetailViewCommandBar artistView={true} uri={artist?.uri}/>
             <DetailTrackList artistView={true}>
                 {topTracksLoading && <p>loading...</p>}
                 {topTracksError && <p>ocurrió un error: {topTracksError.error?.message}</p>}
@@ -58,6 +58,7 @@ export const Artist = () => {
                     return (
                         <Link  to={'/album/' + item.id} key={item.id}>
                             <Card
+                                uri={item.uri}
                                 name={cutTextString(item.name, 30)}
                                 author={cutTextString(item.album_type, 30)}
                                 imgUrl={item.images[0].url}
@@ -73,6 +74,7 @@ export const Artist = () => {
                     return (
                         <Link to={'/artist/' + artist.id} key={artist.id} >
                             <Card
+                                uri={artist.uri}
                                 type='artist'
                                 name={cutTextString(artist.name, 30)}
                                 author={cutTextString(artist.type, 30)}

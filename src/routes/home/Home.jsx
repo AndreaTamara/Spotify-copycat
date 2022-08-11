@@ -33,6 +33,7 @@ export const Home = () => {
               return (
                 <Link to={'/playlist/' + playlist.id} key={playlist.id}>
                   <Card
+                    uri={playlist.uri}
                     name={cutTextString(playlist.name, 30)}
                     author={cutTextString(playlist.description, 48)}
                     imgUrl={playlist.images[0].url}
@@ -48,6 +49,7 @@ export const Home = () => {
               return (
                 <Link to={'/artist/' + artist.id} key={artist.id}>
                 <Card
+                  uri={artist.uri}
                   type='artist'
                   name={cutTextString(artist.name, 30)}
                   author={artist.type}
@@ -64,6 +66,7 @@ export const Home = () => {
               return (
                 <Link to={'/album/' + track.album.id} key={track.id}>
                 <Card
+                  uri={track.uri}
                   name={cutTextString(track.name, 30)}
                   author={cutTextString(track.artists.map(artist => artist.name).join(', '), 30)}
                   imgUrl={track.album.images[0].url}
@@ -81,6 +84,7 @@ export const Home = () => {
           return (
             <Link to={'/album/' + album.id} key={album.id}>
               <Card
+                uri={album.uri}
                 name={cutTextString(album.name, 30)}
                 author={cutTextString(album.artists.map(artist => artist.name).join(', '), 30)}
                 imgUrl={album.images[0].url}
@@ -96,6 +100,7 @@ export const Home = () => {
           return (
             <Link to={'/playlist/' + playlist.id} key={playlist.id}>
               <Card
+                uri={playlist.uri}
                 name={playlist.name}
                 author={cutTextString(playlist.description, 45)}
                 imgUrl={playlist.images[0].url}
