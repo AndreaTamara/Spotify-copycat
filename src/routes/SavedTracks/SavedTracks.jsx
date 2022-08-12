@@ -23,7 +23,7 @@ export const SavedTracks = () => {
     )
   })
 
-  console.log(trackUris)
+  // console.log(trackUris)
   return (
     <DetailViewContainer>
 

@@ -9,31 +9,51 @@ import { authContext } from '../../context/authContext'
 
 export const TrackCard = ({ header, number, url, name, author, album, time, albumView, albumId, hidden, uri }) => {
 
-    const { currentUri,setCurrentUri } = useContext(playContext)
+    const { setCurrentUri, currentTrack } = useContext(playContext)
     const { loggedIn } = useContext(authContext)
 
     const handlePlay = (uri) => {
-        console.log('inicio play:'+uri)
+        console.log('inicio play:' + uri)
         if (uri && loggedIn) setCurrentUri(uri)
-      }
+    }
 
     return (
         <div
-            className={`track-card ${header && 'track-card-header'} ${albumView && 'track-card-album'} ${hidden || ''}`}>
-            <div 
-                className={`track-number ${currentUri===uri&&'play-icon-active'}`}>
-                <span className='number-of-track'>{header ? '#' : number}</span>
-                {!header && 
-                <span
-                    onClick={() => handlePlay(uri)}
-                    className='play-icon'>
-                    <BsPlayFill />
-                </span>}
+            className={`track-card 
+                ${header && 'track-card-header'} 
+                ${albumView && 'track-card-album'} 
+                ${hidden || ''}
+                ${currentTrack === uri && 'play-icon-active'}`}
+        >
+            <div
+                className={`track-number`}>
+                <span className='number-of-track'>
+                    {header ? '#' : number}
+                </span>
+                {!header &&
+                    <span
+                        onClick={() => handlePlay(uri)}
+                        className='play-icon play-icon-desktop'>
+                        <BsPlayFill />
+                    </span>}
             </div>
             <div className='track-name'>
-                {(!header && !albumView) && <img className='track-img' src={url} alt='album cover' />}
+                {(!header && !albumView) &&
+                    <div className={`track-img-container`}>
+                        <img className='track-img' src={url} alt='album cover' />
+                        <span
+                            onClick={() => handlePlay(uri)}
+                            className='play-icon play-icon-mobile'>
+                            <BsPlayFill />
+                        </span>
+                    </div>
+                }
                 <span className='track-info'>
-                    {header ? 'TITLE' : <p className='track-info-name'>{name}</p>}
+                    {header ? 'TITLE' :
+                        <p className='track-info-name'
+                            onClick={albumView ? () => handlePlay(uri) : () => { }}>
+                            {name}
+                        </p>}
                     {!header &&
                         <p className='track-info-author'>
                             {author?.map((e, i) =>
@@ -46,7 +66,10 @@ export const TrackCard = ({ header, number, url, name, author, album, time, albu
             </div>
             {!albumView &&
                 <div className='track-album'>
-                    {header ? 'ALBUM' : <Link to={'/album/' + albumId}>{album}</Link>}
+                    {header ? 'ALBUM' :
+                        <Link to={'/album/' + albumId}>
+                            {album}
+                        </Link>}
                 </div>
             }
             <div className='track-save'>

@@ -23,6 +23,9 @@
     background-color:hsla(0, 0%, 100%,0.1);
     cursor: pointer;
 }
+.track-card.play-icon-active{
+    background-color:hsla(0, 0%, 100%,0.1);
+}
 .track-card.track-card-header:hover{
     background-color:hsla(0, 0%, 100%,0);
     cursor:auto;
@@ -51,6 +54,17 @@
 .play-icon-active .number-of-track{
     display: none;
 }
+
+.play-icon-mobile{
+position: absolute;
+top:4.335px;
+left:6px;
+
+}
+.play-icon-mobile > svg {
+    stroke: var(--very-dark-blue);
+    stroke-width: .2px;
+}
 .track-name{
     width:50%;
     display: flex;
@@ -63,6 +77,11 @@
     width: 2.625rem;
     height: 2.625rem;
     background-color: grey;
+}
+.track-img-container{
+    width: 2.625rem;
+    height: 2.625rem;
+    position: relative;
 }
 .track-info{
     display: flex;
@@ -102,7 +121,7 @@
 .track-card:hover .track-save{
     opacity: 1;
 }
-.track-card:hover .play-icon{
+.track-card:hover .play-icon-desktop{
     display: block;
 }
 .track-card:hover .number-of-track{
@@ -117,7 +136,13 @@
 }
 .hidden{
     display: none;
+    
 }
+.play-icon-active .play-icon-mobile,
+.track-card:hover .play-icon-mobile{
+    display: none;
+}
+
 @media (max-width:900px){
     .track-card-header{
         display: none;
@@ -147,6 +172,17 @@
     .track-info-author{
         font-size: 0.75rem;
     }
+    .track-card:hover .play-icon-desktop{
+        display: none;
+    }
+    .play-icon-active .play-icon-mobile,
+    .track-card:hover .play-icon-mobile{
+        display: block;
+    }
+    /* .track-card:hover .play-icon-mobile,
+    .track-card:hover .play-icon{
+        display: none;
+    } */
     /* .tracks-list-artistView .track-number{
         display: block;
         width: 0.9rem;
