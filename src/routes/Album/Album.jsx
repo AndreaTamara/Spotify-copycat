@@ -40,6 +40,7 @@ export const Album = () => {
         {itemsAlbum?.items.map((item, i) => {
           return (
             <TrackCard
+              uri={item.uri}
               albumView={true}
               key={item.id}
               number={i + 1}

@@ -42,6 +42,7 @@ export const SavedTracks = () => {
         {savedTracks?.items.map((item, i) => {
           return (
             <TrackCard
+              uri={item.track.uri}
               key={item.track.id}
               number={i + 1}
               name={cutTextString(item.track.name, 25)}

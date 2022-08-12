@@ -16,10 +16,11 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const refreshToken = localStorage.getItem('refreshToken');
-        if (refreshToken) {
+         if (refreshToken) {
             setLoggedIn(true)
-        }
-        else if (code){
+         }
+        // else 
+        if (!refreshToken&&code){
             getPrivateToken(code)
                 .then(res => {
                     // localStorage.setItem('privateToken', res.access_token);
@@ -27,6 +28,7 @@ export const AuthProvider = ({ children }) => {
                     localStorage.setItem('refreshToken', res.refresh_token);
                     setLoggedIn(true)
                     console.log('actualicé token')
+                    window.location.reload()
                     
                 }
                 )

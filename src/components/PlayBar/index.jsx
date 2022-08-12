@@ -1,19 +1,19 @@
 import { useContext, useEffect, useState } from 'react'
 import SpotifyWebPlayer from 'react-spotify-web-playback/lib'
-import { authContext } from '../../context/authContext'
+// import { authContext } from '../../context/authContext'
 import { playContext } from '../../context/playContext'
 import './PlayBar.css'
 
 export const PlayBar = () => {
   const token= localStorage.getItem('token')
-  const {loggedIn}= useContext(authContext)
+  // const {loggedIn}= useContext(authContext)
   const {currentUri} = useContext(playContext)
-  // console.log(currentUri)
+  console.log('currentUri:'+currentUri)
   const [play, setPlay]=useState(false)
 
   useEffect(() => {
     setPlay(true)
-  }, [currentUri,loggedIn])
+  }, [currentUri])
 
 
   // //  "spotify:playlist:37i9dQZF1DZ06evO0ZA7Vc"

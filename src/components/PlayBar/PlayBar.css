@@ -1,6 +1,7 @@
 .play-bar{
     width: 100%;
-    height: 6.25rem;
+    /* height: 6.875rem; */
+    height: 105px;
     background-color: var(--dark-blue);
     color:var(--white);
     display: flex;
@@ -10,7 +11,7 @@
     position: absolute;
     bottom: 0;
     z-index: 400;
-    overflow: hidden;
+    /* overflow: hidden; */
         
 }
 /* ._ContentRSWP{
@@ -43,5 +44,12 @@
    
 } */
 .PlayerRSWP{
-    overflow: hidden;
+    overflow: visible;
 }
+/* ._ControlsRSWP .__1agbcgi{
+    overflow: hidden;
+} */
+/* ._ContentRSWP > *,
+._SliderRSWP .__181lube{
+    overflow: hidden;
+} */

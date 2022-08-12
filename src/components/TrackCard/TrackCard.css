@@ -41,6 +41,16 @@
     width: 1.875rem;
     height: 1.875rem;
 }
+
+.play-icon-active .play-icon{
+    display: block;
+}
+.play-icon-active .play-icon >svg{
+    fill:var(--light-green);
+}
+.play-icon-active .number-of-track{
+    display: none;
+}
 .track-name{
     width:50%;
     display: flex;

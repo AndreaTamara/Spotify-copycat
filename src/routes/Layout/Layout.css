@@ -15,7 +15,7 @@ flex-direction: column;
 
 .display-section{
     background: linear-gradient(var(--navy-blue-2), var(--deep-blue) 40%);
-    height: calc(100vh - 100px);
+    height: calc(100vh - 105px);
     overflow-y:scroll;
     /* padding: 1.5625rem ; */
     scroll-behavior: smooth;

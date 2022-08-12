@@ -42,6 +42,7 @@ export const Artist = () => {
                 {topTracks?.tracks.map((track, i) => {
                     return (
                         <TrackCard
+                            uri={track.uri}
                             key={track.id}
                             number={i + 1}
                             name={cutTextString(track.name, 25)}
