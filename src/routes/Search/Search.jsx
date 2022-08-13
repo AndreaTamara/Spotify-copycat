@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { searchUrl } from "../../api/endpoints";
 import { BrowserView } from "../../components/BrowserView";
 import { Card } from "../../components/Card";
@@ -90,15 +90,15 @@ export const Search = () => {
                 {(data.artists.items.length===0)&& <p>No results found</p>}
                 {data.artists.items?.map(artist => {
                   return (
-                    <Link to={'/artist/' + artist.id} key={artist.id}>
                       <Card
+                        key={artist.id}
+                        path={'/artist/' + artist.id} 
                         uri={artist.uri}
                         type='artist'
                         name={cutTextString(artist.name, 30)}
                         author={artist.type}
                         imgUrl={artist.images[0]?.url}
                       />
-                    </Link>
                   )
                 })}
               </RowList>
@@ -106,14 +106,14 @@ export const Search = () => {
               {(data.playlists.items.length===0)&& <p>No results found</p>}
                 {data.playlists.items?.map(playlist => {
                   return (
-                    <Link to={'/playlist/' + playlist.id} key={playlist.id}>
                       <Card
+                        key={playlist.id}
+                        path={'/playlist/' + playlist.id}
                         uri={playlist.uri}
                         name={cutTextString(playlist.name, 30)}
                         author={cutTextString(playlist.owner.display_name, 45)}
                         imgUrl={playlist.images[0].url}
                       />
-                    </Link>
                   )
                 })}
               </RowList>
@@ -121,14 +121,14 @@ export const Search = () => {
               {(data.albums.items.length===0)&& <p>No results found</p>}
                 {data.albums.items?.map(album => {
                   return (
-                    <Link to={'/album/' + album.id} key={album.id}>
                       <Card
+                        key={album.id}
+                        path={'/album/' + album.id}
                         uri={album.uri}
                         name={cutTextString(album.name, 30)}
                         author={cutTextString(album.artists.map(artist => artist.name).join(', '), 30)}
                         imgUrl={album.images[0].url}
                       />
-                    </Link>
                   )
                 })}
               </RowList>

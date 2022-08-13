@@ -13,13 +13,20 @@
     gap:1rem;
     overflow: hidden;
     z-index: 200;
-   
+}
+.card-container{
+    width:auto;
+    max-width: 13rem;
+    height: 100%;
+    position: relative;
 }
 .play-btn-card{
     display: none;
     position: absolute;
-    right: 0.5rem;
-    bottom: 0.5rem;
+    top:135px;
+    right: 25px;
+    /* right: 0.5rem; */
+    /* bottom: 0.5rem; */
     z-index: 250;
 }
 .play-btn-active{
@@ -29,7 +36,7 @@
     background-color: var(--mid-deep-blue-active);
     cursor: pointer;
 }
-.card:hover .play-btn-card{
+.card-container:hover .play-btn-card{
     display: flex;
 }
 .card-img{
@@ -101,8 +108,10 @@
     }
 
     .play-btn-card{
-        right: 0.3125rem;
-        bottom: 0.3125rem;
+        /* right: 0.3125rem;
+        bottom: 0.3125rem; */
+        top:95px;
+    right: 14px;
     }
     
 }

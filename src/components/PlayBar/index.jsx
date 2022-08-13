@@ -5,16 +5,19 @@ import { playContext } from '../../context/playContext'
 import './PlayBar.css'
 
 export const PlayBar = () => {
-  const token = localStorage.getItem('token')
-  // const {loggedIn}= useContext(authContext)
+  let token = localStorage.getItem('token')
+  // const {user}= useContext(authContext)
   const { currentUri, setCurrentTrack } = useContext(playContext)
-  console.log('currentUri:' + currentUri)
+  // console.log('currentUri:' + currentUri)
   const [play, setPlay] = useState(false)
 
   useEffect(() => {
     setPlay(true)
   }, [currentUri])
 
+  // useEffect(()=>{
+  //   token = localStorage.getItem('token')
+  // },[user])
 
   return (
     <div className='play-bar'>
@@ -27,7 +30,7 @@ export const PlayBar = () => {
         autoPlay={true}
         callback={state => {
           if (!state.isPlaying) setPlay(false)
-          console.log(state.track)
+          // console.table(state)
           setCurrentTrack(state.track.uri)
         }}
         styles={{
@@ -38,7 +41,7 @@ export const PlayBar = () => {
           sliderHandleColor: 'hsl(0,0%,100%)',
           trackNameColor: 'hsl(0,0%,100%)',
           trackArtistColor: 'hsl(226, 16%, 69%)',
-          // activeColor:'hsl(143, 93%, 59%)',
+          activeColor:'hsl(143, 93%, 59%)',
           errorColor: 'hsl(0,0%,100%)'
         }}
 

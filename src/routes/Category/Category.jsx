@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { DetailViewContainer } from "../../components/DetailViewContainer"
 import { GridContainer } from "../../components/GridContainer"
 import { authContext } from "../../context/authContext"
-import {useParams, Link } from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import { useGetData } from "../../hooks/useGetData"
 import { categoryUrl,categoryPlaylistUrl} from "../../api/endpoints"
 import { cutTextString } from "../../helpers/cutTextString"
@@ -22,14 +22,14 @@ export const Category = () => {
         {data?.playlists.items.map(item=>{
             if(item!==null)
                 return(
-                <Link to={'/playlist/' + item.id} key={item.id}>
                   <Card
+                    key={item.id}
+                    path={'/playlist/' + item.id}
                     uri={item.uri}
                     name={cutTextString(item.name, 30)}
                     author={cutTextString(item.description, 48)}
                     imgUrl={item.images[0].url}
-                  />
-                </Link>)                
+                  />)                
         }
         )}
 

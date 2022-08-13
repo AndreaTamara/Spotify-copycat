@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { albumsArtistUrl, artistsRelatedUrl, artistUrl, topTracksArtistUrl } from '../../api/endpoints'
 import { Card } from '../../components/Card'
 import { DetailHeader } from '../../components/DetailHeader'
@@ -57,14 +57,14 @@ export const Artist = () => {
                 {albumsArtistError && <p>ocurrió un error: {albumsArtistError.error?.message}</p>}
                 {albumsArtist?.items.map(item => {
                     return (
-                        <Link  to={'/album/' + item.id} key={item.id}>
                             <Card
+                                key={item.id}
+                                path={'/album/' + item.id}
                                 uri={item.uri}
                                 name={cutTextString(item.name, 30)}
                                 author={cutTextString(item.album_type, 30)}
                                 imgUrl={item.images[0].url}
                             />
-                        </Link>
                     )
                 })}
             </RowList>
@@ -73,15 +73,15 @@ export const Artist = () => {
                 {artistsRelatedError && <p>ocurrió un error: {artistsRelatedError.error?.message}</p>}
                 {artistsRelated?.artists.map(artist => {
                     return (
-                        <Link to={'/artist/' + artist.id} key={artist.id} >
                             <Card
+                                key={artist.id}
+                                path={'/artist/' + artist.id}
                                 uri={artist.uri}
                                 type='artist'
                                 name={cutTextString(artist.name, 30)}
                                 author={cutTextString(artist.type, 30)}
                                 imgUrl={artist.images[0]?.url}
                             />
-                        </Link>
                     )
                 })}
             </RowList>
