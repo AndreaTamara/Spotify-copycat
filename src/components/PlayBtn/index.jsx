@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import { playContext } from '../../context/playContext'
 import { authContext } from '../../context/authContext'
 
-export const PlayBtn = ({ size, uri }) => {
+export const PlayBtn = ({uri}) => {
 
   const { setCurrentUri } = useContext(playContext)
   const { loggedIn } = useContext(authContext)

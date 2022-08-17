@@ -6,7 +6,7 @@ export const authContext = createContext();
 
 
 export const AuthProvider = ({ children }) => {
-    // console.log('render context')
+    console.log('render context')
     const [loggedIn, setLoggedIn] = useState(false)
     const [user, setUser] = useState({name:'', id:'',country:''})
     
@@ -32,9 +32,10 @@ export const AuthProvider = ({ children }) => {
                     
                 }
                 )
-                .catch(() => setLoggedIn(false))     
+                .catch(() => setLoggedIn(false)) 
+                .finally(()=>window.history.pushState({}, null, "/"))   
         }
-        window.history.pushState({}, null, "/")
+        
     }, [])
 
     useEffect(() => {
@@ -50,12 +51,10 @@ export const AuthProvider = ({ children }) => {
 
     const handleLogOut = ()=>{
         setLoggedIn(false);
-        localStorage.setItem('token', '');
-        localStorage.setItem('refreshToken', '');
-        
+        localStorage.clear();        
     }
 
-    const data ={loggedIn,user, handleLogOut}
+    const data ={loggedIn,user, handleLogOut,setUser}
 
     return (
         <authContext.Provider value={data}>

@@ -1,23 +1,46 @@
 import { useContext, useEffect, useState } from 'react'
 import SpotifyWebPlayer from 'react-spotify-web-playback/lib'
-// import { authContext } from '../../context/authContext'
+import { getUserData } from '../../api/privateServices'
+import { authContext } from '../../context/authContext'
 import { playContext } from '../../context/playContext'
 import './PlayBar.css'
 
 export const PlayBar = () => {
   let token = localStorage.getItem('token')
-  // const {user}= useContext(authContext)
-  const { currentUri, setCurrentTrack } = useContext(playContext)
-  // console.log('currentUri:' + currentUri)
+  console.log(token)
+  const {loggedIn}= useContext(authContext)
+  const { currentUri, setCurrentTrack} = useContext(playContext)
+  const [error, setError]= useState(false)
   const [play, setPlay] = useState(false)
 
   useEffect(() => {
     setPlay(true)
   }, [currentUri])
 
-  // useEffect(()=>{
-  //   token = localStorage.getItem('token')
-  // },[user])
+  
+  useEffect(() => {
+    if(currentUri) {
+      localStorage.setItem('previousUri',currentUri)
+      // localStorage.setItem('previousTrack',currentTrack)
+    }
+    if(loggedIn){
+      getUserData()
+        .then(()=>{
+          token = localStorage.getItem('token')
+        } )
+    }
+  }, [error])
+
+  // const findOffset = ()=>{
+  //   const track= localStorage.getItem('previousTrack');
+  //   console.log(track)
+  //   const list = (localStorage.getItem('previousUri')).split(',')
+  //   console.log(list)
+  //   const offset = list.findIndex(item=>item===track)
+  //   console.log(offset)
+  //   return offset>0?offset:0
+  // }
+  
 
   return (
     <div className='play-bar'>
@@ -25,12 +48,14 @@ export const PlayBar = () => {
         token={token}
         showSaveIcon
         syncExternalDevice
-        uris={currentUri ? currentUri : []}
+        uris={currentUri ? currentUri : (localStorage.getItem('previousUri'))?.split(',')}
+        // offset={error?findOffset():0}
         play={play}
         autoPlay={true}
         callback={state => {
           if (!state.isPlaying) setPlay(false)
-          // console.table(state)
+          console.log(state)
+          if (state.status==='ERROR'&&state.error==='Authentication failed'){setError(true)}
           setCurrentTrack(state.track.uri)
         }}
         styles={{

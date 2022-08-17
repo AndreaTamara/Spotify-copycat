@@ -75,7 +75,7 @@ export const Search = () => {
                         return { name: artist.name, id: artist.id }
                       })}
                       album={cutTextString(track.album.name, 25)}
-                      url={track.album.images[0].url}
+                      url={track.album.images[0]?.url}
                       time={convertMstoMin(track.duration_ms)}
                       albumId={track.album.id}
                     />
@@ -112,7 +112,7 @@ export const Search = () => {
                         uri={playlist.uri}
                         name={cutTextString(playlist.name, 30)}
                         author={cutTextString(playlist.owner.display_name, 45)}
-                        imgUrl={playlist.images[0].url}
+                        imgUrl={playlist.images[0]?.url}
                       />
                   )
                 })}
@@ -127,7 +127,7 @@ export const Search = () => {
                         uri={album.uri}
                         name={cutTextString(album.name, 30)}
                         author={cutTextString(album.artists.map(artist => artist.name).join(', '), 30)}
-                        imgUrl={album.images[0].url}
+                        imgUrl={album.images[0]?.url}
                       />
                   )
                 })}
