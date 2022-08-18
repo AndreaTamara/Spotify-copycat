@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { albumsArtistUrl, artistsRelatedUrl, artistUrl, topTracksArtistUrl } from '../../api/endpoints'
 import { Card } from '../../components/Card'
@@ -8,21 +7,21 @@ import { DetailViewCommandBar } from '../../components/DetailViewCommandBar'
 import { DetailViewContainer } from '../../components/DetailViewContainer'
 import { RowList } from '../../components/RowList'
 import { TrackCard } from '../../components/TrackCard'
-import { authContext } from '../../context/authContext'
 import { convertMstoMin } from '../../helpers/convertToMin'
 import { cutTextString } from '../../helpers/cutTextString'
 import { formatNum } from '../../helpers/formatNum'
 import { useGetData } from '../../hooks/useGetData'
+import { useSelector } from 'react-redux'
 import './Artist.css'
 
 export const Artist = () => {
 
-    const { loggedIn, user } = useContext(authContext);
+    const { logged, user } = useSelector(state=>state.log)
     const { artistId } = useParams()
-    const { data: topTracks, loading: topTracksLoading, error: topTracksError } = useGetData(topTracksArtistUrl(artistId, user.country||'US'), loggedIn, false)
-    const { data: artist, loading: artistLoading, error: artistError } = useGetData(artistUrl(artistId), loggedIn, false)
-    const { data: albumsArtist, loading: albumsArtistLoading, error: albumsArtistError } = useGetData(albumsArtistUrl(artistId), loggedIn, false)
-    const { data: artistsRelated, loading: artistsRelatedLoading, error: artistsRelatedError } = useGetData(artistsRelatedUrl(artistId), loggedIn, false)
+    const { data: topTracks, loading: topTracksLoading, error: topTracksError } = useGetData(topTracksArtistUrl(artistId, user.country||'US'), logged, false)
+    const { data: artist, loading: artistLoading, error: artistError } = useGetData(artistUrl(artistId), logged, false)
+    const { data: albumsArtist, loading: albumsArtistLoading, error: albumsArtistError } = useGetData(albumsArtistUrl(artistId), logged, false)
+    const { data: artistsRelated, loading: artistsRelatedLoading, error: artistsRelatedError } = useGetData(artistsRelatedUrl(artistId), logged, false)
 
    
     

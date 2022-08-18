@@ -1,7 +1,5 @@
 import { DetailHeader } from '../../components/DetailHeader'
 import { TrackCard } from '../../components/TrackCard'
-import { useContext, useEffect } from 'react'
-import { authContext } from '../../context/authContext'
 import { useGetData } from '../../hooks/useGetData'
 import { albumUrl, itemsAlbumUrl } from '../../api/endpoints'
 import { convertMstoMin } from '../../helpers/convertToMin'
@@ -10,14 +8,15 @@ import { cutTextString } from '../../helpers/cutTextString'
 import { DetailViewContainer } from '../../components/DetailViewContainer'
 import { DetailViewCommandBar } from '../../components/DetailViewCommandBar'
 import { DetailTrackList } from '../../components/DetailTracksList'
+import { useSelector } from 'react-redux'
 
 
 export const Album = () => {
 
-  const { loggedIn, user } = useContext(authContext)
+  const { logged, user } = useSelector(state=>state.log)
   const { albumId } = useParams()
-  const { data: itemsAlbum, loading: itemsAlbumLoading, error: itemsAlbumError } = useGetData(itemsAlbumUrl(albumId), loggedIn, false)
-  const { data: album, loading: albumLoading, error: albumError } = useGetData(albumUrl(albumId), loggedIn, false)
+  const { data: itemsAlbum, loading: itemsAlbumLoading, error: itemsAlbumError } = useGetData(itemsAlbumUrl(albumId), logged, false)
+  const { data: album, loading: albumLoading, error: albumError } = useGetData(albumUrl(albumId), logged, false)
 
 
   return (

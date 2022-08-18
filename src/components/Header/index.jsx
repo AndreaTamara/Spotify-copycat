@@ -6,10 +6,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { logIn, logOut, requestUserData } from '../../actions/logActions'
 import { getPrivateToken } from '../../api/privateServices'
 import { useEffect } from 'react'
+import { selectUriToPlay } from '../../actions/playingActions'
 
 
 export const Header = () => {
 
+    // console.log('se renderiza header')
     const navigate = useNavigate()
     const code = new URLSearchParams(window.location.search).get("code");
     const { logged, user } = useSelector(state=>state.log)
@@ -18,32 +20,26 @@ export const Header = () => {
 
     useEffect(() => {
         const refreshToken = localStorage.getItem('refreshToken');
-         if (refreshToken) {
-            dispatch(logIn());
-         }
         if (!refreshToken&&code){
+            console.log('tome el code para hacr petición')
             getPrivateToken(code)
                 .then(res => {
                     localStorage.setItem('token', res.access_token);
                     localStorage.setItem('refreshToken', res.refresh_token);
+                    console.log('tome set token y refresh')
                     dispatch(logIn());
-                    window.location.reload()
+                    dispatch(requestUserData())
+                    console.log('login true')
                 })
                 .catch(() => dispatch(logOut())) 
-                .finally(()=>window.history.pushState({}, null, "/"))   
+                .finally(()=>navigate('/'))   
         }
-        
-    }, [])
+    }, [code])
 
-    useEffect(() => {
-        if (logged) {
-            dispatch(requestUserData()) 
-            console.log('pedi datos de usuario')
-        }
-    }, [logged])
-
+   
     const handleLogOut = ()=>{
         dispatch(logOut());
+        dispatch(selectUriToPlay(null))
         localStorage.clear(); 
         navigate('/');
     }

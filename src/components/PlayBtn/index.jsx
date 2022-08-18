@@ -1,22 +1,21 @@
 import './PlayBtn.css'
 import { BsFillPlayFill } from 'react-icons/bs'
-import { useContext } from 'react'
-import { playContext } from '../../context/playContext'
-import { authContext } from '../../context/authContext'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectUriToPlay } from '../../actions/playingActions'
 
 export const PlayBtn = ({uri}) => {
 
-  const { setCurrentUri } = useContext(playContext)
-  const { loggedIn } = useContext(authContext)
+  const dispatch= useDispatch()
+  const { logged} = useSelector(state=>state.log)
 
 
   const handlePlay = (uri) => {
     console.log('inicio play:'+uri)
-    if (uri && loggedIn) setCurrentUri(uri)
+    if (uri && logged) dispatch(selectUriToPlay(uri))
   }
   return (
     <>
-      {loggedIn ?
+      {logged?
         <div
           className='playBtn'
           onClick={() => handlePlay(uri)}>

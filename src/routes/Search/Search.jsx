@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { searchUrl } from "../../api/endpoints";
 import { BrowserView } from "../../components/BrowserView";
@@ -9,7 +9,7 @@ import { RowList } from "../../components/RowList";
 import { SearchTab } from "../../components/SearchTab"
 import { TrackCard } from "../../components/TrackCard";
 import { ViewMoreBtn } from "../../components/ViewMoreBtn";
-import { authContext } from "../../context/authContext";
+import { useSelector } from 'react-redux'
 import { convertMstoMin } from "../../helpers/convertToMin";
 import { cutTextString } from "../../helpers/cutTextString";
 import { useDebounce } from "../../hooks/useDebounce";
@@ -20,10 +20,10 @@ import { useGetData } from "../../hooks/useGetData";
 
 export const Search = () => {
   const navigate = useNavigate()
-  const { loggedIn, user } = useContext(authContext)
+  const { logged, user } = useSelector(state=>state.log)
   const searchedQuery = new URLSearchParams(window.location.search).get('query')
   const { debouncedValue, setDebouncedValue } = useDebounce(searchedQuery, 900);
-  const { data, loading, error } = useGetData(searchUrl(debouncedValue), loggedIn, false, true)
+  const { data, loading, error } = useGetData(searchUrl(debouncedValue), logged, false, true)
   const [more, setMore] = useState(false)
 
   const dataLength =

@@ -1,7 +1,6 @@
 import { Card } from "../../components/Card"
 import { RowList } from "../../components/RowList"
-import { useContext } from "react";
-import { authContext } from "../../context/authContext";
+import { useSelector } from 'react-redux'
 import { useGetData } from "../../hooks/useGetData";
 import { newRealeasesUrl, featuredPlaylistsUrl, userPlaylistUrl, userTopArtistsUrl, userTopTracksUrl } from "../../api/endpoints";
 import { cutTextString } from "../../helpers/cutTextString";
@@ -11,19 +10,19 @@ import './Home.css'
 
 export const Home = () => {
 
-  const { loggedIn, user } = useContext(authContext)
+  const { logged, user } = useSelector(state=>state.log)
 
-  const { data: newRealeases, loading: newRealeasesLoading, error: newRealeasesError } = useGetData(newRealeasesUrl, loggedIn, false)
-  const { data: featuredPlaylists, loading: featuredPlaylistsLoading, error: featuredPlaylistsError } = useGetData(featuredPlaylistsUrl, loggedIn, false)
-  const { data: userPlaylist, loading: userPlaylistLoading, error: userPlaylistError } = useGetData(userPlaylistUrl, loggedIn, true)
-  const { data: userTopArtists, loading: userTopArtistsLoading, error: userTopArtistsError } = useGetData(userTopArtistsUrl, loggedIn, true)
-  const { data: userTopTracks, loading: userTopTracksLoading, error: userTopTracksError } = useGetData(userTopTracksUrl, loggedIn, true)
+  const { data: newRealeases, loading: newRealeasesLoading, error: newRealeasesError } = useGetData(newRealeasesUrl, logged, false)
+  const { data: featuredPlaylists, loading: featuredPlaylistsLoading, error: featuredPlaylistsError } = useGetData(featuredPlaylistsUrl, logged, false)
+  const { data: userPlaylist, loading: userPlaylistLoading, error: userPlaylistError } = useGetData(userPlaylistUrl, logged, true)
+  const { data: userTopArtists, loading: userTopArtistsLoading, error: userTopArtistsError } = useGetData(userTopArtistsUrl, logged, true)
+  const { data: userTopTracks, loading: userTopTracksLoading, error: userTopTracksError } = useGetData(userTopTracksUrl, logged, true)
 
 
   return (
     <section className="home-container">
 
-      {loggedIn &&
+      {logged &&
         <>
           <RowList title='Your playlists' id='userPlaylist'>
             {userPlaylistLoading && <p>loading...</p>}

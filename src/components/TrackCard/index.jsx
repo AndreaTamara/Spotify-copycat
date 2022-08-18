@@ -2,19 +2,19 @@ import './TrackCard.css';
 import { FiHeart, FiClock } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { BsPlayFill } from 'react-icons/bs';
-import { useContext } from 'react'
-import { playContext } from '../../context/playContext';
-import { authContext } from '../../context/authContext'
+import { useSelector, useDispatch} from 'react-redux';
+import { selectUriToPlay } from '../../actions/playingActions';
 
 
 export const TrackCard = ({ header, number, url, name, author, album, time, albumView, albumId, hidden, uri }) => {
 
-    const { setCurrentUri, currentTrack } = useContext(playContext)
-    const { loggedIn } = useContext(authContext)
-
+    const { logged} = useSelector(state=>state.log)
+    const { currentTrack} = useSelector(state=>state.playing)
+    const dispatch = useDispatch()
+    
     const handlePlay = (uri) => {
         console.log('inicio play:' + uri)
-        if (uri && loggedIn) setCurrentUri(uri)
+        if (uri && logged) dispatch(selectUriToPlay(uri))
     }
 
     return (

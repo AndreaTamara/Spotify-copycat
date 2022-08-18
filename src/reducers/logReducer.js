@@ -16,7 +16,13 @@ export function logReducer(state = inicialState, action) {
             return {...state,logged:true}
 
         case LOG_OUT:
-            return {...state, logged:false}
+            return {logged:false,
+                    user:{
+                        name:'',
+                        id:'',
+                        country:''
+                    }
+            }
 
         case SET_USER_DATA:{
             const user = action.payload

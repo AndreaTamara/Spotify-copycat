@@ -1,7 +1,5 @@
 import { DetailHeader } from '../../components/DetailHeader'
 import { TrackCard } from '../../components/TrackCard'
-import { useContext } from 'react'
-import { authContext } from '../../context/authContext'
 import { useGetData } from '../../hooks/useGetData'
 import { userSavedTracksUrl } from '../../api/endpoints'
 import { convertMstoMin } from '../../helpers/convertToMin'
@@ -9,13 +7,14 @@ import { cutTextString } from '../../helpers/cutTextString'
 import { DetailViewContainer } from '../../components/DetailViewContainer'
 import { DetailViewCommandBar } from '../../components/DetailViewCommandBar'
 import { DetailTrackList } from '../../components/DetailTracksList'
+import { useSelector } from 'react-redux'
 
 
 export const SavedTracks = () => {
 
-  const { loggedIn, user } = useContext(authContext)
+  const { logged, user } = useSelector(state=>state.log)
 
-  const { data: savedTracks, loading: savedTracksLoading, error: savedTracksError } = useGetData(userSavedTracksUrl, loggedIn, true)
+  const { data: savedTracks, loading: savedTracksLoading, error: savedTracksError } = useGetData(userSavedTracksUrl, logged, true)
 
   const trackUris = savedTracks?.items.map(item => {
     return (

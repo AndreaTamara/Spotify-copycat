@@ -1,7 +1,6 @@
-import { useContext } from "react"
 import { DetailViewContainer } from "../../components/DetailViewContainer"
 import { GridContainer } from "../../components/GridContainer"
-import { authContext } from "../../context/authContext"
+import { useSelector } from 'react-redux'
 import {useParams} from 'react-router-dom'
 import { useGetData } from "../../hooks/useGetData"
 import { categoryUrl,categoryPlaylistUrl} from "../../api/endpoints"
@@ -10,10 +9,10 @@ import { Card } from "../../components/Card"
 
 
 export const Category = () => {
-    const { loggedIn, user } = useContext(authContext)
+    const { logged, user } = useSelector(state=>state.log)
     const { categoryId } = useParams()
-    const { data, loading, error} = useGetData(categoryPlaylistUrl(categoryId), loggedIn, false)
-    const {data:category}=useGetData(categoryUrl(categoryId),loggedIn, false)
+    const { data, loading, error} = useGetData(categoryPlaylistUrl(categoryId), logged, false)
+    const {data:category}=useGetData(categoryUrl(categoryId),logged, false)
 
   return (
     <DetailViewContainer>

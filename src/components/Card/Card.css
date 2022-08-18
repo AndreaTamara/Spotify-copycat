@@ -17,7 +17,7 @@
 .card-container{
     width:auto;
     max-width: 13rem;
-    height: 100%;
+    height: auto;
     position: relative;
 }
 .play-btn-card{

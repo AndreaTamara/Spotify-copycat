@@ -1,11 +1,10 @@
 import { DetailHeader } from '../../components/DetailHeader'
 import { TrackCard } from '../../components/TrackCard'
-import { useContext } from 'react'
-import { authContext } from '../../context/authContext'
+import { useSelector } from 'react-redux'
 import { useGetData } from '../../hooks/useGetData'
 import { itemsPlaylistUrl, playlistUrl } from '../../api/endpoints'
 import { convertMstoMin } from '../../helpers/convertToMin'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { cutTextString } from '../../helpers/cutTextString'
 import { DetailViewContainer } from '../../components/DetailViewContainer'
 import { DetailViewCommandBar } from '../../components/DetailViewCommandBar'
@@ -14,11 +13,11 @@ import { DetailTrackList } from '../../components/DetailTracksList'
 
 export const Playlist = () => {
 
-  const { loggedIn, user } = useContext(authContext)
+  const { logged, user } = useSelector(state=>state.log)
   const { playlistId } = useParams()
   // console.log(playlistId)
-  const { data: itemsPlaylist, loading: itemsPlaylistLoading, error: itemsPlaylistError } = useGetData(itemsPlaylistUrl(playlistId), loggedIn, false)
-  const { data: playlist, loading: playlistLoading, error: playlistError } = useGetData(playlistUrl(playlistId), loggedIn, false)
+  const { data: itemsPlaylist, loading: itemsPlaylistLoading, error: itemsPlaylistError } = useGetData(itemsPlaylistUrl(playlistId), logged, false)
+  const { data: playlist, loading: playlistLoading, error: playlistError } = useGetData(playlistUrl(playlistId), logged, false)
   // const { data: album, loading: albumLoading, error: albumError } = useGetData(itemsAlbumUrl(albumId), loggedIn, false)// console.log(playlist)
   return (
     <DetailViewContainer>

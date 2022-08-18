@@ -1,11 +1,10 @@
-import { useContext } from 'react'
-import { playContext } from '../../context/playContext'
+import { useSelector} from 'react-redux';
 import { PlayBtn } from '../PlayBtn';
 import { Link } from "react-router-dom";
 import './Card.css'
 
 export const Card = ({ name, author, imgUrl, type, uri, path }) => {
-  const { currentUri } = useContext(playContext)
+  const { currentUri} = useSelector(state=>state.playing)
   return (
     <div className='card-container'>
       <div className={`play-btn-card ${currentUri === uri && 'play-btn-active'}`}>

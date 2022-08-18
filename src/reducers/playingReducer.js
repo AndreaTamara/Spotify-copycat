@@ -2,7 +2,7 @@ import { SELECT_URI_TO_PLAY, SET_CURRENT_PLAYING_TRACK } from '../actions/playin
 
 export const inicialState = {
     currentUri:null,
-    currentTrack:null
+    currentTrack:''
 }
 
 export function playingReducer(state = inicialState, action) {

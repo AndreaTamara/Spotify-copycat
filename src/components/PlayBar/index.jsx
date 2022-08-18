@@ -1,15 +1,16 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import SpotifyWebPlayer from 'react-spotify-web-playback/lib'
 import { getUserData } from '../../api/privateServices'
-import { authContext } from '../../context/authContext'
-import { playContext } from '../../context/playContext'
+import { useSelector,useDispatch } from 'react-redux'
 import './PlayBar.css'
+import { setCurrentPlayingTrack } from '../../actions/playingActions'
 
 export const PlayBar = () => {
   let token = localStorage.getItem('token')
-  console.log(token)
-  const {loggedIn}= useContext(authContext)
-  const { currentUri, setCurrentTrack} = useContext(playContext)
+    // console.log(token)
+  const { logged} = useSelector(state=>state.log)
+  const dispatch = useDispatch()
+  const { currentUri} = useSelector(state=>state.playing)
   const [error, setError]= useState(false)
   const [play, setPlay] = useState(false)
 
@@ -19,11 +20,7 @@ export const PlayBar = () => {
 
   
   useEffect(() => {
-    if(currentUri) {
-      localStorage.setItem('previousUri',currentUri)
-      // localStorage.setItem('previousTrack',currentTrack)
-    }
-    if(loggedIn){
+    if(logged){
       getUserData()
         .then(()=>{
           token = localStorage.getItem('token')
@@ -48,15 +45,15 @@ export const PlayBar = () => {
         token={token}
         showSaveIcon
         syncExternalDevice
-        uris={currentUri ? currentUri : (localStorage.getItem('previousUri'))?.split(',')}
+        uris={currentUri ? currentUri : [] }
         // offset={error?findOffset():0}
         play={play}
         autoPlay={true}
         callback={state => {
           if (!state.isPlaying) setPlay(false)
-          console.log(state)
+          // console.log(state)
           if (state.status==='ERROR'&&state.error==='Authentication failed'){setError(true)}
-          setCurrentTrack(state.track.uri)
+          if (state.isPlaying )dispatch(setCurrentPlayingTrack(state.track.uri))
         }}
         styles={{
           bgColor: 'hsl(225, 25%, 9%)',

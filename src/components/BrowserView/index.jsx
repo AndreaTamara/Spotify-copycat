@@ -1,6 +1,5 @@
-// import { useContext } from "react"
+
 import { browseUrl } from "../../api/endpoints"
-// import { authContext } from "../../context/authContext"
 import { useGetData } from "../../hooks/useGetData"
 import { ColorCard } from "../ColorCard"
 import { GridContainer } from "../GridContainer"
