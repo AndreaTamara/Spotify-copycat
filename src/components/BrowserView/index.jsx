@@ -1,15 +1,16 @@
-import { useContext } from "react"
+// import { useContext } from "react"
 import { browseUrl } from "../../api/endpoints"
-import { authContext } from "../../context/authContext"
+// import { authContext } from "../../context/authContext"
 import { useGetData } from "../../hooks/useGetData"
 import { ColorCard } from "../ColorCard"
 import { GridContainer } from "../GridContainer"
+import { useSelector } from 'react-redux'
 import {Link} from 'react-router-dom'
 import './BrowserView.css'
 
 export const BrowserView = () => {
-    const { loggedIn, user } = useContext(authContext)
-    const { data: browse, loading: browseLoading, error: browseError } = useGetData(browseUrl, loggedIn, false)
+    const { logged} = useSelector(state=>state.log)
+    const { data: browse, loading: browseLoading, error: browseError } = useGetData(browseUrl, logged, false)
 
     return (
         <>
