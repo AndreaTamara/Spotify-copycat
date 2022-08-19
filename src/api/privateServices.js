@@ -75,7 +75,6 @@ instance.interceptors.response.use((response) => response,
 export function getUserData() {
     return instance.get('/me')
         .then(res => {
-            // console.log(res)
             return res.data
         })
 }
@@ -85,14 +84,31 @@ export function getPrivateData(endpoint, n) {
         params: { limit: n }
     })
         .then(res => {  
-            // console.log(res)
             return res.data
         })
-
 }
 
-//saveTracks
-
+// check saved Track
+export function checkSavedTrack(id) {
+    return instance.get(`/me/tracks/contains?ids=${id}`) 
+        .then(res => {  
+            return res.data[0]
+        })
+}
+//save track
+export function saveTrack(id) {
+    return instance.put(`/me/tracks?ids=${id}`) 
+        .then(res => {  
+            console.log(res)
+            // return res.data[0]
+        })
+}
 //removeTracks
+export function removeSavedTrack(id) {
+    return instance.delete(`/me/tracks?ids=${id}`) 
+        .then(res => {  
+            console.log(res)
+            // return res.data[0]
+        })
+    }
 
-//manejo de playback

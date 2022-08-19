@@ -2,20 +2,46 @@ import './TrackCard.css';
 import { FiHeart, FiClock } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { BsPlayFill } from 'react-icons/bs';
-import { useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectUriToPlay } from '../../actions/playingActions';
+import { checkSavedTrack, removeSavedTrack, saveTrack } from '../../api/privateServices';
+import { useEffect, useState } from 'react';
 
 
-export const TrackCard = ({ header, number, url, name, author, album, time, albumView, albumId, hidden, uri }) => {
+export const TrackCard = ({ header, number, url, name, author, album, time, albumView, albumId, hidden, uri, id }) => {
 
-    const { logged} = useSelector(state=>state.log)
-    const { currentTrack} = useSelector(state=>state.playing)
+    const { logged } = useSelector(state => state.log)
+    const { currentTrack } = useSelector(state => state.playing)
     const dispatch = useDispatch()
-    
+    const [isSaved, setIsSaved] = useState(null)
+
     const handlePlay = (uri) => {
         console.log('inicio play:' + uri)
         if (uri && logged) dispatch(selectUriToPlay(uri))
     }
+
+    const checkIfIsSave = (id) => {
+        if (id) {
+            checkSavedTrack(id)
+                .then((res) => setIsSaved(res))
+        }
+    }
+
+    useEffect(() => {
+        checkIfIsSave(id)
+    }, [id])
+
+    const handleOnClickSave = (id) => {
+        if (!isSaved) {
+            saveTrack(id)
+                .then(() => checkIfIsSave(id))
+        } else {
+            removeSavedTrack(id)
+                .then(() => checkIfIsSave(id))
+        }
+
+    }
+
 
     return (
         <div
@@ -72,8 +98,10 @@ export const TrackCard = ({ header, number, url, name, author, album, time, albu
                         </Link>}
                 </div>
             }
-            <div className='track-save'>
-                {!header && <FiHeart className='save-btn' />}
+            <div className={`track-save ${isSaved && 'show'}`}
+                onClick={() => handleOnClickSave(id)}
+            >
+                {!header && <FiHeart className={`save-btn ${isSaved && 'active'}`} />}
             </div>
             <div className='track-time'>
                 {header ? <FiClock /> : time}

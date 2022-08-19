@@ -68,6 +68,7 @@ export const Search = () => {
                     <TrackCard
                       hidden={(i > 4 && !more) ? 'hidden' : ''}
                       key={track.id}
+                      id={track.id}
                       uri={track.uri}
                       number={i + 1}
                       name={cutTextString(track.name, 25)}

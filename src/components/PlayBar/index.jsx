@@ -39,7 +39,7 @@ export const PlayBar = () => {
   
   return (
     <div className='play-bar'>
-      <SpotifyWebPlayer
+      {/* <SpotifyWebPlayer
         token={token}
         showSaveIcon
         syncExternalDevice
@@ -65,7 +65,7 @@ export const PlayBar = () => {
           errorColor: 'hsl(0,0%,100%)'
         }}
 
-      />
+      /> */}
     </div>
   )
 }

@@ -43,6 +43,7 @@ export const SavedTracks = () => {
             <TrackCard
               uri={item.track.uri}
               key={item.track.id}
+              id={item.track.id}
               number={i + 1}
               name={cutTextString(item.track.name, 25)}
               author={item.track.artists.map(artist => {

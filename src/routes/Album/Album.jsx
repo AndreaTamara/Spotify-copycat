@@ -42,6 +42,7 @@ export const Album = () => {
               uri={item.uri}
               albumView={true}
               key={item.id}
+              id={item.id}
               number={i + 1}
               name={cutTextString(item.name, 25)}
               author={item.artists.map(artist => {

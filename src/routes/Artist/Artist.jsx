@@ -43,6 +43,7 @@ export const Artist = () => {
                         <TrackCard
                             uri={track.uri}
                             key={track.id}
+                            id={track.id}
                             number={i + 1}
                             name={cutTextString(track.name, 25)}
                             time={convertMstoMin(track.duration_ms)}

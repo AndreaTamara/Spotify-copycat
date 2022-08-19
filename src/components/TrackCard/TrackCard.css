@@ -118,6 +118,9 @@ left:6px;
    opacity: 0;
     width:7%;
 }
+.track-save.show{
+    opacity: 1;
+}
 .track-card:hover .track-save{
     opacity: 1;
 }
