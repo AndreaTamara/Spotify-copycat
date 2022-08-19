@@ -99,16 +99,25 @@ export function checkSavedTrack(id) {
 export function saveTrack(id) {
     return instance.put(`/me/tracks?ids=${id}`) 
         .then(res => {  
-            console.log(res)
-            // return res.data[0]
+            // console.log(res.status)
+            return res.status
         })
 }
 //removeTracks
 export function removeSavedTrack(id) {
     return instance.delete(`/me/tracks?ids=${id}`) 
         .then(res => {  
-            console.log(res)
-            // return res.data[0]
+            // console.log(res.status)
+             return res.status
         })
     }
+
+// check followed playlist
+export function checkFollowedPlaylist(playlistId, userId) {
+    return instance.get(`/playlists/${playlistId}/followers/contains?ids=${userId}`) 
+        .then(res => {  
+            console.log(res)
+             return res.data[0]
+        })
+}
 

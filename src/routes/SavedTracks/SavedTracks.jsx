@@ -41,6 +41,7 @@ export const SavedTracks = () => {
         {savedTracks?.items.map((item, i) => {
           return (
             <TrackCard
+              savedView={true}
               uri={item.track.uri}
               key={item.track.id}
               id={item.track.id}

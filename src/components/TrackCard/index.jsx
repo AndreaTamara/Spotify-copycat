@@ -8,7 +8,7 @@ import { checkSavedTrack, removeSavedTrack, saveTrack } from '../../api/privateS
 import { useEffect, useState } from 'react';
 
 
-export const TrackCard = ({ header, number, url, name, author, album, time, albumView, albumId, hidden, uri, id }) => {
+export const TrackCard = ({ header, number, url, name, author, album, time, albumView, albumId, hidden, uri, id, savedView }) => {
 
     const { logged } = useSelector(state => state.log)
     const { currentTrack } = useSelector(state => state.playing)
@@ -20,7 +20,7 @@ export const TrackCard = ({ header, number, url, name, author, album, time, albu
         if (uri && logged) dispatch(selectUriToPlay(uri))
     }
 
-    const checkIfIsSave = (id) => {
+    const checkIfIsSaved = (id) => {
         if (id) {
             checkSavedTrack(id)
                 .then((res) => setIsSaved(res))
@@ -28,18 +28,18 @@ export const TrackCard = ({ header, number, url, name, author, album, time, albu
     }
 
     useEffect(() => {
-        checkIfIsSave(id)
-    }, [id])
+        if(logged)checkIfIsSaved(id)
+    }, [id,logged])
 
     const handleOnClickSave = (id) => {
+        if(!logged) return
         if (!isSaved) {
             saveTrack(id)
-                .then(() => checkIfIsSave(id))
+                .then((res) =>{if(res===200) checkIfIsSaved(id)})
         } else {
             removeSavedTrack(id)
-                .then(() => checkIfIsSave(id))
+                .then((res) =>{if(res===200)checkIfIsSaved(id)})
         }
-
     }
 
 
@@ -49,7 +49,8 @@ export const TrackCard = ({ header, number, url, name, author, album, time, albu
                 ${header && 'track-card-header'} 
                 ${albumView && 'track-card-album'} 
                 ${hidden || ''}
-                ${currentTrack === uri && 'play-icon-active'}`}
+                ${currentTrack === uri && 'play-icon-active'}
+                ${(savedView && !isSaved) && 'track-card-deleted'}`}
         >
             <div
                 className={`track-number`}>

@@ -32,7 +32,7 @@ export const Playlist = () => {
           description={playlist?.description}
           tracks={playlist?.tracks.total}
         />}
-      <DetailViewCommandBar uri={playlist?.uri}/>
+      <DetailViewCommandBar uri={playlist?.uri} id={playlist?.id} type='playlist'/>
       <DetailTrackList>
         {itemsPlaylistLoading && <p>loading...</p>}
         {itemsPlaylistError && <p>ocurrió un error: {itemsPlaylistError.error?.message}</p>}

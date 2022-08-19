@@ -36,6 +36,9 @@
     justify-content: center;
 }
 
+.track-card.track-card-deleted{
+    display: none;
+}
 .play-icon{
     display: none;
     
