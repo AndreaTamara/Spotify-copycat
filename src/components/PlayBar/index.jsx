@@ -6,8 +6,9 @@ import './PlayBar.css'
 import { setCurrentPlayingTrack } from '../../actions/playingActions'
 
 export const PlayBar = () => {
-  let token = localStorage.getItem('token')
-    // console.log(token)
+
+ let token = localStorage.getItem('token')
+  //console.log('se renderiza playbar: '+token)
   const { logged} = useSelector(state=>state.log)
   const dispatch = useDispatch()
   const { currentUri} = useSelector(state=>state.playing)
@@ -19,14 +20,12 @@ export const PlayBar = () => {
   }, [currentUri])
 
   
-  useEffect(() => {
+  useEffect(() =>{
     if(logged){
       getUserData()
-        .then(()=>{
-          token = localStorage.getItem('token')
-        } )
     }
-  }, [error])
+  }, [error,logged])
+
 
   // const findOffset = ()=>{
   //   const track= localStorage.getItem('previousTrack');
@@ -38,7 +37,6 @@ export const PlayBar = () => {
   //   return offset>0?offset:0
   // }
   
-
   return (
     <div className='play-bar'>
       <SpotifyWebPlayer
@@ -51,7 +49,7 @@ export const PlayBar = () => {
         autoPlay={true}
         callback={state => {
           if (!state.isPlaying) setPlay(false)
-          // console.log(state)
+          console.log(state)
           if (state.status==='ERROR'&&state.error==='Authentication failed'){setError(true)}
           if (state.isPlaying )dispatch(setCurrentPlayingTrack(state.track.uri))
         }}
