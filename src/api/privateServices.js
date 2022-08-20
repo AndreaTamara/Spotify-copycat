@@ -89,25 +89,23 @@ export function getPrivateData(endpoint, n) {
 }
 
 // check saved Track
-export function checkSavedTrack(id) {
-    return instance.get(`/me/tracks/contains?ids=${id}`) 
+export function checkSavedTrack(trackId) {
+    return instance.get(`/me/tracks/contains?ids=${trackId}`) 
         .then(res => {  
             return res.data[0]
         })
 }
 //save track
-export function saveTrack(id) {
-    return instance.put(`/me/tracks?ids=${id}`) 
+export function saveTrack(trackId) {
+    return instance.put(`/me/tracks?ids=${trackId}`) 
         .then(res => {  
-            // console.log(res.status)
             return res.status
         })
 }
-//removeTracks
-export function removeSavedTrack(id) {
-    return instance.delete(`/me/tracks?ids=${id}`) 
+//remove saved track
+export function removeSavedTrack(trackId) {
+    return instance.delete(`/me/tracks?ids=${trackId}`) 
         .then(res => {  
-            // console.log(res.status)
              return res.status
         })
     }
@@ -116,8 +114,46 @@ export function removeSavedTrack(id) {
 export function checkFollowedPlaylist(playlistId, userId) {
     return instance.get(`/playlists/${playlistId}/followers/contains?ids=${userId}`) 
         .then(res => {  
-            console.log(res)
              return res.data[0]
         })
 }
+//follow playlist
+export function followPlaylist(playlistId) {
+    return instance.put(`/playlists/${playlistId}/followers`) 
+        .then(res => {  
+            return res.status
+        })
+}
+
+//unfollow playlist
+export function unFollowPlaylist(playlistId) {
+    return instance.delete(`/playlists/${playlistId}/followers`) 
+        .then(res => {  
+             return res.status
+        })
+    }
+
+// check saved album
+export function checkSavedAlbum(albumId) {
+    return instance.get(`/me/albums/contains?ids=${albumId}`) 
+        .then(res => {  
+             return res.data[0]
+        })
+}
+//save album
+export function saveAlbum(albumId) {
+    return instance.put(`/me/albums/?ids=${albumId}`) 
+        .then(res => {  
+            return res.status
+        })
+}
+
+//remove saved album
+export function removeSavedAlbum(albumId) {
+    return instance.delete(`/me/albums/?ids=${albumId}`) 
+        .then(res => {  
+            // console.log(res)
+             return res.status
+        })
+    }
 

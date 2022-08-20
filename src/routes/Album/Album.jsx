@@ -32,7 +32,7 @@ export const Album = () => {
           description={album?.artists.map(artist => artist.name).join(',')}
           tracks={album?.total_tracks}
         />}
-      <DetailViewCommandBar uri={album?.uri} />
+      <DetailViewCommandBar uri={album?.uri} id={album?.id} type='album'/>
       <DetailTrackList albumView={true}>
         {itemsAlbumLoading && <p>loading...</p>}
         {itemsAlbumError && <p>ocurrió un error: {itemsAlbumError.error?.message}</p>}
