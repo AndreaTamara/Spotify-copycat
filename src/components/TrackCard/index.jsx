@@ -52,7 +52,7 @@ export const TrackCard = ({ header, number, url, name, author, album, time, albu
                 ${albumView && 'track-card-album'} 
                 ${hidden || ''}
                 ${currentTrack === uri && 'play-icon-active'}
-                ${(savedView && !isSaved) && 'track-card-deleted'}`}
+                ${(savedView && !isSaved &&!header) && 'track-card-deleted'}`}
         >
             <div
                 className={`track-number`}>
@@ -109,14 +109,13 @@ export const TrackCard = ({ header, number, url, name, author, album, time, albu
             <div className='track-time'>
                 {header ? <FiClock /> : time}
             </div>
-        
-                <div className='track-options'>
-                    {(!header&&!savedView)&&
-                        (owned ? <MdClose /> : <TbPlus />)
-                    }
-                </div>
-            
-
+            {(!savedView)&&
+            <div className='track-options'>
+                {(!header) &&
+                    (owned ? <MdClose /> : <TbPlus />)
+                }
+            </div>
+            }
         </div>
     )
 }

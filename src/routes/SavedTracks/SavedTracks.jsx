@@ -35,7 +35,7 @@ export const SavedTracks = () => {
           tracks={savedTracks?.total}
         />}
       <DetailViewCommandBar savedView={true} uri={trackUris} />
-      <DetailTrackList>
+      <DetailTrackList savedView={true}>
         {savedTracksLoading && <p>loading...</p>}
         {savedTracksError && <p>ocurrió un error: {savedTracksError.error?.message}</p>}
         {savedTracks?.items.map((item, i) => {

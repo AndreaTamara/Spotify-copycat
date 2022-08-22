@@ -1,7 +1,7 @@
 import { TrackCard } from '../TrackCard'
 import './DetailTrackList.css'
 
-export const DetailTrackList = ({ children,albumView,artistView,searchView }) => {
+export const DetailTrackList = ({ children,albumView,artistView,searchView,savedView }) => {
 
     return (
         <section className={`tracks-list ${artistView&&'tracks-list-artistView'} ${searchView&&'tracks-list-searchView'}`}>
@@ -12,6 +12,7 @@ export const DetailTrackList = ({ children,albumView,artistView,searchView }) =>
              <TrackCard
                 header={true} 
                 albumView={albumView}
+                savedView={savedView}
             />}
             {children}
         </section>
