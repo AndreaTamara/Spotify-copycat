@@ -2,13 +2,15 @@ import './TrackCard.css';
 import { FiHeart, FiClock } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { BsPlayFill } from 'react-icons/bs';
+import { MdClose } from 'react-icons/md';
+import { TbPlus } from 'react-icons/tb';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectUriToPlay } from '../../actions/playingActions';
 import { checkSavedTrack, removeSavedTrack, saveTrack } from '../../api/privateServices';
 import { useEffect, useState } from 'react';
 
 
-export const TrackCard = ({ header, number, url, name, author, album, time, albumView, albumId, hidden, uri, id, savedView }) => {
+export const TrackCard = ({ header, number, url, name, author, album, time, albumView, albumId, hidden, uri, id, savedView, owned }) => {
 
     const { logged } = useSelector(state => state.log)
     const { currentTrack } = useSelector(state => state.playing)
@@ -28,17 +30,17 @@ export const TrackCard = ({ header, number, url, name, author, album, time, albu
     }
 
     useEffect(() => {
-        if(logged)checkIfIsSaved(id)
-    }, [id,logged])
+        if (logged) checkIfIsSaved(id)
+    }, [id, logged])
 
     const handleOnClickSave = (id) => {
-        if(!logged) return
+        if (!logged) return
         if (!isSaved) {
             saveTrack(id)
-                .then((res) =>{if(res===200) checkIfIsSaved(id)})
+                .then((res) => { if (res === 200) checkIfIsSaved(id) })
         } else {
             removeSavedTrack(id)
-                .then((res) =>{if(res===200)checkIfIsSaved(id)})
+                .then((res) => { if (res === 200) checkIfIsSaved(id) })
         }
     }
 
@@ -107,6 +109,14 @@ export const TrackCard = ({ header, number, url, name, author, album, time, albu
             <div className='track-time'>
                 {header ? <FiClock /> : time}
             </div>
+        
+                <div className='track-options'>
+                    {(!header&&!savedView)&&
+                        (owned ? <MdClose /> : <TbPlus />)
+                    }
+                </div>
+            
+
         </div>
     )
 }

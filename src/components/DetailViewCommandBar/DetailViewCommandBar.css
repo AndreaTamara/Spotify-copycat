@@ -7,7 +7,7 @@
     z-index: 300;
 }
 
-.command-bar.command-bar-artistView{
+.command-bar.command-bar-artistView {
     background-color: var(--navy-blue);
 }
 
@@ -29,6 +29,14 @@
     transform: scale(2);
 }
 
+.add-songs-btn {
+    border: 1px solid var(--white);
+    padding: 0.3rem 0.7rem 0.4rem 0.7rem;
+    font-size: 1rem;
+    color: var(--white);
+    border-radius: 20px;
+}
+
 @media (max-width:900px) {
 
     .save-btn {
@@ -40,5 +48,9 @@
         flex-direction: row-reverse;
         justify-content: space-between;
         padding: 0.875rem;
+    }
+    .add-songs-btn {
+        padding: 0.2rem 0.6rem 0.3rem 0.6rem;
+        font-size: 0.875rem;
     }
 }

@@ -5,7 +5,7 @@ import { checkFollowedPlaylist, checkSavedAlbum, followPlaylist, removeSavedAlbu
 import { PlayBtn } from '../PlayBtn'
 import './DetailViewCommandBar.css'
 
-export const DetailViewCommandBar = ({ artistView, savedView, uri, id, type }) => {
+export const DetailViewCommandBar = ({ artistView, savedView, uri, id, type, owned }) => {
   const { logged, user } = useSelector(state => state.log)
   const [isSaved, setIsSaved] = useState(null)
 
@@ -46,10 +46,13 @@ export const DetailViewCommandBar = ({ artistView, savedView, uri, id, type }) =
   return (
     <section className={`command-bar ${artistView && 'command-bar-artistView'}`}>
       <PlayBtn uri={uri} />
-      {(!savedView && !artistView) &&
-        <FiHeart className={`save-btn ${isSaved && 'active'}`}
-          onClick={() => handleOnClickFollow(id, user.id, type)}
-        />}
+        {(!savedView && !artistView &&!owned )&&
+          <FiHeart className={`save-btn ${isSaved && 'active'}`}
+            onClick={() => handleOnClickFollow(id, user.id, type)}
+          />}
+        {owned &&
+          <button className='add-songs-btn'>Add songs</button>
+        }
     </section>
   )
 }
