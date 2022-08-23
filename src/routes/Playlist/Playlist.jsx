@@ -9,6 +9,8 @@ import { cutTextString } from '../../helpers/cutTextString'
 import { DetailViewContainer } from '../../components/DetailViewContainer'
 import { DetailViewCommandBar } from '../../components/DetailViewCommandBar'
 import { DetailTrackList } from '../../components/DetailTracksList'
+import { useState } from 'react'
+import { AddSongs } from '../../components/AddSongs'
 
 
 export const Playlist = () => {
@@ -18,8 +20,13 @@ export const Playlist = () => {
   // console.log(playlistId)
   const { data: itemsPlaylist, loading: itemsPlaylistLoading, error: itemsPlaylistError } = useGetData(itemsPlaylistUrl(playlistId), logged, false)
   const { data: playlist, loading: playlistLoading, error: playlistError } = useGetData(playlistUrl(playlistId), logged, false)
-  // const { data: album, loading: albumLoading, error: albumError } = useGetData(itemsAlbumUrl(albumId), loggedIn, false)// console.log(playlist)
+  
+  const [addSongs, setAddsongs]=useState(false)
   const owned = (playlist?.owner.id === user?.id)? true : false
+
+  // const handleAddsongs =()=>{
+  //   setAddsongs(prev=>!prev)
+  // }
 
   return (
     <DetailViewContainer>
@@ -38,7 +45,9 @@ export const Playlist = () => {
         uri={playlist?.uri}
         id={playlist?.id}
         type='playlist'
-        owned={owned} />
+        owned={owned}
+        addSongsClick={()=>setAddsongs(true)} />
+        {addSongs&& <AddSongs handleClose={setAddsongs}/>}
       <DetailTrackList>
         {itemsPlaylistLoading && <p>loading...</p>}
         {itemsPlaylistError && <p>ocurrió un error: {itemsPlaylistError.error?.message}</p>}

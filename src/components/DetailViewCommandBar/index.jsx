@@ -5,7 +5,7 @@ import { checkFollowedPlaylist, checkSavedAlbum, followPlaylist, removeSavedAlbu
 import { PlayBtn } from '../PlayBtn'
 import './DetailViewCommandBar.css'
 
-export const DetailViewCommandBar = ({ artistView, savedView, uri, id, type, owned }) => {
+export const DetailViewCommandBar = ({ artistView, savedView, uri, id, type, owned, addSongsClick}) => {
   const { logged, user } = useSelector(state => state.log)
   const [isSaved, setIsSaved] = useState(null)
 
@@ -51,7 +51,7 @@ export const DetailViewCommandBar = ({ artistView, savedView, uri, id, type, own
             onClick={() => handleOnClickFollow(id, user.id, type)}
           />}
         {owned &&
-          <button className='add-songs-btn'>Add songs</button>
+          <button className='add-songs-btn' onClick={()=>addSongsClick()}>Add songs</button>
         }
     </section>
   )

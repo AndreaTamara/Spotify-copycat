@@ -2,26 +2,41 @@ import './SearchTab.css'
 import { useSearchParams } from 'react-router-dom';
 import { HiSearch } from 'react-icons/hi';
 import { RiCloseFill } from 'react-icons/ri'
+import { useState } from 'react';
 
 
-export const SearchTab = ({ onSubmit, deleteSearch }) => {
+export const SearchTab = ({ onSubmit, deleteSearch, addSongsView }) => {
 
     const [searchParams, setSearchParams] = useSearchParams()
+    const [searchedSong, setSearchedSong] = useState('')
 
-    const searchedQuery = searchParams.get('query') || ''
+    const searchedQuery = !addSongsView ? (searchParams.get('query') || '') : searchedSong
 
     // console.log(searchedQuery)
 
     const handleInputChange = (e) => {
         e.preventDefault()
         const searched = e.target.value.toLowerCase()
-        if (searched) { setSearchParams({ query: searched }) }
-        else { setSearchParams({ query: '' }) }
+        if (searched) {
+            addSongsView ?
+                setSearchedSong(searched)
+                :
+                setSearchParams({ query: searched })
+        }
+        else {
+            addSongsView ?
+                setSearchedSong('')
+                :
+                setSearchParams({ query: '' })
+        }
     }
 
     const handleDelete = () => {
-        setSearchParams({ query: '' })
-        deleteSearch()
+        if (addSongsView) setSearchedSong('')
+        else {
+            setSearchParams({ query: '' })
+            deleteSearch()
+        }
     }
 
     return (

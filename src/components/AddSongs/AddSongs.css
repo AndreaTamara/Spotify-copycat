@@ -1,0 +1,26 @@
+.add-songs-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap:1rem;
+    width: 100%;
+   padding: 1.5625rem;
+}
+.add-songs-header{
+    padding-top: 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    border-top: 1px solid var(--light-grey);
+}
+.add-songs-container .search-tab-container{
+    background-color:transparent ;
+    position:relative;
+    top:0;
+    width: 100%;
+}
+.add-songs-close-btn > svg{
+    width: 2rem;
+    height: 2rem;
+}
