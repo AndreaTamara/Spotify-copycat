@@ -10,6 +10,9 @@
     overflow-y: hidden;
     height: 65px;
 }
+.track-card.track-card-active{
+    background-color:hsla(0, 0%, 100%,0.1);
+}
 .track-card-header{
     border-radius: 0;
     border-bottom: 1px solid var(--light-grey);

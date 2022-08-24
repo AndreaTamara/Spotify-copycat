@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectUriToPlay } from '../../actions/playingActions';
 import { checkSavedTrack, removeSavedTrack, saveTrack } from '../../api/privateServices';
 import { useEffect, useState } from 'react';
+import { Modal } from '../Modal';
+import { DropdownMenu } from '../DropdownMenu';
 
 
 export const TrackCard = ({ header, number, url, name, author, album, time, albumView, albumId, hidden, uri, id, savedView, owned, addSongsView,onAddSong, onDeleteSong }) => {
@@ -16,6 +18,7 @@ export const TrackCard = ({ header, number, url, name, author, album, time, albu
     const { currentTrack } = useSelector(state => state.playing)
     const dispatch = useDispatch()
     const [isSaved, setIsSaved] = useState(null)
+    const [openModal, setOpenModal]=useState(false)
 
     const handlePlay = (uri) => {
         console.log('inicio play:' + uri)
@@ -53,7 +56,8 @@ export const TrackCard = ({ header, number, url, name, author, album, time, albu
                 ${addSongsView && 'track-card-add-songs'}
                 ${hidden || ''}
                 ${currentTrack === uri && 'play-icon-active'}
-                ${(savedView && !isSaved && !header) && 'track-card-deleted'}`}
+                ${(savedView && !isSaved && !header) && 'track-card-deleted'}
+                ${openModal&&'track-card-active'}`}
         >
             <div
                 className={`track-number`}>
@@ -114,7 +118,10 @@ export const TrackCard = ({ header, number, url, name, author, album, time, albu
             {(!savedView) &&
                 <div className='track-options'>
                     {(!header && !addSongsView) &&
-                        (owned ? <MdClose onClick={()=>onDeleteSong(uri)}/> : <TbPlus />)
+                        (owned ? 
+                        <MdClose onClick={()=>{if(logged)onDeleteSong(uri)}}/> 
+                        : 
+                        <TbPlus onClick={()=>{if(logged)setOpenModal(true)}} />)
                     }
                     {addSongsView&&
                     <button 
@@ -124,6 +131,10 @@ export const TrackCard = ({ header, number, url, name, author, album, time, albu
                     </button>}
                 </div>
             }
+            {openModal &&
+                <Modal>
+                    <DropdownMenu setOpenModal={setOpenModal} uri={uri}/>
+                </Modal>}
         </div>
     )
 }
