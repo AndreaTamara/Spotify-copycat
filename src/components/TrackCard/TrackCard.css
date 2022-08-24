@@ -156,6 +156,9 @@ left:6px;
     align-items: center;
     opacity: 0;
 }
+.track-card-add-songs .track-options{
+    opacity: 1;
+}
 .track-card:hover .track-options{
     opacity: 1;
 }
@@ -168,6 +171,23 @@ left:6px;
     height: 1.5rem;
 }
 
+.track-card-add-songs .track-number{
+    display: none
+}
+.track-card-add-songs:hover .play-icon-mobile{
+    display: block;
+}
+
+.add-songs-btn:active{
+    transform: scale(1.1);
+}
+.track-card-add-songs .add-songs-btn:active{
+    transform: scale(1);
+}
+.track-card-add-songs .track-options{
+    width: auto;
+    max-width: 20%;
+}
 @media (max-width:900px){
     .track-card-header{
         display: none;

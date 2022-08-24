@@ -12,7 +12,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 1.5rem;
-    border-top: 1px solid var(--light-grey);
+    border-top: 1px solid var(--light-grey) ;
 }
 .add-songs-container .search-tab-container{
     background-color:transparent ;
@@ -23,4 +23,19 @@
 .add-songs-close-btn > svg{
     width: 2rem;
     height: 2rem;
+}
+hr{
+    border-color:var(--light-grey);
+    margin-top: 1rem;
+    border-width: 1px;
+    border-top:none;
+}
+
+@media (max-width:900px){
+    .add-songs-container{
+        padding: 0.875rem;
+    }
+    .add-songs-header{
+        font-size: 1.125rem;
+    }
 }

@@ -23,7 +23,7 @@ export const Search = () => {
   const { logged, user } = useSelector(state=>state.log)
   const searchedQuery = new URLSearchParams(window.location.search).get('query')
   const { debouncedValue, setDebouncedValue } = useDebounce(searchedQuery, 900);
-  const { data, loading, error } = useGetData(searchUrl(debouncedValue), logged, false, true)
+  const { data, loading, error } = useGetData(searchUrl(debouncedValue), logged, false,null, true)
   const [more, setMore] = useState(false)
 
   const dataLength =

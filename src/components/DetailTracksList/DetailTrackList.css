@@ -10,6 +10,9 @@
   .tracks-list-artistView{
     background:linear-gradient(var(--navy-blue), var(--deep-blue) 40%) ;
   }
+  .tracks-list.track-list-addSongsView{
+    padding: 0;
+  }
   /* .tracks-list-searchView{
     max-height: 490.666px;
     overflow-y: hidden;

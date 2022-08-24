@@ -157,3 +157,22 @@ export function removeSavedAlbum(albumId) {
         })
     }
 
+ //add track to a playlist 
+ export function addTrackToPlaylist(playlistId, uriTrack) {
+    return instance.post(`/playlists/${playlistId}/tracks?uris=${uriTrack}&position=0`) 
+        .then(res => {  
+            // console.log(res)
+            return res.data.snapshot_id
+        })
+    } 
+
+//remove track from a playlist 
+export function removeTrackFromPlaylist(playlistId, uriTrack) {
+    return instance.delete(`/playlists/${playlistId}/tracks`,
+    {data:{ tracks:[{ uri:uriTrack }]}}) 
+        .then(res => {  
+            // console.log(res)
+            return res.data.snapshot_id
+        })
+    }
+

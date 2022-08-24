@@ -3,7 +3,7 @@ import { getPrivateData } from "../api/privateServices";
 import { getPublicData } from "../api/publicServices";
 
 
-export const useGetData = (endpoint,loggedIn,userInfo,clear) => {
+export const useGetData = (endpoint,loggedIn,userInfo,snapshotId,clear) => {
 
     
     // console.log('usegetdata:'+endpoint)
@@ -38,7 +38,7 @@ export const useGetData = (endpoint,loggedIn,userInfo,clear) => {
                 setError(null)
             } 
           };
-    }, [loggedIn, userInfo,endpoint,clear])
+    }, [loggedIn, userInfo,endpoint,clear,snapshotId])
 
 
     return { data, loading, error }

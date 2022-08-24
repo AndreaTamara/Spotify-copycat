@@ -11,22 +11,32 @@ import { DetailViewCommandBar } from '../../components/DetailViewCommandBar'
 import { DetailTrackList } from '../../components/DetailTracksList'
 import { useState } from 'react'
 import { AddSongs } from '../../components/AddSongs'
+import { addTrackToPlaylist, removeTrackFromPlaylist } from '../../api/privateServices'
 
 
 export const Playlist = () => {
 
   const { logged, user } = useSelector(state => state.log)
   const { playlistId } = useParams()
+  const [snapshotId, setSnapshotId]=useState('')
   // console.log(playlistId)
-  const { data: itemsPlaylist, loading: itemsPlaylistLoading, error: itemsPlaylistError } = useGetData(itemsPlaylistUrl(playlistId), logged, false)
-  const { data: playlist, loading: playlistLoading, error: playlistError } = useGetData(playlistUrl(playlistId), logged, false)
-  
+  const { data: itemsPlaylist, loading: itemsPlaylistLoading, error: itemsPlaylistError } = useGetData(itemsPlaylistUrl(playlistId), logged, false,snapshotId)
+  const { data: playlist, loading: playlistLoading, error: playlistError } = useGetData(playlistUrl(playlistId), logged, false,snapshotId)
   const [addSongs, setAddsongs]=useState(false)
   const owned = (playlist?.owner.id === user?.id)? true : false
 
-  // const handleAddsongs =()=>{
-  //   setAddsongs(prev=>!prev)
-  // }
+  const onAddSong =(uri)=>{
+    if(logged){
+      addTrackToPlaylist(playlistId,uri)
+      .then(res=>setSnapshotId(res))
+    }
+  }
+
+  const onDeleteSong =(uri)=>{
+    if(logged)
+    removeTrackFromPlaylist(playlistId, uri)
+    .then(res=>setSnapshotId(res))
+  }
 
   return (
     <DetailViewContainer>
@@ -47,13 +57,14 @@ export const Playlist = () => {
         type='playlist'
         owned={owned}
         addSongsClick={()=>setAddsongs(true)} />
-        {addSongs&& <AddSongs handleClose={setAddsongs}/>}
+        {addSongs&& <AddSongs handleClose={setAddsongs} onAddSong={onAddSong}/>}
       <DetailTrackList>
         {itemsPlaylistLoading && <p>loading...</p>}
         {itemsPlaylistError && <p>ocurrió un error: {itemsPlaylistError.error?.message}</p>}
         {itemsPlaylist?.items.map((item, i) => {
           return (
             <TrackCard
+              onDeleteSong={onDeleteSong}
               uri={item.track.uri}
               key={item.track.id}
               id={item.track.id}

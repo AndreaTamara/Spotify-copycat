@@ -10,7 +10,7 @@ import { checkSavedTrack, removeSavedTrack, saveTrack } from '../../api/privateS
 import { useEffect, useState } from 'react';
 
 
-export const TrackCard = ({ header, number, url, name, author, album, time, albumView, albumId, hidden, uri, id, savedView, owned }) => {
+export const TrackCard = ({ header, number, url, name, author, album, time, albumView, albumId, hidden, uri, id, savedView, owned, addSongsView,onAddSong, onDeleteSong }) => {
 
     const { logged } = useSelector(state => state.log)
     const { currentTrack } = useSelector(state => state.playing)
@@ -23,6 +23,7 @@ export const TrackCard = ({ header, number, url, name, author, album, time, albu
     }
 
     const checkIfIsSaved = (id) => {
+        if (addSongsView) return
         if (id) {
             checkSavedTrack(id)
                 .then((res) => setIsSaved(res))
@@ -44,15 +45,15 @@ export const TrackCard = ({ header, number, url, name, author, album, time, albu
         }
     }
 
-
     return (
         <div
             className={`track-card 
                 ${header && 'track-card-header'} 
                 ${albumView && 'track-card-album'} 
+                ${addSongsView && 'track-card-add-songs'}
                 ${hidden || ''}
                 ${currentTrack === uri && 'play-icon-active'}
-                ${(savedView && !isSaved &&!header) && 'track-card-deleted'}`}
+                ${(savedView && !isSaved && !header) && 'track-card-deleted'}`}
         >
             <div
                 className={`track-number`}>
@@ -101,20 +102,27 @@ export const TrackCard = ({ header, number, url, name, author, album, time, albu
                         </Link>}
                 </div>
             }
-            <div className={`track-save ${isSaved && 'show'}`}
-                onClick={() => handleOnClickSave(id)}
-            >
-                {!header && <FiHeart className={`save-btn ${isSaved && 'active'}`} />}
-            </div>
+            {!addSongsView &&
+                <div className={`track-save ${isSaved && 'show'}`}
+                    onClick={() => handleOnClickSave(id)}>
+                    {!header && <FiHeart className={`save-btn ${isSaved && 'active'}`} />}
+                </div>
+            }
             <div className='track-time'>
                 {header ? <FiClock /> : time}
             </div>
-            {(!savedView)&&
-            <div className='track-options'>
-                {(!header) &&
-                    (owned ? <MdClose /> : <TbPlus />)
-                }
-            </div>
+            {(!savedView) &&
+                <div className='track-options'>
+                    {(!header && !addSongsView) &&
+                        (owned ? <MdClose onClick={()=>onDeleteSong(uri)}/> : <TbPlus />)
+                    }
+                    {addSongsView&&
+                    <button 
+                        className='add-songs-btn'
+                        onClick={()=>onAddSong(uri)}>
+                        add
+                    </button>}
+                </div>
             }
         </div>
     )
