@@ -35,7 +35,7 @@ export const Home = () => {
                     uri={playlist.uri}
                     name={cutTextString(playlist.name, 30)}
                     author={cutTextString(playlist.description, 48)}
-                    imgUrl={playlist.images[0].url}
+                    imgUrl={playlist.images[0]?.url}
                   />
               )
             })}

@@ -6,10 +6,15 @@ import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import './SideBar.css'
 import { SaveIcon } from '../SaveICon';
+import { useState } from 'react';
+import { CreatePlaylistForm } from '../CreatePlaylistForm';
+import { Modal } from '../Modal';
 
 
 export const SideBar = () => {
+
     const { logged } = useSelector(state => state.log)
+    const [openModal, setOpenModal]= useState(false)
     return (
         <aside className='side-bar'>
             <div className='logo'>
@@ -31,15 +36,16 @@ export const SideBar = () => {
                             <span><SaveIcon width='24px' height='24px' /></span>
                             <p>Saved tracks</p>
                         </NavLink>
-                        <NavLink to='#' className='nav-bar-item'>
+                        <div className='nav-bar-item' onClick={()=>setOpenModal(true)}>
                             <span><BsFillPlusSquareFill/></span>
                             <p>Create playlist</p>
-                        </NavLink>
+                        </div>
                     </>
-
                 }
             </nav>
-
+                {openModal&&<Modal>
+                    <CreatePlaylistForm setOpenModal={setOpenModal}/>
+                </Modal> }
         </aside>
     )
 }

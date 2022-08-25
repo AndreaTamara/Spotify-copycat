@@ -43,7 +43,8 @@
     align-items: center;
     gap: 1.0625rem;
     font-size: 1.0625rem;
-    color:var(--white)
+    color:var(--white);
+    cursor:pointer
 }
 
 .nav-bar-item >span{

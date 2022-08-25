@@ -1,7 +1,7 @@
 .dropdown-container{
     width: 250px;
     height: 250px;
-    background-color:var(--very-dark-blue) ;
+    background-color:var(--mid-deep-blue-active);
     border-radius: 8px;
     padding: 1.5625rem;
     display: flex;
@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    box-shadow: 0 0 15px var(--mid-deep-blue-active);
+    box-shadow: 0 0 18px var(--very-dark-blue);
 }
 
 .dropdown-container.notification{
