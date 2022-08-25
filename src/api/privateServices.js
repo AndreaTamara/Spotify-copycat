@@ -58,7 +58,7 @@ instance.interceptors.request.use((config) => {
 
 instance.interceptors.response.use((response) => response,
     (error) => {
-    
+
         if (error.response.status === 401) {
             getRefreshedToken()
                 .then(res => localStorage.setItem('token', res.access_token))
@@ -83,96 +83,108 @@ export function getPrivateData(endpoint, n) {
     return instance.get(endpoint, {
         params: { limit: n }
     })
-        .then(res => {  
+        .then(res => {
             return res.data
         })
 }
 
 // check saved Track
 export function checkSavedTrack(trackId) {
-    return instance.get(`/me/tracks/contains?ids=${trackId}`) 
-        .then(res => {  
+    return instance.get(`/me/tracks/contains?ids=${trackId}`)
+        .then(res => {
             return res.data[0]
         })
 }
 //save track
 export function saveTrack(trackId) {
-    return instance.put(`/me/tracks?ids=${trackId}`) 
-        .then(res => {  
+    return instance.put(`/me/tracks?ids=${trackId}`)
+        .then(res => {
             return res.status
         })
 }
 //remove saved track
 export function removeSavedTrack(trackId) {
-    return instance.delete(`/me/tracks?ids=${trackId}`) 
-        .then(res => {  
-             return res.status
+    return instance.delete(`/me/tracks?ids=${trackId}`)
+        .then(res => {
+            return res.status
         })
-    }
+}
 
 // check followed playlist
 export function checkFollowedPlaylist(playlistId, userId) {
-    return instance.get(`/playlists/${playlistId}/followers/contains?ids=${userId}`) 
-        .then(res => {  
-             return res.data[0]
+    return instance.get(`/playlists/${playlistId}/followers/contains?ids=${userId}`)
+        .then(res => {
+            return res.data[0]
         })
 }
 //follow playlist
 export function followPlaylist(playlistId) {
-    return instance.put(`/playlists/${playlistId}/followers`) 
-        .then(res => {  
+    return instance.put(`/playlists/${playlistId}/followers`)
+        .then(res => {
             return res.status
         })
 }
 
 //unfollow playlist
 export function unFollowPlaylist(playlistId) {
-    return instance.delete(`/playlists/${playlistId}/followers`) 
-        .then(res => {  
-             return res.status
+    return instance.delete(`/playlists/${playlistId}/followers`)
+        .then(res => {
+            return res.status
         })
-    }
+}
 
 // check saved album
 export function checkSavedAlbum(albumId) {
-    return instance.get(`/me/albums/contains?ids=${albumId}`) 
-        .then(res => {  
-             return res.data[0]
+    return instance.get(`/me/albums/contains?ids=${albumId}`)
+        .then(res => {
+            return res.data[0]
         })
 }
 //save album
 export function saveAlbum(albumId) {
-    return instance.put(`/me/albums/?ids=${albumId}`) 
-        .then(res => {  
+    return instance.put(`/me/albums/?ids=${albumId}`)
+        .then(res => {
             return res.status
         })
 }
 
 //remove saved album
 export function removeSavedAlbum(albumId) {
-    return instance.delete(`/me/albums/?ids=${albumId}`) 
-        .then(res => {  
+    return instance.delete(`/me/albums/?ids=${albumId}`)
+        .then(res => {
             // console.log(res)
-             return res.status
+            return res.status
         })
-    }
+}
 
- //add track to a playlist 
- export function addTrackToPlaylist(playlistId, uriTrack) {
-    return instance.post(`/playlists/${playlistId}/tracks?uris=${uriTrack}&position=0`) 
-        .then(res => {  
+//add track to a playlist 
+export function addTrackToPlaylist(playlistId, uriTrack) {
+    return instance.post(`/playlists/${playlistId}/tracks?uris=${uriTrack}&position=0`)
+        .then(res => {
             // console.log(res)
             return res.data.snapshot_id
         })
-    } 
+}
 
 //remove track from a playlist 
 export function removeTrackFromPlaylist(playlistId, uriTrack) {
     return instance.delete(`/playlists/${playlistId}/tracks`,
-    {data:{ tracks:[{ uri:uriTrack }]}}) 
-        .then(res => {  
+        { data: { tracks: [{ uri: uriTrack }] } })
+        .then(res => {
             // console.log(res)
             return res.data.snapshot_id
         })
-    }
+}
+
+//Create a playlist
+export function createPlaylist(userId, name, description) {
+    return instance.post(`/users/${userId}/playlists`,
+        { "name": name, "description": description, "public": true } )
+        .then(res => {
+            // console.log(res)
+            return res
+        }
+
+        )
+}
 

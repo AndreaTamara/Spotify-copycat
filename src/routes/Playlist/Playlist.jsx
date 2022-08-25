@@ -45,7 +45,7 @@ export const Playlist = () => {
 
       {playlist &&
         <DetailHeader
-          url={playlist?.images[0].url}
+          url={playlist?.images[0]?.url}
           type={playlist?.type}
           name={playlist?.name}
           description={playlist?.description}

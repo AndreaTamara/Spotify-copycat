@@ -65,6 +65,38 @@
     background-color: var(--white);
     color:var(--mid-deep-blue-active);
 }
+.create-playlist-error{
+    padding: 0.875rem;
+    font-weight: 700;
+    border-radius:20px;
+    background-color: var(--light-green);
+    color:var(--very-dark-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin: auto;
+    width: 250px;
+    height: 47.25px;
+    top:0;
+    bottom:0;
+    right: 0;
+    left: 0;
+}
+.required-msn{
+    font-size: 0.75rem;
+    color:var(--muted-red);
+    font-style: italic;
+}
+.input-name-container{
+    display: flex;
+    flex-direction: column;
+    gap:0.5rem;
+    width: 100%;
+}
+.input-name.required{
+    border-color:var(--muted-red)
+}
 @media (max-width:900px) {
     .create-playlist-title{
         font-size:1.2rem
