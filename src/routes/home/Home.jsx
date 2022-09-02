@@ -2,7 +2,7 @@ import { Card } from "../../components/Card"
 import { RowList } from "../../components/RowList"
 import { useSelector } from 'react-redux'
 import { useGetData } from "../../hooks/useGetData";
-import { newRealeasesUrl, featuredPlaylistsUrl, userPlaylistUrl, userTopArtistsUrl, userTopTracksUrl } from "../../api/endpoints";
+import { newRealeasesUrl, featuredPlaylistsUrl, userPlaylistUrl, userTopArtistsUrl, userTopTracksUrl, userSavedAlbumssUrl } from "../../api/endpoints";
 import { cutTextString } from "../../helpers/cutTextString";
 import './Home.css'
 
@@ -17,7 +17,7 @@ export const Home = () => {
   const { data: userPlaylist, loading: userPlaylistLoading, error: userPlaylistError } = useGetData(userPlaylistUrl, logged, true)
   const { data: userTopArtists, loading: userTopArtistsLoading, error: userTopArtistsError } = useGetData(userTopArtistsUrl, logged, true)
   const { data: userTopTracks, loading: userTopTracksLoading, error: userTopTracksError } = useGetData(userTopTracksUrl, logged, true)
-
+  const { data: userAlbums, loading: userAlbumsLoading, error: userAlbumsError } = useGetData(userSavedAlbumssUrl, logged, true)
 
   return (
     <section className="home-container">
@@ -70,6 +70,22 @@ export const Home = () => {
                   author={cutTextString(track.artists.map(artist => artist.name).join(', '), 30)}
                   imgUrl={track.album.images[0].url}
                 />
+              )
+            })}
+          </RowList>
+          <RowList title='Your Albums' id='userAlbums'>
+            {userAlbumsLoading && <p>loading...</p>}
+            {userAlbumsError && <p>ocurrió un error: {userAlbumsError.error?.message}</p>}
+            {userAlbums?.items.map(item => {
+              return (
+                  <Card
+                    key={item.album.id}
+                    path={'/album/' + item.album.id}
+                    uri={item.album.uri}
+                    name={cutTextString(item.album.name, 30)}
+                    author={cutTextString(item.album.artists.map(artist => artist.name).join(', '), 30)}
+                    imgUrl={item.album.images[0]?.url}
+                  />
               )
             })}
           </RowList>

@@ -27,3 +27,5 @@ export const searchUrl =(query)=> query?`/search?q=${query}&type=track,artist,pl
 //search X category
 export const categoryPlaylistUrl = (id)=> `/browse/categories/${id}/playlists`
 export const categoryUrl = (id)=> `/browse/categories/${id}`
+//saved albums
+export const userSavedAlbumssUrl = '/me/albums';
