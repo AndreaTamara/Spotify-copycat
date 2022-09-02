@@ -1,74 +1,114 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+# Spotify dupe with react
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Captura.png](https://i.postimg.cc/6Q2mbGDG/Captura.png)](https://postimg.cc/kVCsBDMn)
 
-## Available Scripts
 
-In the project directory, you can run:
+## Table of contents
 
-### `npm start`
+- [Description](#description)
+- [Live site](#live-site)
+- [Built with](#built-with)
+- [What I learned](#what-i-learned)
+- [Continued development](#continued-development)
+- [Some views](#some-views)
+- [Author](#author)
+- [Useful resources](#useful-resources)
+- [How to run the project](#how-to-run-the-project)
+  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Description
 
-### `npm test`
+This is a solution to the [Easybank landing page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/easybank-landing-page-WaUhkoDN). the users are be able to:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- View the optimal layout for the site depending on their device's screen size
+- See hover states for all interactive elements on the page
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Live site
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Add solution URL here](https://your-solution-url.com)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Built with
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- CSS Grid
+- [React](https://reactjs.org/) - JS library
+- [Redux](https://es.redux.js.org/) - State management for JavaScript applications.
+- [Redux Thunk](https://redux.js.org/usage/writing-logic-thunks#redux-thunk-middleware) - Redux middleware that allows you to perform asynchronous actions.
+- [Spotify Web API](https://developer.spotify.com/documentation/web-api/)
+- [React Router](https://reactrouter.com/en/v6.3.0/getting-started/tutorial)
+- [AXIOS](https://axios-http.com/es/docs/intro)
+- [react-spotify-web-playback](https://www.npmjs.com/package/react-spotify-web-playback) - Library for Spotify's web playback
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## What I learned
 
-## Learn More
+Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Building this project helped me learn to use and improve my knowledge of some React and JS tools, such as:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Setting up husky alongside Prettier to make my code so much better :D
+- Integrating redux, react-redux and redux-saga to manage my state and perform async actions.
+- Creating a .prettierrc file to set up some code conventions.
+- Adding static typing with TS to my service-workers and redux code.
+- Forwarding refs from one component to another.
+- Creating a custom hook to lazy-load the images that come from the API.
+- Writing a very reusable pagination component that covers many edge cases.
+- Using TS features in a React project and typing my components.
+- Managing my service workers with Workbox.
 
-### Code Splitting
+To see how you can add code snippets, see below:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```html
+<h1>Some HTML code I'm proud of</h1>
+```
+```css
+.proud-of-this-css {
+  color: papayawhip;
+}
+```
+```js
+const proudOfThisFunc = () => {
+  console.log('🎉')
+}
+```
 
-### Analyzing the Bundle Size
+If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Continued development
 
-### Making a Progressive Web App
+Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## Some views
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Take a look at the project:
+[![search.png](https://i.postimg.cc/QCg8c4Q8/search.png)](https://postimg.cc/tnTGjzvw)
+[![artist.png](https://i.postimg.cc/N0VjtrGc/artist.png)](https://postimg.cc/gwVWqj6S)
+[![playlist.png](https://i.postimg.cc/9M7FQFzq/playlist.png)](https://postimg.cc/5YfMPJBx)
 
-### Deployment
+## Author
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+**Andrea Támara Correa**
+* [tamara11correa@gmail.com](tamara11correa@gmail.com)
+* [LinkedIn](https://www.linkedin.com/in/andreatamara/)
+* [Portafolio web](https://tu-dominio.com/)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
-# Spotify-dupe
->>>>>>> 31256631f728eac3b8e8f44477e5a5d0dcca84f1
+## Useful resources
+
+- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
+- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+
+## How to run the project
+
+#### Pre-requisites ✅
+- Add your Spotify client ID & secret to a `.env` file in root using the environment variables `REACT_APP_SPOTIFY_CLIENT_ID` and `REACT_APP_SPOTIFY_CLIENT_SECRET`
+  - Note. **Never add this type of config to version control. This would usually come from your build server.**
+

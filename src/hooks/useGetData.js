@@ -12,7 +12,7 @@ export const useGetData = (endpoint,loggedIn,userInfo,snapshotId,clear) => {
     const [error, setError] = useState(null);
 
     const getData = async () => {
-        const request = loggedIn?getPrivateData(endpoint,20):getPublicData(endpoint,20)
+        const request = loggedIn?getPrivateData(endpoint,50):getPublicData(endpoint,50)
         try {
             const response = await request
             // console.log(response)
