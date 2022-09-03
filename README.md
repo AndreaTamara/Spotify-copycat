@@ -76,10 +76,15 @@ There are some tasks that, eventually, I would like to do for improve this app, 
 ## Some views
 
 Take a look at the project:
+
 </br>
+
 [![search.png](https://i.postimg.cc/QCg8c4Q8/search.png)](https://postimg.cc/tnTGjzvw)
 [![artist.png](https://i.postimg.cc/N0VjtrGc/artist.png)](https://postimg.cc/gwVWqj6S)
 [![playlist.png](https://i.postimg.cc/9M7FQFzq/playlist.png)](https://postimg.cc/5YfMPJBx)
+[![add-song-mobile.png](https://i.postimg.cc/65pfC1gH/add-song-mobile.png)](https://postimg.cc/z34hrpJW)
+[![album-mobile.png](https://i.postimg.cc/VkS9V0Yn/album-mobile.png)](https://postimg.cc/CRgfZ1nx)
+[![create-playlist-mobile.png](https://i.postimg.cc/fTqjCfhM/create-playlist-mobile.png)](https://postimg.cc/crYn4YHz)
 
 ## Author
 
