@@ -1,4 +1,4 @@
-# Spotify copycat with react
+# Spotify replica with react
 
 [![Captura.png](https://i.postimg.cc/6Q2mbGDG/Captura.png)](https://postimg.cc/kVCsBDMn)
 
@@ -19,7 +19,7 @@
 
 ## Description
 
-This proyect is a spotify copycat with a little twist in the UI, it is also responsive. You are able to login with your spotify account, see content from your library, create and modify playlists, save songs, albums or playlists, search by categories or specific words. You could play music too! 
+This proyect is a spotify replica with a little twist in the UI, it is also responsive. You are able to login with your spotify account, see content from your library, create and modify playlists, save songs, albums or playlists, search by categories or specific words. You could play music too! 
 
 At the home page  you could find new releases and featured playlist of the moment, in addition, can see your created and followed playlists and albums, your top songs and artists.
 
@@ -106,7 +106,7 @@ Take a look at the project:
 **Andrea Támara Correa**
 * [tamara11correa@gmail.com](tamara11correa@gmail.com)
 * [LinkedIn](https://www.linkedin.com/in/andreatamara/)
-* [Portafolio web](https://tu-dominio.com/)
+<!-- * [Portafolio web](https://tu-dominio.com/) -->
 
 
 ## Useful resources
