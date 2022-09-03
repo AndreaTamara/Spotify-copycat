@@ -1,4 +1,4 @@
-# Spotify dupe with react
+# Spotify copycat with react
 
 [![Captura.png](https://i.postimg.cc/6Q2mbGDG/Captura.png)](https://postimg.cc/kVCsBDMn)
 
