@@ -1,9 +1,9 @@
-import './NoInfo.css'
+import './Info.css'
 import {FiAlertCircle} from 'react-icons/fi'
 
-export const NoInfo = ({msn='No results found'}) => {
+export const Info = ({msn='No results found'}) => {
     return (
-        <div className='noinfo-container' >
+        <div className='info-container' >
             <FiAlertCircle />
             <p>{msn}</p>
         </div>

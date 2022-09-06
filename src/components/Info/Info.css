@@ -1,4 +1,4 @@
-.noinfo-container{
+.info-container{
     display: flex;
     flex-direction: column;
     gap:1rem;
@@ -8,21 +8,21 @@
     padding: 0.8rem 0;
 }
 
-.noinfo-container > p{
+.info-container > p{
     font-size: 1.2rem;
     color: var(--light-grey);
     text-align: center;
 }
-.noinfo-container > svg{
+.info-container > svg{
     width: 2rem;
     height: 2rem;
     stroke: var(--light-grey);
 }
 @media(max-width:900px){
-    .noinfo-container > p{
+    .info-container > p{
         font-size: 1rem;
     }
-    .noinfo-container > svg{
+    .info-container > svg{
         width: 1.5rem;
         height: 1.5rem;
     }

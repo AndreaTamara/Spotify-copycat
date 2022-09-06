@@ -14,6 +14,7 @@ import { useGetData } from '../../hooks/useGetData'
 import { useSelector } from 'react-redux'
 import './Artist.css'
 import { Loader } from '../../components/Loader'
+import { Info } from '../../components/Info'
 
 export const Artist = () => {
 
@@ -40,7 +41,9 @@ export const Artist = () => {
             <DetailTrackList artistView={true}>
                 {topTracksLoading && <Loader height='6rem'/>}
                 {topTracksError && <p>ocurrió un error: {topTracksError.error?.message}</p>}
-                {topTracks?.tracks.map((track, i) => {
+                {(topTracks?.tracks.length===0)?
+                <Info/>
+                :topTracks?.tracks.map((track, i) => {
                     return (
                         <TrackCard
                             uri={track.uri}
@@ -55,9 +58,11 @@ export const Artist = () => {
                 })}
             </DetailTrackList>
             <RowList title='Discography' id={'artist-discography'+artistId} artistView={true}>
-                {artistsRelatedLoading && <Loader/>}
+                {albumsArtistLoading && <Loader/>}
                 {albumsArtistError && <p>ocurrió un error: {albumsArtistError.error?.message}</p>}
-                {albumsArtist?.items.map(item => {
+                {(albumsArtist?.items.length===0)?
+                <Info/>
+                :albumsArtist?.items.map(item => {
                     return (
                             <Card
                                 key={item.id}
@@ -71,9 +76,11 @@ export const Artist = () => {
                 })}
             </RowList>
             <RowList title='Related artist' id={'related-artist'+artistId} artistView={true}>
-                {albumsArtistLoading && <Loader/>}
+                {artistsRelatedLoading && <Loader/>}
                 {artistsRelatedError && <p>ocurrió un error: {artistsRelatedError.error?.message}</p>}
-                {artistsRelated?.artists.map(artist => {
+                {(artistsRelated?.artists.length===0)?
+                <Info/>
+                :artistsRelated?.artists.map(artist => {
                     return (
                             <Card
                                 key={artist.id}

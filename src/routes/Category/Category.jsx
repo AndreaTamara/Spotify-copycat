@@ -7,6 +7,7 @@ import { categoryUrl,categoryPlaylistUrl} from "../../api/endpoints"
 import { cutTextString } from "../../helpers/cutTextString"
 import { Card } from "../../components/Card"
 import { Loader } from "../../components/Loader"
+import { Info } from "../../components/Info"
 
 
 export const Category = () => {
@@ -20,7 +21,9 @@ export const Category = () => {
       <h1 className="search-browse-title">{category?.name}</h1>
       {loading&& <Loader height="24rem"/>}
         <GridContainer categoryView={true}>
-        {data?.playlists.items.map(item=>{
+        {(data?.playlists.items.length===0)?
+        <Info/>
+        :data?.playlists.items.map(item=>{
             if(item!==null)
                 return(
                   <Card

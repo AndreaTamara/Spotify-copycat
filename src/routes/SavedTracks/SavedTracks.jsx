@@ -9,6 +9,7 @@ import { DetailViewCommandBar } from '../../components/DetailViewCommandBar'
 import { DetailTrackList } from '../../components/DetailTracksList'
 import { useSelector } from 'react-redux'
 import { Loader } from '../../components/Loader'
+import { Info } from '../../components/Info'
 
 
 export const SavedTracks = () => {
@@ -39,7 +40,9 @@ export const SavedTracks = () => {
       <DetailTrackList savedView={true}>
         {savedTracksLoading && <Loader height='6rem'/>}
         {savedTracksError && <p>ocurrió un error: {savedTracksError.error?.message}</p>}
-        {savedTracks?.items.map((item, i) => {
+        {(savedTracks?.items.length===0)?
+        <Info msn='You haven´t saved any song yet'/>
+        :savedTracks?.items.map((item, i) => {
           return (
             <TrackCard
               savedView={true}
