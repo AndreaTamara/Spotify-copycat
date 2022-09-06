@@ -13,7 +13,7 @@ export const tracksUrl = (id)=> `/tracks/?ids=${id.map(id=>id).join(',')}`;//sev
 export const trackUrl = (id)=> `/tracks/${id}`;// un track
 //albums related
 export const itemsAlbumUrl = (id)=> `/albums/${id}/tracks`;
-export const albumUrl = (id)=> `/albums/${id}`;
+export const albumUrl = (id)=> `/albums/${id}`;//revisar
 //artists related
 export const topTracksArtistUrl = (id,market)=> `/artists/${id}/top-tracks?market=${market}`;
 export const artistUrl = (id)=> `/artists/${id}`;

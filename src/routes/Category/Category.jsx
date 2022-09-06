@@ -20,6 +20,7 @@ export const Category = () => {
     <DetailViewContainer>
       <h1 className="search-browse-title">{category?.name}</h1>
       {loading&& <Loader height="24rem"/>}
+      {error&&<Info msn={`Error ${error?.status}: ${error?.message}`}/>}
         <GridContainer categoryView={true}>
         {(data?.playlists.items.length===0)?
         <Info/>

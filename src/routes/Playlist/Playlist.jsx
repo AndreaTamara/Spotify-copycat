@@ -13,6 +13,7 @@ import { useState } from 'react'
 import { AddSongs } from '../../components/AddSongs'
 import { addTrackToPlaylist, removeTrackFromPlaylist } from '../../api/privateServices'
 import { Loader } from '../../components/Loader'
+import { Info } from '../../components/Info'
 
 
 export const Playlist = () => {
@@ -22,7 +23,7 @@ export const Playlist = () => {
   const [snapshotId, setSnapshotId]=useState('')
   // console.log(playlistId)
   const { data: itemsPlaylist, loading: itemsPlaylistLoading, error: itemsPlaylistError } = useGetData(itemsPlaylistUrl(playlistId), logged, false,snapshotId)
-  const { data: playlist, loading: playlistLoading, error: playlistError } = useGetData(playlistUrl(playlistId), logged, false,snapshotId)
+  const { data: playlist, loading: playlistLoading} = useGetData(playlistUrl(playlistId), logged, false,snapshotId)
   const [addSongs, setAddsongs]=useState(false)
   const owned = (playlist?.owner.id === user?.id)? true : false
 
@@ -41,17 +42,17 @@ export const Playlist = () => {
 
   return (
     <DetailViewContainer>
-      {playlistLoading && <Loader height='14rem'/>}
-      {playlistError && <p>ocurrió un error: {playlistError.error?.message}</p>}
-
-      {playlist &&
+      {(playlistLoading||itemsPlaylistLoading) && <Loader height='14rem'/>}
+      {itemsPlaylistError && <Info msn={`Error ${itemsPlaylistError?.status}: ${itemsPlaylistError?.message}`}/>}
+      {(playlist&&!itemsPlaylistError) &&
+      <>
         <DetailHeader
           url={playlist?.images[0]?.url}
           type={playlist?.type}
           name={playlist?.name}
           description={playlist?.description}
           tracks={playlist?.tracks.total}
-        />}
+        />
       <DetailViewCommandBar
         uri={playlist?.uri}
         id={playlist?.id}
@@ -60,8 +61,6 @@ export const Playlist = () => {
         addSongsClick={()=>setAddsongs(true)} />
         {addSongs&& <AddSongs handleClose={setAddsongs} onAddSong={onAddSong}/>}
       <DetailTrackList>
-        {itemsPlaylistLoading && <Loader height='6rem'/>}
-        {itemsPlaylistError && <p>ocurrió un error: {itemsPlaylistError.error?.message}</p>}
         {itemsPlaylist?.items.map((item, i) => {
           return (
             <TrackCard
@@ -74,7 +73,6 @@ export const Playlist = () => {
               name={cutTextString(item.track.name, 25)}
               author={item.track.artists.map(artist => {
                 return { name: artist.name, id: artist.id }
-                // <Link to={'/artist/'+artist.id} key={artist.id}>{artist.name}</Link>
               })}
               album={cutTextString(item.track.album.name, 25)}
               url={item.track.album.images[0].url}
@@ -84,6 +82,7 @@ export const Playlist = () => {
           )
         })}
       </DetailTrackList>
+      </>}
     </DetailViewContainer>
   )
 }

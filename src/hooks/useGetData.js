@@ -20,7 +20,8 @@ export const useGetData = (endpoint,loggedIn,userInfo,snapshotId,clear) => {
             setLoading(false)
             setError(null)
         } catch (err) {
-            setError(err.response.data.error)
+            const obErr = err.response.data?err.response.data.error:{status:'404', message:'An error ocurred'}
+            setError(obErr)
             setLoading(false)
             setData(null)
         }

@@ -10,32 +10,32 @@ import { DetailViewCommandBar } from '../../components/DetailViewCommandBar'
 import { DetailTrackList } from '../../components/DetailTracksList'
 import { useSelector } from 'react-redux'
 import { Loader } from '../../components/Loader'
+import { Info } from '../../components/Info'
 
 
 export const Album = () => {
 
-  const { logged, user } = useSelector(state=>state.log)
+  const { logged} = useSelector(state=>state.log)
   const { albumId } = useParams()
   const { data: itemsAlbum, loading: itemsAlbumLoading, error: itemsAlbumError } = useGetData(itemsAlbumUrl(albumId), logged, false)
-  const { data: album, loading: albumLoading, error: albumError } = useGetData(albumUrl(albumId), logged, false)
+  const { data: album, loading: albumLoading} = useGetData(albumUrl(albumId), logged, false)
 
 
   return (
     <DetailViewContainer>
-      {albumLoading && <Loader height='14rem'/>}
-      {albumError && <p>ocurrió un error: {albumError.error?.message}</p>}
-      {album &&
+      {(albumLoading||itemsAlbumLoading )&& <Loader height='14rem'/>}
+      {itemsAlbumError && <Info msn={`Error ${itemsAlbumError?.status}: ${itemsAlbumError?.message}`}/>}
+      {(album&&!itemsAlbumError) &&
+      <>
         <DetailHeader
           url={album?.images[0].url}
           type={album?.album_type}
           name={album?.name}
           description={album?.artists.map(artist => artist.name).join(',')}
           tracks={album?.total_tracks}
-        />}
+        />
       <DetailViewCommandBar uri={album?.uri} id={album?.id} type='album'/>
       <DetailTrackList albumView={true}>
-        {itemsAlbumLoading && <Loader height='6rem'/>}
-        {itemsAlbumError && <p>ocurrió un error: {itemsAlbumError.error?.message}</p>}
         {itemsAlbum?.items.map((item, i) => {
           return (
             <TrackCard
@@ -53,6 +53,7 @@ export const Album = () => {
           )
         })}
       </DetailTrackList>
+      </>}
     </DetailViewContainer>
   )
 }

@@ -59,7 +59,7 @@ export const Search = () => {
       <DetailViewContainer>
         <section className="search-scroll-container" style={{ width: '100%', marginTop: '5rem' }}>
           {(debouncedValue && loading) && <Loader height="16rem"/>}
-          {error && <p>ocurrió un error: {error.error?.message}</p>}
+          {error && <Info msn={`Error ${error?.status}: ${error?.message}`}/>}
           { dataLength===0&&<Info/>}
           {(data&&(dataLength!==0)) &&
             <>

@@ -10,6 +10,8 @@ import { searchTrackUrl } from '../../api/endpoints';
 import { DetailTrackList } from '../DetailTracksList';
 import { cutTextString } from '../../helpers/cutTextString';
 import { TrackCard } from '../TrackCard';
+import { Loader } from '../Loader';
+import { Info } from '../Info';
 
 export const AddSongs = ({ handleClose,onAddSong }) => {
     const navigate = useNavigate()
@@ -37,11 +39,11 @@ export const AddSongs = ({ handleClose,onAddSong }) => {
                 deleteSearch={()=>setDebouncedValue(null)}
                 addSongsView={true}
             />
-            {(debouncedValue && loading) && <p>loading...</p>}
-            {error && <p>ocurrió un error: {error.error?.message}</p>}
+            {(debouncedValue && loading) && <Loader height='10rem'/>}
+            {error && <Info msn={`Error ${error?.status}: ${error?.message}`}/>}
             {data &&
                 <DetailTrackList addSongsView={true}>
-                    {(data.tracks.items.length === 0) && <p>No results found</p>}
+                    {(data.tracks.items.length === 0) && <Info />}
                     {data.tracks.items?.map((track, i) => {
                         return (
                             <TrackCard

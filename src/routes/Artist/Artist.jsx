@@ -40,7 +40,7 @@ export const Artist = () => {
             <DetailViewCommandBar artistView={true} uri={artist?.uri}/>
             <DetailTrackList artistView={true}>
                 {topTracksLoading && <Loader height='6rem'/>}
-                {topTracksError && <p>ocurrió un error: {topTracksError.error?.message}</p>}
+                {topTracksError && <Info msn={`Error ${topTracksError?.status}: ${topTracksError?.message}`}/>}
                 {(topTracks?.tracks.length===0)?
                 <Info/>
                 :topTracks?.tracks.map((track, i) => {
@@ -59,7 +59,7 @@ export const Artist = () => {
             </DetailTrackList>
             <RowList title='Discography' id={'artist-discography'+artistId} artistView={true}>
                 {albumsArtistLoading && <Loader/>}
-                {albumsArtistError && <p>ocurrió un error: {albumsArtistError.error?.message}</p>}
+                {albumsArtistError && <Info msn={`Error ${albumsArtistError?.status}: ${albumsArtistError?.message}`}/>}
                 {(albumsArtist?.items.length===0)?
                 <Info/>
                 :albumsArtist?.items.map(item => {
@@ -77,7 +77,7 @@ export const Artist = () => {
             </RowList>
             <RowList title='Related artist' id={'related-artist'+artistId} artistView={true}>
                 {artistsRelatedLoading && <Loader/>}
-                {artistsRelatedError && <p>ocurrió un error: {artistsRelatedError.error?.message}</p>}
+                {artistsRelatedError && <Info msn={`Error ${artistsRelatedError?.status}: ${artistsRelatedError?.message}`}/>}
                 {(artistsRelated?.artists.length===0)?
                 <Info/>
                 :artistsRelated?.artists.map(artist => {
