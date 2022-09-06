@@ -15,6 +15,7 @@ import { cutTextString } from "../../helpers/cutTextString";
 import { useDebounce } from "../../hooks/useDebounce";
 import { useGetData } from "../../hooks/useGetData";
 import { Loader } from "../../components/Loader";
+import { NoInfo } from "../../components/NoInfo";
 
 
 
@@ -59,11 +60,11 @@ export const Search = () => {
         <section className="search-scroll-container" style={{ width: '100%', marginTop: '5rem' }}>
           {(debouncedValue && loading) && <Loader height="16rem"/>}
           {error && <p>ocurrió un error: {error.error?.message}</p>}
-          { dataLength===0&&<p>No results found</p>}
+          { dataLength===0&&<NoInfo/>}
           {(data&&(dataLength!==0)) &&
             <>
               <DetailTrackList searchView={true}>
-                {(data.tracks.items.length===0)&& <p>No results found</p>}
+                {(data.tracks.items.length===0)&& <NoInfo/>}
                 {data.tracks.items?.map((track, i) => {
                   return (
                     <TrackCard
@@ -89,7 +90,7 @@ export const Search = () => {
                 
               </DetailTrackList>
               <RowList title='Artists' id='result-artists' artistView={true}>
-                {(data.artists.items.length===0)&& <p>No results found</p>}
+                {(data.artists.items.length===0)&& <NoInfo/>}
                 {data.artists.items?.map(artist => {
                   return (
                       <Card
@@ -105,7 +106,7 @@ export const Search = () => {
                 })}
               </RowList>
               <RowList title='Playlist' id='result-playlist' artistView={true}>
-              {(data.playlists.items.length===0)&& <p>No results found</p>}
+              {(data.playlists.items.length===0)&& <NoInfo/>}
                 {data.playlists.items?.map(playlist => {
                   return (
                       <Card
@@ -120,7 +121,7 @@ export const Search = () => {
                 })}
               </RowList>
               <RowList title='Albums' id='result-albums' artistView={true}>
-              {(data.albums.items.length===0)&& <p>No results found</p>}
+              {(data.albums.items.length===0)&& <NoInfo/>}
                 {data.albums.items?.map(album => {
                   return (
                       <Card
