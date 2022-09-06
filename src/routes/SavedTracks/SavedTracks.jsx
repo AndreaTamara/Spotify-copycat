@@ -8,6 +8,7 @@ import { DetailViewContainer } from '../../components/DetailViewContainer'
 import { DetailViewCommandBar } from '../../components/DetailViewCommandBar'
 import { DetailTrackList } from '../../components/DetailTracksList'
 import { useSelector } from 'react-redux'
+import { Loader } from '../../components/Loader'
 
 
 export const SavedTracks = () => {
@@ -25,7 +26,7 @@ export const SavedTracks = () => {
   // console.log(trackUris)
   return (
     <DetailViewContainer>
-
+      {savedTracksLoading && <Loader height='14rem'/>}
       {savedTracks &&
         <DetailHeader
           savedView={true}
@@ -36,7 +37,7 @@ export const SavedTracks = () => {
         />}
       <DetailViewCommandBar savedView={true} uri={trackUris} />
       <DetailTrackList savedView={true}>
-        {savedTracksLoading && <p>loading...</p>}
+        {savedTracksLoading && <Loader height='6rem'/>}
         {savedTracksError && <p>ocurrió un error: {savedTracksError.error?.message}</p>}
         {savedTracks?.items.map((item, i) => {
           return (

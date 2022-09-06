@@ -14,13 +14,14 @@ import { convertMstoMin } from "../../helpers/convertToMin";
 import { cutTextString } from "../../helpers/cutTextString";
 import { useDebounce } from "../../hooks/useDebounce";
 import { useGetData } from "../../hooks/useGetData";
+import { Loader } from "../../components/Loader";
 
 
 
 
 export const Search = () => {
   const navigate = useNavigate()
-  const { logged, user } = useSelector(state=>state.log)
+  const { logged} = useSelector(state=>state.log)
   const searchedQuery = new URLSearchParams(window.location.search).get('query')
   const { debouncedValue, setDebouncedValue } = useDebounce(searchedQuery, 900);
   const { data, loading, error } = useGetData(searchUrl(debouncedValue), logged, false,null, true)
@@ -56,7 +57,7 @@ export const Search = () => {
       <SearchTab deleteSearch={deleteSearch} onSubmit={handleSearch} />
       <DetailViewContainer>
         <section className="search-scroll-container" style={{ width: '100%', marginTop: '5rem' }}>
-          {(debouncedValue && loading) && <p>loading...</p>}
+          {(debouncedValue && loading) && <Loader height="16rem"/>}
           {error && <p>ocurrió un error: {error.error?.message}</p>}
           { dataLength===0&&<p>No results found</p>}
           {(data&&(dataLength!==0)) &&

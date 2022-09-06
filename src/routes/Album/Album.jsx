@@ -9,6 +9,7 @@ import { DetailViewContainer } from '../../components/DetailViewContainer'
 import { DetailViewCommandBar } from '../../components/DetailViewCommandBar'
 import { DetailTrackList } from '../../components/DetailTracksList'
 import { useSelector } from 'react-redux'
+import { Loader } from '../../components/Loader'
 
 
 export const Album = () => {
@@ -21,9 +22,8 @@ export const Album = () => {
 
   return (
     <DetailViewContainer>
-      {albumLoading && <p>loading...</p>}
+      {albumLoading && <Loader height='14rem'/>}
       {albumError && <p>ocurrió un error: {albumError.error?.message}</p>}
-
       {album &&
         <DetailHeader
           url={album?.images[0].url}
@@ -34,7 +34,7 @@ export const Album = () => {
         />}
       <DetailViewCommandBar uri={album?.uri} id={album?.id} type='album'/>
       <DetailTrackList albumView={true}>
-        {itemsAlbumLoading && <p>loading...</p>}
+        {itemsAlbumLoading && <Loader height='6rem'/>}
         {itemsAlbumError && <p>ocurrió un error: {itemsAlbumError.error?.message}</p>}
         {itemsAlbum?.items.map((item, i) => {
           return (

@@ -12,6 +12,7 @@ import { DetailTrackList } from '../../components/DetailTracksList'
 import { useState } from 'react'
 import { AddSongs } from '../../components/AddSongs'
 import { addTrackToPlaylist, removeTrackFromPlaylist } from '../../api/privateServices'
+import { Loader } from '../../components/Loader'
 
 
 export const Playlist = () => {
@@ -40,7 +41,7 @@ export const Playlist = () => {
 
   return (
     <DetailViewContainer>
-      {playlistLoading && <p>loading...</p>}
+      {playlistLoading && <Loader height='14rem'/>}
       {playlistError && <p>ocurrió un error: {playlistError.error?.message}</p>}
 
       {playlist &&
@@ -59,7 +60,7 @@ export const Playlist = () => {
         addSongsClick={()=>setAddsongs(true)} />
         {addSongs&& <AddSongs handleClose={setAddsongs} onAddSong={onAddSong}/>}
       <DetailTrackList>
-        {itemsPlaylistLoading && <p>loading...</p>}
+        {itemsPlaylistLoading && <Loader height='6rem'/>}
         {itemsPlaylistError && <p>ocurrió un error: {itemsPlaylistError.error?.message}</p>}
         {itemsPlaylist?.items.map((item, i) => {
           return (

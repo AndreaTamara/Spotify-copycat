@@ -13,6 +13,7 @@ import { formatNum } from '../../helpers/formatNum'
 import { useGetData } from '../../hooks/useGetData'
 import { useSelector } from 'react-redux'
 import './Artist.css'
+import { Loader } from '../../components/Loader'
 
 export const Artist = () => {
 
@@ -27,7 +28,8 @@ export const Artist = () => {
     
     return (
         <DetailViewContainer>
-            <img className='hero-artist-img' src={artist?.images[0]?.url} alt='artist' />
+            {artistLoading&&<div className='hero-artist-img'><Loader height='12rem'/></div>}
+            {artist&&<img className='hero-artist-img' src={artist.images[0]?.url} alt='artist' />}
             <DetailHeader
                 type={artist?.popularity>50?'verified artist':''}
                 name={artist?.name}
@@ -36,7 +38,7 @@ export const Artist = () => {
             />
             <DetailViewCommandBar artistView={true} uri={artist?.uri}/>
             <DetailTrackList artistView={true}>
-                {topTracksLoading && <p>loading...</p>}
+                {topTracksLoading && <Loader height='6rem'/>}
                 {topTracksError && <p>ocurrió un error: {topTracksError.error?.message}</p>}
                 {topTracks?.tracks.map((track, i) => {
                     return (
@@ -53,7 +55,7 @@ export const Artist = () => {
                 })}
             </DetailTrackList>
             <RowList title='Discography' id={'artist-discography'+artistId} artistView={true}>
-                {artistsRelatedLoading && <p>loading...</p>}
+                {artistsRelatedLoading && <Loader/>}
                 {albumsArtistError && <p>ocurrió un error: {albumsArtistError.error?.message}</p>}
                 {albumsArtist?.items.map(item => {
                     return (
@@ -69,7 +71,7 @@ export const Artist = () => {
                 })}
             </RowList>
             <RowList title='Related artist' id={'related-artist'+artistId} artistView={true}>
-                {albumsArtistLoading && <p>loading...</p>}
+                {albumsArtistLoading && <Loader/>}
                 {artistsRelatedError && <p>ocurrió un error: {artistsRelatedError.error?.message}</p>}
                 {artistsRelated?.artists.map(artist => {
                     return (

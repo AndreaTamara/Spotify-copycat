@@ -6,17 +6,19 @@ import { useGetData } from "../../hooks/useGetData"
 import { categoryUrl,categoryPlaylistUrl} from "../../api/endpoints"
 import { cutTextString } from "../../helpers/cutTextString"
 import { Card } from "../../components/Card"
+import { Loader } from "../../components/Loader"
 
 
 export const Category = () => {
-    const { logged, user } = useSelector(state=>state.log)
+    const { logged} = useSelector(state=>state.log)
     const { categoryId } = useParams()
     const { data, loading, error} = useGetData(categoryPlaylistUrl(categoryId), logged, false)
     const {data:category}=useGetData(categoryUrl(categoryId),logged, false)
 
   return (
     <DetailViewContainer>
-        <h1 className="search-browse-title">{category?.name}</h1>
+      <h1 className="search-browse-title">{category?.name}</h1>
+      {loading&& <Loader height="24rem"/>}
         <GridContainer categoryView={true}>
         {data?.playlists.items.map(item=>{
             if(item!==null)

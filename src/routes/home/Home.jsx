@@ -5,6 +5,7 @@ import { useGetData } from "../../hooks/useGetData";
 import { newRealeasesUrl, featuredPlaylistsUrl, userPlaylistUrl, userTopArtistsUrl, userTopTracksUrl, userSavedAlbumssUrl } from "../../api/endpoints";
 import { cutTextString } from "../../helpers/cutTextString";
 import './Home.css'
+import { Loader } from "../../components/Loader";
 
 
 
@@ -25,7 +26,7 @@ export const Home = () => {
       {logged &&
         <>
           <RowList title='Your playlists' id='userPlaylist'>
-            {userPlaylistLoading && <p>loading...</p>}
+            {userPlaylistLoading && <Loader/>}
             {userPlaylistError && <p>ocurrió un error: {userPlaylistError.error?.message}</p>}
             {userPlaylist?.items.map(playlist => {
               return (
@@ -41,7 +42,7 @@ export const Home = () => {
             })}
           </RowList>
           <RowList title='Your top artists' id='topArtists'>
-            {userTopArtistsLoading && <p>loading...</p>}
+            {userTopArtistsLoading && <Loader/>}
             {userTopArtistsError && <p>ocurrió un error: {userTopArtistsError.error?.message}</p>}
             {userTopArtists?.items.map(artist => {
               return (
@@ -58,7 +59,7 @@ export const Home = () => {
             })}
           </RowList>
           <RowList title='Your top tracks' id='topTracks'>
-            {userTopTracksLoading && <p>loading...</p>}
+            {userTopTracksLoading && <Loader/>}
             {userTopTracksError && <p>ocurrió un error: {userTopTracksError.error?.message}</p>}
             {userTopTracks?.items.map(track => {
               return (
@@ -74,7 +75,7 @@ export const Home = () => {
             })}
           </RowList>
           <RowList title='Your Albums' id='userAlbums'>
-            {userAlbumsLoading && <p>loading...</p>}
+            {userAlbumsLoading && <Loader/>}
             {userAlbumsError && <p>ocurrió un error: {userAlbumsError.error?.message}</p>}
             {userAlbums?.items.map(item => {
               return (
@@ -92,7 +93,7 @@ export const Home = () => {
         </>
       }
       <RowList title='Released this week' id='released'>
-        {newRealeasesLoading && <p>loading...</p>}
+        {newRealeasesLoading && <Loader/>}
         {newRealeasesError && <p>ocurrió un error: {newRealeasesError.error?.message}</p>}
         {newRealeases?.albums.items.map(album => {
           return (
@@ -108,7 +109,7 @@ export const Home = () => {
         })}
       </RowList>
       <RowList title='Featured Playlist' id='playlist'>
-        {featuredPlaylistsLoading && <p>loading...</p>}
+        {featuredPlaylistsLoading && <Loader/>}
         {featuredPlaylistsError && <p>ocurrió un error: {featuredPlaylistsError.error?.message}</p>}
         {featuredPlaylists?.playlists.items.map(playlist => {
           return (
