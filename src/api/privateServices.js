@@ -191,9 +191,9 @@ export function createPlaylist(userId, name, description) {
 //Edit playlist details
 export function editPlaylist(playlistId, name, description) {
     return instance.put(`/playlists/${playlistId}`,
-    {name:name,description:description?description:undefined,public:true} )
+    {name,description:description?description:undefined,public:true} )
         .then(res => {
-            console.log(res)
+            // console.log(res)
              return res
         }
 

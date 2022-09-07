@@ -27,28 +27,15 @@ export const CreatePlaylistForm = ({ setOpenModal, edit,editName, editDescriptio
                 try {
                     const response = await request
                     setOpenModal(false)
-                    if(!edit&&response.status===201) { 
+                    if(!edit&&response.status===201) 
                         navigate(`/playlist/${response.data.id}`)
-                    }
-                    if(edit&&response.status===200) { 
-                        setSnapshotId(String(Math.random()))
-                        console.log('cambio snapshot')
-                    }
-                    
+                    if(edit&&response.status===200)  
+                        setSnapshotId(String(Math.random()))                    
                 } catch (error) {
                     setErrorMsn('An error occurred. Try again')
-                        setTimeout(()=>setErrorMsn(''),1000)
+                    setTimeout(()=>setErrorMsn(''),1200)
                 }
-                // .then(res=>{
-                //     if(res.status===201) {
-                //         setOpenModal(false)
-                //         navigate(`/playlist/${res.data.id}`)
-                //     }
-                // })
-                // .catch(()=>{
-                //     setErrorMsn('An error occurred. Try again')
-                //         setTimeout(()=>setErrorMsn(''),1000)
-                // })
+               
             }else{
                 setRequired ('Playlist name is required')
             }
