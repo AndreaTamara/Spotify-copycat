@@ -25,17 +25,6 @@ export const PlayBar = () => {
       getUserData()
     }
   }, [error,logged])
-
-
-  // const findOffset = ()=>{
-  //   const track= localStorage.getItem('previousTrack');
-  //   console.log(track)
-  //   const list = (localStorage.getItem('previousUri')).split(',')
-  //   console.log(list)
-  //   const offset = list.findIndex(item=>item===track)
-  //   console.log(offset)
-  //   return offset>0?offset:0
-  // }
   
   return (
     <div className='play-bar'>

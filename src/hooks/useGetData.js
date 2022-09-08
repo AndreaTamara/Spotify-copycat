@@ -6,17 +6,26 @@ import { getPublicData } from "../api/publicServices";
 export const useGetData = (endpoint,loggedIn,userInfo,snapshotId,clear) => {
 
     
-    // console.log('usegetdata:'+endpoint)
+    
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const request = (url,logState)=>{
+        if(logState)return getPrivateData(url,50)
+        if(!logState)return getPublicData(url,50)
+    }
+
     const getData = async () => {
-        const request = loggedIn?getPrivateData(endpoint,50):getPublicData(endpoint,50)
         try {
-            const response = await request
-            // console.log(response)
-            setData(response)
+            const response = await request(endpoint,loggedIn)   
+            const firstData = response   
+            while(response.next){
+                const nextData = await request(response.next,loggedIn)
+                firstData.items.push(...nextData.items)
+                response.next = nextData.next
+            }
+            setData(firstData)
             setLoading(false)
             setError(null)
         } catch (err) {
