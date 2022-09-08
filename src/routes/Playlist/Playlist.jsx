@@ -48,7 +48,7 @@ export const Playlist = () => {
     <DetailViewContainer>
       {(playlistLoading || itemsPlaylistLoading) && <Loader height='14rem' />}
       {itemsPlaylistError && <Info msn={`Error ${itemsPlaylistError?.status}: ${itemsPlaylistError?.message}`} />}
-      {(playlist && !itemsPlaylistError) &&
+      {(playlist && itemsPlaylist) &&
         <>
           <DetailHeader
             url={playlist?.images[0]?.url}

@@ -3,7 +3,7 @@ import SpotifyWebPlayer from 'react-spotify-web-playback/lib'
 import { getUserData } from '../../api/privateServices'
 import { useSelector,useDispatch } from 'react-redux'
 import './PlayBar.css'
-import { setCurrentPlayingTrack } from '../../actions/playingActions'
+import { selectUriToPlay, setCurrentPlayingTrack } from '../../actions/playingActions'
 
 export const PlayBar = () => {
 
@@ -23,6 +23,7 @@ export const PlayBar = () => {
   useEffect(() =>{
     if(logged){
       getUserData()
+      .then(()=>dispatch((selectUriToPlay(localStorage.getItem('currentUri')))))
     }
   }, [error,logged])
   
@@ -33,14 +34,17 @@ export const PlayBar = () => {
         showSaveIcon
         syncExternalDevice
         uris={currentUri ? currentUri : [] }
-        // offset={error?findOffset():0}
         play={play}
         autoPlay={true}
         callback={state => {
           if (!state.isPlaying) setPlay(false)
           console.log(state)
-          if (state.status==='ERROR'&&state.error==='Authentication failed'){setError(true)}
-          if (state.isPlaying )dispatch(setCurrentPlayingTrack(state.track.uri))
+          if (state.status==='ERROR'&&state.error==='Authentication failed'){
+            setError(true)
+            localStorage.setItem('currentUri',currentUri)
+          }
+          if (state.status==='ERROR'&&state.error==='Invalid token scopes.'){setError(true)}
+          if (state.isPlaying)dispatch(setCurrentPlayingTrack(state.track.uri))
         }}
         styles={{
           bgColor: 'hsl(225, 25%, 9%)',

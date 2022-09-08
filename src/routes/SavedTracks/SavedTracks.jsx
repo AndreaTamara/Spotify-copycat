@@ -27,6 +27,8 @@ export const SavedTracks = () => {
   // console.log(trackUris)
   return (
     <DetailViewContainer>
+      {savedTracksLoading && <Loader height='14rem'/>}
+      {savedTracksError && <Info msn={`Error ${savedTracksError?.status}: ${savedTracksError?.message}`}/>}
       {savedTracks &&
       <>
         <DetailHeader
@@ -37,10 +39,7 @@ export const SavedTracks = () => {
           tracks={savedTracks?.total}
         />
       <DetailViewCommandBar savedView={true} uri={trackUris} />
-      </>}
       <DetailTrackList savedView={true}>
-        {savedTracksLoading && <Loader height='14rem'/>}
-        {savedTracksError && <Info msn={`Error ${savedTracksError?.status}: ${savedTracksError?.message}`}/>}
         {(savedTracks?.items.length===0)?
         <Info msn='You haven´t saved any song yet'/>
         :savedTracks?.items.map((item, i) => {
@@ -63,6 +62,7 @@ export const SavedTracks = () => {
           )
         })}
       </DetailTrackList>
+      </>}
     </DetailViewContainer>
   )
 }
