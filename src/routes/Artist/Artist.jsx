@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux'
 import './Artist.css'
 import { Loader } from '../../components/Loader'
 import { Info } from '../../components/Info'
+import { selectImage } from '../../helpers/selectImage'
 
 export const Artist = () => {
 
@@ -30,7 +31,7 @@ export const Artist = () => {
     return (
         <DetailViewContainer>
             {artistLoading&&<div className='hero-artist-img'><Loader height='12rem'/></div>}
-            {artist&&<img className='hero-artist-img' src={artist.images[0]?.url} alt='artist' />}
+            {artist&&<img className='hero-artist-img' src={selectImage(artist.images[0]?.url,'artistCover') } alt='artist' />}
             <DetailHeader
                 type={artist?.popularity>50?'verified artist':''}
                 name={artist?.name}
@@ -52,7 +53,7 @@ export const Artist = () => {
                             number={i + 1}
                             name={cutTextString(track.name, 25)}
                             time={convertMstoMin(track.duration_ms)}
-                            url={track.album.images[0].url}
+                            url={track.album.images[0]?.url}
                         />
                     )
                 })}
@@ -70,7 +71,7 @@ export const Artist = () => {
                                 uri={item.uri}
                                 name={cutTextString(item.name, 30)}
                                 author={cutTextString(item.album_type, 30)}
-                                imgUrl={item.images[0].url}
+                                imgUrl={item.images[0]?.url}
                             />
                     )
                 })}
