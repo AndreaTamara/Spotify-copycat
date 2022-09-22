@@ -12,7 +12,7 @@ import { Info } from "../../components/Info";
 
 export const Home = () => {
 
-  const { logged} = useSelector(state => state.log)
+  const { logged } = useSelector(state => state.log)
 
   const { data: newRealeases, loading: newRealeasesLoading, error: newRealeasesError } = useGetData(newRealeasesUrl, logged, false)
   const { data: featuredPlaylists, loading: featuredPlaylistsLoading, error: featuredPlaylistsError } = useGetData(featuredPlaylistsUrl, logged, false)
@@ -28,10 +28,12 @@ export const Home = () => {
         <>
           <RowList title='Your playlists' id='userPlaylist'>
             {userPlaylistLoading && <Loader />}
-            {userPlaylistError && <Info msn={`Error ${userPlaylistError?.status}: ${userPlaylistError?.message}`}/>}
+            {userPlaylistError &&
+              <Info msn={`Error ${userPlaylistError?.status}: ${userPlaylistError?.message}`} />}
             {(userPlaylist?.items.length === 0) ?
               <Info msn='You haven´t created or saved any playlist yet' />
-              : userPlaylist?.items.map(playlist => {
+              :
+              userPlaylist?.items.map(playlist => {
                 return (
                   <Card
                     key={playlist.id}
@@ -46,10 +48,12 @@ export const Home = () => {
           </RowList>
           <RowList title='Your top artists' id='topArtists'>
             {userTopArtistsLoading && <Loader />}
-            {userTopArtistsError && <Info msn={`Error ${userTopArtistsError?.status}: ${userTopArtistsError?.message}`}/>}
+            {userTopArtistsError &&
+              <Info msn={`Error ${userTopArtistsError?.status}: ${userTopArtistsError?.message}`} />}
             {(userTopArtists?.items.length === 0) ?
               <Info />
-              : userTopArtists?.items.map(artist => {
+              :
+              userTopArtists?.items.map(artist => {
                 return (
                   <Card
                     key={artist.id}
@@ -65,10 +69,12 @@ export const Home = () => {
           </RowList>
           <RowList title='Your top tracks' id='topTracks'>
             {userTopTracksLoading && <Loader />}
-            {userTopTracksError && <Info msn={`Error ${userTopTracksError?.status}: ${userTopTracksError?.message}`}/>}
+            {userTopTracksError &&
+              <Info msn={`Error ${userTopTracksError?.status}: ${userTopTracksError?.message}`} />}
             {(userTopTracks?.items.length === 0) ?
               <Info />
-              : userTopTracks?.items.map(track => {
+              :
+              userTopTracks?.items.map(track => {
                 return (
                   <Card
                     path={'/album/' + track.album.id}
@@ -83,10 +89,12 @@ export const Home = () => {
           </RowList>
           <RowList title='Your Albums' id='userAlbums'>
             {userAlbumsLoading && <Loader />}
-            {userAlbumsError && <Info msn={`Error ${userAlbumsError?.status}: ${userAlbumsError?.message}`}/>}
+            {userAlbumsError &&
+              <Info msn={`Error ${userAlbumsError?.status}: ${userAlbumsError?.message}`} />}
             {(userAlbums?.items.length === 0) ?
               <Info msn='You haven´t saved any album yet' />
-              : userAlbums?.items.map(item => {
+              :
+              userAlbums?.items.map(item => {
                 return (
                   <Card
                     key={item.album.id}
@@ -103,7 +111,8 @@ export const Home = () => {
       }
       <RowList title='Released this week' id='released'>
         {newRealeasesLoading && <Loader />}
-        {newRealeasesError && <Info msn={`Error ${newRealeasesError?.status}: ${newRealeasesError?.message}`}/>}
+        {newRealeasesError &&
+          <Info msn={`Error ${newRealeasesError?.status}: ${newRealeasesError?.message}`} />}
         {newRealeases?.albums.items.map(album => {
           return (
             <Card
@@ -119,7 +128,8 @@ export const Home = () => {
       </RowList>
       <RowList title='Featured Playlist' id='playlist'>
         {featuredPlaylistsLoading && <Loader />}
-        {featuredPlaylistsError && <Info msn={`Error ${featuredPlaylistsError?.status}: ${featuredPlaylistsError?.message}`}/>}
+        {featuredPlaylistsError &&
+          <Info msn={`Error ${featuredPlaylistsError?.status}: ${featuredPlaylistsError?.message}`} />}
         {featuredPlaylists?.playlists.items.map(playlist => {
           return (
             <Card

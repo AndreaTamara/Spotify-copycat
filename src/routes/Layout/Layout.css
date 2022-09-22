@@ -1,50 +1,49 @@
-.App-container{
-width: 100vw;
-height: 100vh;
-position: relative;
-display: flex;
-flex-direction: column;
+.App-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-.display-header-container{
+.display-header-container {
     display: flex;
     flex-direction: column;
     width: 80%;
     height: 100%;
 }
 
-.display-section{
+.display-section {
     background: linear-gradient(var(--navy-blue-2), var(--deep-blue) 40%);
     height: calc(100vh - 105px);
-    overflow-y:scroll;
-    /* padding: 1.5625rem ; */
+    overflow-y: scroll;
     scroll-behavior: smooth;
     padding-top: 5rem;
     min-width: 85%;
-    width:calc(100vw - 258px);
+    width: calc(100vw - 258px);
     display: flex;
     flex-direction: column;
     position: absolute;
-    right:0;
-    top:0;  
+    right: 0;
+    top: 0;
     padding-bottom: 1.5625rem;
-    
+
 }
 
-.display-section::-webkit-scrollbar{
-    width: 10px;  
-    z-index: 500;  
-    display: none;   
+.display-section::-webkit-scrollbar {
+    width: 10px;
+    z-index: 500;
+    display: none;
 }
-.display-section::-webkit-scrollbar-thumb{
-    background-color: rgba(225,225,225,0.07);
+
+.display-section::-webkit-scrollbar-thumb {
+    background-color: rgba(225, 225, 225, 0.07);
     border-radius: 10px;
     z-index: 500;
-} 
+}
 
-@media (max-width:900px){
-    .display-section{
-        /* height: calc(100vh - 60px); */
+@media (max-width:900px) {
+    .display-section {
         width: calc(100vw - 65px);
         min-width: auto;
         padding-top: 4.0416875rem;

@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { searchUrl } from "../../api/endpoints";
+import { Loader } from "../../components/Loader";
+import { Info } from "../../components/Info";
 import { BrowserView } from "../../components/BrowserView";
 import { Card } from "../../components/Card";
 import { DetailTrackList } from "../../components/DetailTracksList";
@@ -9,29 +8,32 @@ import { RowList } from "../../components/RowList";
 import { SearchTab } from "../../components/SearchTab"
 import { TrackCard } from "../../components/TrackCard";
 import { ViewMoreBtn } from "../../components/ViewMoreBtn";
-import { useSelector } from 'react-redux'
+import { searchUrl } from "../../api/endpoints";
 import { convertMstoMin } from "../../helpers/convertToMin";
 import { cutTextString } from "../../helpers/cutTextString";
 import { useDebounce } from "../../hooks/useDebounce";
 import { useGetData } from "../../hooks/useGetData";
-import { Loader } from "../../components/Loader";
-import { Info } from "../../components/Info";
+import { useSelector } from 'react-redux'
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 
 
 
 export const Search = () => {
+
   const navigate = useNavigate()
-  const { logged} = useSelector(state=>state.log)
+  const { logged } = useSelector(state => state.log)
   const searchedQuery = new URLSearchParams(window.location.search).get('query')
   const { debouncedValue, setDebouncedValue } = useDebounce(searchedQuery, 900);
-  const { data, loading, error } = useGetData(searchUrl(debouncedValue), logged, false,null, true)
+  const { data, loading, error } = useGetData(searchUrl(debouncedValue), logged, false, null, true)
   const [more, setMore] = useState(false)
 
   const dataLength =
-    data?.tracks.items.length+
-    data?.artists.items.length+
-    data?.playlists.items.length+
+    data?.tracks.items.length +
+    data?.artists.items.length +
+    data?.playlists.items.length +
     data?.albums.items.length
 
   const handleSearch = (e) => {
@@ -55,16 +57,20 @@ export const Search = () => {
 
   return (
     <>
-      <SearchTab deleteSearch={deleteSearch} onSubmit={handleSearch} />
+      <SearchTab
+        deleteSearch={deleteSearch}
+        onSubmit={handleSearch} />
       <DetailViewContainer>
         <section className="search-scroll-container" style={{ width: '100%', marginTop: '5rem' }}>
-          {(debouncedValue && loading) && <Loader height="16rem"/>}
-          {error && <Info msn={`Error ${error?.status}: ${error?.message}`}/>}
-          { dataLength===0&&<Info/>}
-          {(data&&(dataLength!==0)) &&
+          {(debouncedValue && loading) &&
+            <Loader height="16rem" />}
+          {error &&
+            <Info msn={`Error ${error?.status}: ${error?.message}`} />}
+          {dataLength === 0 && <Info />}
+          {(data && (dataLength !== 0)) &&
             <>
               <DetailTrackList searchView={true}>
-                {(data.tracks.items.length===0)&& <Info/>}
+                {(data.tracks.items.length === 0) && <Info />}
                 {data.tracks.items?.map((track, i) => {
                   return (
                     <TrackCard
@@ -84,54 +90,63 @@ export const Search = () => {
                     />
                   )
                 })}
-                {(data.tracks.items.length>5)&&
-                  <ViewMoreBtn more={more} setMore={setMore}/>
+                {(data.tracks.items.length > 5) &&
+                  <ViewMoreBtn more={more} setMore={setMore} />
                 }
-                
+
               </DetailTrackList>
-              <RowList title='Artists' id='result-artists' artistView={true}>
-                {(data.artists.items.length===0)&& <Info/>}
+              <RowList
+                title='Artists'
+                id='result-artists'
+                artistView={true}>
+                {(data.artists.items.length === 0) && <Info />}
                 {data.artists.items?.map(artist => {
                   return (
-                      <Card
-                        key={artist.id}
-                        path={'/artist/' + artist.id} 
-                        uri={artist.uri}
-                        type='artist'
-                        name={cutTextString(artist.name, 30)}
-                        author={artist.type}
-                        imgUrl={artist.images[0]?.url}
-                      />
+                    <Card
+                      key={artist.id}
+                      path={'/artist/' + artist.id}
+                      uri={artist.uri}
+                      type='artist'
+                      name={cutTextString(artist.name, 30)}
+                      author={artist.type}
+                      imgUrl={artist.images[0]?.url}
+                    />
                   )
                 })}
               </RowList>
-              <RowList title='Playlist' id='result-playlist' artistView={true}>
-              {(data.playlists.items.length===0)&& <Info/>}
+              <RowList
+                title='Playlist'
+                id='result-playlist'
+                artistView={true}>
+                {(data.playlists.items.length === 0) && <Info />}
                 {data.playlists.items?.map(playlist => {
                   return (
-                      <Card
-                        key={playlist.id}
-                        path={'/playlist/' + playlist.id}
-                        uri={playlist.uri}
-                        name={cutTextString(playlist.name, 30)}
-                        author={cutTextString(playlist.owner.display_name, 45)}
-                        imgUrl={playlist.images[0]?.url}
-                      />
+                    <Card
+                      key={playlist.id}
+                      path={'/playlist/' + playlist.id}
+                      uri={playlist.uri}
+                      name={cutTextString(playlist.name, 30)}
+                      author={cutTextString(playlist.owner.display_name, 45)}
+                      imgUrl={playlist.images[0]?.url}
+                    />
                   )
                 })}
               </RowList>
-              <RowList title='Albums' id='result-albums' artistView={true}>
-              {(data.albums.items.length===0)&& <Info/>}
+              <RowList
+                title='Albums'
+                id='result-albums'
+                artistView={true}>
+                {(data.albums.items.length === 0) && <Info />}
                 {data.albums.items?.map(album => {
                   return (
-                      <Card
-                        key={album.id}
-                        path={'/album/' + album.id}
-                        uri={album.uri}
-                        name={cutTextString(album.name, 30)}
-                        author={cutTextString(album.artists.map(artist => artist.name).join(', '), 30)}
-                        imgUrl={album.images[0]?.url}
-                      />
+                    <Card
+                      key={album.id}
+                      path={'/album/' + album.id}
+                      uri={album.uri}
+                      name={cutTextString(album.name, 30)}
+                      author={cutTextString(album.artists.map(artist => artist.name).join(', '), 30)}
+                      imgUrl={album.images[0]?.url}
+                    />
                   )
                 })}
               </RowList>

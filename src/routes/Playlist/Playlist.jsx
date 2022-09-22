@@ -1,21 +1,22 @@
 import { DetailHeader } from '../../components/DetailHeader'
 import { TrackCard } from '../../components/TrackCard'
-import { useSelector } from 'react-redux'
-import { useGetData } from '../../hooks/useGetData'
-import { itemsPlaylistUrl, playlistUrl } from '../../api/endpoints'
-import { convertMstoMin } from '../../helpers/convertToMin'
-import { useParams } from 'react-router-dom'
-import { cutTextString } from '../../helpers/cutTextString'
 import { DetailViewContainer } from '../../components/DetailViewContainer'
 import { DetailViewCommandBar } from '../../components/DetailViewCommandBar'
 import { DetailTrackList } from '../../components/DetailTracksList'
-import { useState } from 'react'
 import { AddSongs } from '../../components/AddSongs'
-import { addTrackToPlaylist, removeTrackFromPlaylist } from '../../api/privateServices'
 import { Loader } from '../../components/Loader'
 import { Info } from '../../components/Info'
-import {Modal} from '../../components/Modal'
-import {CreatePlaylistForm} from '../../components/CreatePlaylistForm'
+import { Modal } from '../../components/Modal'
+import { CreatePlaylistForm } from '../../components/CreatePlaylistForm'
+import { useSelector } from 'react-redux'
+import { useGetData } from '../../hooks/useGetData'
+import { itemsPlaylistUrl, playlistUrl } from '../../api/endpoints'
+import { addTrackToPlaylist, removeTrackFromPlaylist } from '../../api/privateServices'
+import { cutTextString } from '../../helpers/cutTextString'
+import { convertMstoMin } from '../../helpers/convertToMin'
+import { useState } from 'react'
+import { useParams } from 'react-router-dom'
+
 
 
 
@@ -24,7 +25,7 @@ export const Playlist = () => {
   const { logged, user } = useSelector(state => state.log)
   const { playlistId } = useParams()
   const [snapshotId, setSnapshotId] = useState('')
-  // console.log(playlistId)
+
   const { data: itemsPlaylist, loading: itemsPlaylistLoading, error: itemsPlaylistError } = useGetData(itemsPlaylistUrl(playlistId), logged, false, snapshotId)
   const { data: playlist, loading: playlistLoading } = useGetData(playlistUrl(playlistId), logged, false, snapshotId)
   const [addSongs, setAddsongs] = useState(false)
@@ -46,8 +47,10 @@ export const Playlist = () => {
 
   return (
     <DetailViewContainer>
-      {(playlistLoading || itemsPlaylistLoading) && <Loader height='14rem' />}
-      {itemsPlaylistError && <Info msn={`Error ${itemsPlaylistError?.status}: ${itemsPlaylistError?.message}`} />}
+      {(playlistLoading || itemsPlaylistLoading) &&
+        <Loader height='14rem' />}
+      {itemsPlaylistError &&
+        <Info msn={`Error ${itemsPlaylistError?.status}: ${itemsPlaylistError?.message}`} />}
       {(playlist && itemsPlaylist) &&
         <>
           <DetailHeader
@@ -64,7 +67,8 @@ export const Playlist = () => {
             owned={owned}
             addSongsClick={() => setAddsongs(true)}
             setOpenModal={setOpenModal} />
-          {addSongs && <AddSongs handleClose={setAddsongs} onAddSong={onAddSong} />}
+          {addSongs &&
+            <AddSongs handleClose={setAddsongs} onAddSong={onAddSong} />}
           <DetailTrackList>
             {itemsPlaylist?.items.map((item, i) => {
               return (
