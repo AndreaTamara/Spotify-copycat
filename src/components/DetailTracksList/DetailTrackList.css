@@ -13,10 +13,7 @@
   .tracks-list.track-list-addSongsView{
     padding: 0;
   }
-  /* .tracks-list-searchView{
-    max-height: 490.666px;
-    overflow-y: hidden;
-  } */
+  
   @media (max-width:900px){
     .tracks-list{
       padding: 0.875rem;
@@ -24,7 +21,5 @@
     .artistView-title{
       font-size: 1.25rem;
     }
-    /* .tracks-list-searchView{
-      max-height: 390px;
-    } */
+   
 }

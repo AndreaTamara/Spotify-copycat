@@ -2,17 +2,14 @@ import './SearchTab.css'
 import { useSearchParams } from 'react-router-dom';
 import { HiSearch } from 'react-icons/hi';
 import { RiCloseFill } from 'react-icons/ri'
-// import { useState } from 'react';
 
 
 export const SearchTab = ({ onSubmit, deleteSearch, addSongsView, searchedSong, setSearchedSong }) => {
 
     const [searchParams, setSearchParams] = useSearchParams()
-    // const [searchedSong, setSearchedSong] = useState('')
 
     const searchedQuery = !addSongsView ? (searchParams.get('query') || '') : searchedSong
 
-    // console.log(searchedQuery)
 
     const handleInputChange = (e) => {
         e.preventDefault()

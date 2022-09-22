@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    max-width: 400px;/*25rem*/
+    max-width: 25rem;
     width:80%;
     background-color:var(--mid-deep-blue-active) ;
     position: relative;

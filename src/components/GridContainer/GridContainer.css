@@ -30,6 +30,5 @@
         grid-template-columns: repeat(auto-fit, minmax(8.6875rem,1fr));
         gap:0.5rem;
         padding: 1.5625rem 0.75rem;
-        
     }
 }

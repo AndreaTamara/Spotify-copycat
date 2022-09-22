@@ -1,5 +1,5 @@
 import './ViewMoreBtn.css'
-import {RiArrowUpSLine,RiArrowDownSLine} from 'react-icons/ri'
+import { RiArrowUpSLine, RiArrowDownSLine } from 'react-icons/ri'
 
 export const ViewMoreBtn = ({ more, setMore }) => {
     return (
@@ -16,8 +16,8 @@ export const ViewMoreBtn = ({ more, setMore }) => {
                 <span className='view-more'>
                     <RiArrowDownSLine />
                     View more
-                </span>}
-
+                </span>
+            }
         </button>
     )
 }

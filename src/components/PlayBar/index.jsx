@@ -7,9 +7,8 @@ import { selectUriToPlay, setCurrentPlayingTrack } from '../../actions/playingAc
 
 export const PlayBar = () => {
 
- let token = localStorage.getItem('token')
-  //console.log('se renderiza playbar: '+token)
-  const { logged} = useSelector(state=>state.log)
+  let token = localStorage.getItem('token')
+  const {logged} = useSelector(state=>state.log)
   const dispatch = useDispatch()
   const { currentUri} = useSelector(state=>state.playing)
   const [error, setError]= useState(false)
@@ -38,7 +37,6 @@ export const PlayBar = () => {
         autoPlay={true}
         callback={state => {
           if (!state.isPlaying) setPlay(false)
-          console.log(state)
           if (state.status==='ERROR'&&state.error==='Authentication failed'){
             setError(true)
             localStorage.setItem('currentUri',currentUri)

@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
 import { PlayBtn } from '../PlayBtn';
 import { Link } from "react-router-dom";
-import './Card.css'
 import { changeSrc, music, selectImage } from '../../helpers/selectImage';
+import './Card.css'
+
 
 
 export const Card = ({ name, author, imgUrl, type, uri, path }) => {
@@ -10,7 +11,6 @@ export const Card = ({ name, author, imgUrl, type, uri, path }) => {
   const { currentUri } = useSelector(state => state.playing)
 
   let element;
-
 
   return (
     <div className='card-container'>
@@ -24,12 +24,16 @@ export const Card = ({ name, author, imgUrl, type, uri, path }) => {
               src={selectImage(imgUrl, type)}
               alt='cover album'
               ref={el => element = el}
-              onError={() =>changeSrc(music, element)}
+              onError={() => changeSrc(music, element)}
             />
           </div>
           <div className="card-info">
-            <h6 className="card-info-title">{name}</h6>
-            <p className="card-info-description">{author}</p>
+            <h6 className="card-info-title">
+              {name}
+            </h6>
+            <p className="card-info-description">
+              {author}
+            </p>
           </div>
         </div>
       </Link>

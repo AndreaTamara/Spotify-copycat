@@ -40,14 +40,9 @@
     padding-bottom: 1.5625rem;
 }
 .row-list-items::-webkit-scrollbar{
-    /* height: 10px; */
     display: none;;
     
 }
-/* .row-list-items::-webkit-scrollbar-thumb{
-    background-color: rgba(225,225,225,0.05);
-    border-radius: 10px;
-} */
 
 @media (max-width:900px){
     .row-list-title > h2{

@@ -7,6 +7,7 @@ export const getPrivateToken = async (code) => {
     const clientId = '3f182385c47b4459b03bba8df1a09d47';
     const clientSecret = '89b84d2544ac44938950c2fdcca11cd0';
     const AutUrl = 'https://accounts.spotify.com/api/token';
+    const redirect_uri = 'http://localhost:3000/';
 
     const result = await axios(
         {
@@ -14,14 +15,10 @@ export const getPrivateToken = async (code) => {
             url: AutUrl,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                // 'Authorization': 'Basic ' + (new Buffer(clientId + ':' + clientSecret).toString('base64'))
                 'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
             },
-            data: `grant_type=authorization_code&code=${code}&redirect_uri=http://localhost:3000/`
-
-
+            data: `grant_type=authorization_code&code=${code}&redirect_uri=${redirect_uri}`
         });
-    // console.log(result.data)
     return result.data;
 }
 
@@ -39,12 +36,10 @@ export const getRefreshedToken = async () => {
             url: AutUrl,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                // 'Authorization': 'Basic ' + (new Buffer(clientId + ':' + clientSecret).toString('base64'))
                 'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
             },
             data: `grant_type=refresh_token&refresh_token=${refreshToken}`
         });
-    // console.log(result.data)
     return result.data;
 }
 
@@ -58,19 +53,14 @@ instance.interceptors.request.use((config) => {
 
 instance.interceptors.response.use((response) => response,
     (error) => {
-
         if (error.response.status === 401) {
             getRefreshedToken()
                 .then(res => localStorage.setItem('token', res.access_token))
                 .catch(() => localStorage.clear())
                 .finally(() => window.location.reload())
         }
-        // console.log(error)
         return Promise.reject(error)
     })
-
-
-//comparar state TO-DO
 
 export function getUserData() {
     return instance.get('/me')
@@ -83,9 +73,7 @@ export function getPrivateData(endpoint, n) {
     return instance.get(endpoint, {
         params: { limit: n }
     })
-        .then(res => {
-            return res.data
-        })
+        .then(res => {return res.data})
 }
 
 // check saved Track
@@ -95,6 +83,7 @@ export function checkSavedTrack(trackId) {
             return res.data[0]
         })
 }
+
 //save track
 export function saveTrack(trackId) {
     return instance.put(`/me/tracks?ids=${trackId}`)
@@ -102,6 +91,7 @@ export function saveTrack(trackId) {
             return res.status
         })
 }
+
 //remove saved track
 export function removeSavedTrack(trackId) {
     return instance.delete(`/me/tracks?ids=${trackId}`)
@@ -117,6 +107,7 @@ export function checkFollowedPlaylist(playlistId, userId) {
             return res.data[0]
         })
 }
+
 //follow playlist
 export function followPlaylist(playlistId) {
     return instance.put(`/playlists/${playlistId}/followers`)
@@ -140,6 +131,7 @@ export function checkSavedAlbum(albumId) {
             return res.data[0]
         })
 }
+
 //save album
 export function saveAlbum(albumId) {
     return instance.put(`/me/albums/?ids=${albumId}`)
@@ -152,7 +144,6 @@ export function saveAlbum(albumId) {
 export function removeSavedAlbum(albumId) {
     return instance.delete(`/me/albums/?ids=${albumId}`)
         .then(res => {
-            // console.log(res)
             return res.status
         })
 }
@@ -161,7 +152,6 @@ export function removeSavedAlbum(albumId) {
 export function addTrackToPlaylist(playlistId, uriTrack) {
     return instance.post(`/playlists/${playlistId}/tracks?uris=${uriTrack}&position=0`)
         .then(res => {
-            // console.log(res)
             return res.data.snapshot_id
         })
 }
@@ -171,7 +161,6 @@ export function removeTrackFromPlaylist(playlistId, uriTrack) {
     return instance.delete(`/playlists/${playlistId}/tracks`,
         { data: { tracks: [{ uri: uriTrack }] } })
         .then(res => {
-            // console.log(res)
             return res.data.snapshot_id
         })
 }
@@ -179,24 +168,18 @@ export function removeTrackFromPlaylist(playlistId, uriTrack) {
 //Create a playlist
 export function createPlaylist(userId, name, description) {
     return instance.post(`/users/${userId}/playlists`,
-        { "name": name, "description": description, "public": true } )
+        { "name": name, "description": description, "public": true })
         .then(res => {
-            // console.log(res)
             return res
-        }
-
-        )
+        })
 }
 
 //Edit playlist details
 export function editPlaylist(playlistId, name, description) {
     return instance.put(`/playlists/${playlistId}`,
-    {name,description:description?description:undefined,public:true} )
+        { name, description: description ? description : undefined, public: true })
         .then(res => {
-            // console.log(res)
-             return res
-        }
-
-        )
+            return res
+        })
 }
 

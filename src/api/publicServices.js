@@ -16,12 +16,10 @@ export const getPublicToken = async () => {
             url: AutUrl,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                // 'Authorization': 'Basic ' + (new Buffer(clientId + ':' + clientSecret).toString('base64'))
                 'Authorization': 'Basic ' + btoa(clientId + ':' + clientSecret)
             },
             data: 'grant_type=client_credentials'
         });
-    //console.log(result.data.access_token)
     return result.data.access_token;
 }
 
@@ -44,11 +42,10 @@ instance.interceptors.response.use((response) => response,
     (error) => {
         if (error.response.status === 401 || error.response.status === 400) {
             getPublicToken()
-            .then(res => localStorage.setItem('token', res))
-            .catch(() => localStorage.clear())
-            .finally(() => window.location.reload())
+                .then(res => localStorage.setItem('token', res))
+                .catch(() => localStorage.clear())
+                .finally(() => window.location.reload())
         }
-        // console.log(error)
         return Promise.reject(error)
     })
 
@@ -57,8 +54,5 @@ export function getPublicData(endpoint, n) {
     return instance.get(endpoint, {
         params: { limit: n }
     })
-        .then(res => {  //**TODO- mirar si puedo quitar este then y en useGetData setear response.data
-            // console.log(res)
-            return res.data
-        })
+        .then(res => { return res.data })
 }

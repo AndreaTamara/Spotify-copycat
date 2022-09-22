@@ -6,7 +6,6 @@
   --navy-blue: hsl(241, 52%, 19%);/*grid gradient*/
   --navy-blue-2: hsl(241, 51%, 25%);/*grid gradient*/
   --dark-blue: hsl(225, 25%, 9%);/*player*/
-  /* --very-dark-blue: hsl(216, 16%, 6%); sidebar */
   --very-dark-blue: hsl(210, 22%, 7%); /*sidebar*/
   --white: hsl(0,0%,100%);
   --light-grey: hsl(226, 16%, 69%);
@@ -28,32 +27,31 @@
   list-style: none;
   font-family: 'Public Sans', sans-serif;
   font-size: 100%;
-  color:white
-  /* border:1px solid white; */
- 
+  color:white; 
 }
+
 button{
   border:none;
   background: none;
   outline:none;
 }
+
 button:hover{
   cursor: pointer;
 }
+
 body {
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  /* overflow-y: scroll; */
 }
 
 
 #root{
   width: 100vw;
   height: 100vh;
- 
 }
 
 

@@ -1,16 +1,24 @@
 import { useEffect, useState } from 'react'
 import { FiHeart, } from 'react-icons/fi'
-import {MdOutlineEditNote} from 'react-icons/md'
+import { MdOutlineEditNote } from 'react-icons/md'
 import { useSelector } from 'react-redux'
 import { checkFollowedPlaylist, checkSavedAlbum, followPlaylist, removeSavedAlbum, saveAlbum, unFollowPlaylist } from '../../api/privateServices'
 import { PlayBtn } from '../PlayBtn'
 import './DetailViewCommandBar.css'
 
-export const DetailViewCommandBar = ({ artistView, savedView, uri, id, type, owned, addSongsClick, setOpenModal}) => {
+export const DetailViewCommandBar = (
+  { artistView,
+    savedView,
+    uri,
+    id,
+    type,
+    owned,
+    addSongsClick,
+    setOpenModal }
+) => {
 
   const { logged, user } = useSelector(state => state.log)
   const [isSaved, setIsSaved] = useState(null)
-
 
   const checkIfIsSaved = async (id, userId, type) => {
     if (id) {
@@ -49,16 +57,20 @@ export const DetailViewCommandBar = ({ artistView, savedView, uri, id, type, own
   return (
     <section className={`command-bar ${artistView && 'command-bar-artistView'}`}>
       <PlayBtn uri={uri} />
-        {(!savedView && !artistView &&!owned )&&
-          <FiHeart className={`save-btn ${isSaved && 'active'}`}
-            onClick={() => handleOnClickFollow(id, user.id, type)}
-          />}
-        {owned &&
+      {(!savedView && !artistView && !owned) &&
+        <FiHeart className={`save-btn ${isSaved && 'active'}`}
+          onClick={() => handleOnClickFollow(id, user.id, type)}
+        />}
+      {owned &&
         <div className='owned-command-btns'>
-          <button className='add-songs-btn' onClick={()=>addSongsClick()}>Add songs</button>
-          <button onClick={()=>setOpenModal(true)}><MdOutlineEditNote className='edit-playlist-btn'/></button>
+          <button className='add-songs-btn' onClick={() => addSongsClick()}>
+            Add songs
+          </button>
+          <button onClick={() => setOpenModal(true)}>
+            <MdOutlineEditNote className='edit-playlist-btn' />
+          </button>
         </div>
-        }
+      }
     </section>
   )
 }
