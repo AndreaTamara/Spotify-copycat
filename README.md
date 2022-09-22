@@ -19,11 +19,17 @@
 
 ## Description
 
-This proyect is a spotify replica with a little twist in the UI, it is also responsive. You are able to login with your spotify account, see content from your library, create and modify playlists, save songs, albums or playlists, search by categories or specific words. You could play music too! 
+This proyect is a responsive spotify replica with a twist.You are able to: 
+- Login with your spotify account
+- See content from your library
+- Create and modify playlists 
+- Save songs, albums or playlists 
+- Search by categories or specific words
+- You can play music too! 
 
-At the home page  you could find new releases and featured playlist of the moment, in addition, can see your created and followed playlists and albums, your top songs and artists.
+In the home page, you can find new releases and featured recent playlists. In addition, you can also see your created and followed playlists and albums and your top songs and artists.
 
-As I am using the [Spotify Web API](https://developer.spotify.com/documentation/web-api/), there are some limitations such as only registered users in my dashboard can login and as you need to have a premium account to use the player.
+As I am using the [Spotify Web API](https://developer.spotify.com/documentation/web-api/). There are some limitations in the api that only allow  registered users in my dashboard to login because you need to have a premium account to use the player.
   
 
 
@@ -73,9 +79,7 @@ There are some tasks that, eventually, I would like to do for improve this app, 
 - Create a component for visualize track's lyrics, currently this functionality is not avilable in the API.
 
 
-## Some views
-
-Take a look at the project:
+## Screenshots
 
 </br>
 
