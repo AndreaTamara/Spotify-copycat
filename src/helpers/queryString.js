@@ -2,11 +2,11 @@ import cryptoRandomString from 'crypto-random-string';
 
 export const queryString = () => {
 
-    const clientId = '3f182385c47b4459b03bba8df1a09d47';
+    const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
     const AuthUrl = 'https://accounts.spotify.com/authorize?';
     const state = cryptoRandomString({ length: 16 });
     const scope = 'user-read-private user-read-email user-modify-playback-state user-read-playback-state user-read-recently-played streaming user-top-read user-library-read user-library-modify playlist-modify-public playlist-read-private playlist-modify-private'
-    const redirect_uri = 'http://localhost:3000/';
+    const redirect_uri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
 
     const queryParams = new URLSearchParams(
         {

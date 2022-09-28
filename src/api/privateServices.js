@@ -4,10 +4,10 @@ const instance = axios.create({ baseURL: 'https://api.spotify.com/v1' })
 
 export const getPrivateToken = async (code) => {
 
-    const clientId = '3f182385c47b4459b03bba8df1a09d47';
-    const clientSecret = '89b84d2544ac44938950c2fdcca11cd0';
+    const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+    const clientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
     const AutUrl = 'https://accounts.spotify.com/api/token';
-    const redirect_uri = 'http://localhost:3000/';
+    const redirect_uri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
 
     const result = await axios(
         {
