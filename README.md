@@ -10,7 +10,7 @@
 - [Built with](#built-with)
 - [What I learned](#what-i-learned)
 - [Continued development](#continued-development)
-- [Some views](#some-views)
+- [Screenshots](#screenshots)
 - [Author](#author)
 - [Useful resources](#useful-resources)
 - [How to run the project](#how-to-run-the-project)
