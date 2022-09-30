@@ -29,7 +29,7 @@ This proyect is a responsive spotify replica with a twist.You are able to:
 
 In the home page, you can find new releases and featured recent playlists. In addition, you can also see your created and followed playlists and albums and your top songs and artists.
 
-I am using the [Spotify Web API](https://developer.spotify.com/documentation/web-api/), so there are some limitations in the api that only allow  registered users in my dashboard to login, also you need to have a premium account to use the player.
+I am using the [Spotify Web API](https://developer.spotify.com/documentation/web-api/), so there are some limitations in the API that only allow  registered users in my dashboard to login, also you need to have a premium account to use the player.
   
 
 
